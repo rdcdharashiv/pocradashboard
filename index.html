@@ -45,12 +45,12 @@ body{font-family:'Times New Roman', Times, serif;background:var(--bg);color:var(
 .nt{padding:13px 18px;font-size:12px;font-weight:500;color:var(--tx3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:6px;user-select:none}
 .nt:hover{color:var(--g2)}
 .nt.active{color:var(--g1);border-bottom-color:var(--g1);font-weight:700}
-.fbar{background:var(--surface);border-bottom:1px solid var(--border);padding:9px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:relative}
-.flabel{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px}
-.fb{padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--tx2);font-size:11.5px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit}
+.fbar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 20px 8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;row-gap:7px;position:sticky;top:calc(var(--topbar-h) + var(--nav-h));z-index:100}
+.flabel{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;flex-shrink:0}
+.fb{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--tx2);font-size:11px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;line-height:1.4;font-family:inherit}
 .fb:hover{border-color:var(--g3);color:var(--g2)}
 .fb.active{background:var(--g1);border-color:var(--g1);color:#fff}
-.fdiv{width:1px;height:18px;background:var(--border)}
+.fdiv{width:1px;height:18px;background:var(--border);flex-shrink:0;align-self:center}
 .exp-btn{background:var(--g2);color:#fff;border:none;padding:6px 16px;border-radius:7px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;margin-left:auto;transition:background .15s}
 .exp-btn:hover{background:var(--g1)}
 .page{display:none;padding:22px 24px;animation:fi .25s ease}
@@ -71,6 +71,7 @@ body{font-family:'Times New Roman', Times, serif;background:var(--bg);color:var(
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px}
 .grid-73{display:grid;grid-template-columns:7fr 3fr;gap:14px;margin-bottom:14px}
+.grid-73:has(#kcard-social[style*="display: none"]),.grid-73:has(#kcard-social[style*="display:none"]){grid-template-columns:1fr}
 .grid-64{display:grid;grid-template-columns:6fr 4fr;gap:14px;margin-bottom:14px}
 .card{background:var(--surface);border-radius:var(--rl);box-shadow:var(--sh0);border:1px solid var(--border);overflow:hidden;margin-bottom:0}
 .ch{padding:13px 16px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
@@ -469,7 +470,7 @@ button, .nt, .fb, .kcard, .exp-btn, a {
     </div>
   </div>
   <div class="tb-right">
-    <span class="pill-date">📅 Last Updated: 22 April 2026</span>
+    <span class="pill-date">📅 Last Updated: 29 April 2026</span>
     <span class="pill">📍 Dharashiv District, Maharashtra</span>
     <span class="live">LIVE</span>
   </div>
@@ -508,16 +509,16 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 1: EXECUTIVE OVERVIEW -->
 <div class="page active" id="page-overview">
-  <div class="sec">Key Performance Indicators — Last Updated: 22 April 2026</div>
+  <div class="sec">Key Performance Indicators — Last Updated: 29 April 2026</div>
   <div class="kpi-grid">
     <div class="kcard g"><span class="kc-icon">🏘</span><div class="kc-lbl">Villages Covered</div><div class="kc-val" id="kv-vil">131</div><div class="kc-sub">Across 8 Talukas</div><span class="flag fg">✓ Scheme Active</span></div>
-    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Registered Farmers</div><div class="kc-val" id="kv-far">10,916</div><div class="kc-sub">NDKSP 2 DBT</div><span class="flag fg">✓ Enrolled</span></div>
-    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Applications Submitted</div><div class="kc-val" id="kv-app">14,374</div><div class="kc-sub" id="kv-apf">1.32 Apps/Farmer</div><span class="flag fb2">Total Demand</span></div>
-    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">Pre-Sanction Rate</div><div class="kc-val" id="kv-ps">86.89%</div><div class="kc-sub" id="kv-psn">12,490 of 14,374</div><span class="flag fg">✓ Strong</span></div>
-    <div class="kcard r"><span class="kc-icon">💰</span><div class="kc-lbl">Payment Rate</div><div class="kc-val" id="kv-pay">3.31%</div><div class="kc-sub" id="kv-payn">476 of 14,374</div><span class="flag fr">🔴 CRITICAL</span></div>
-    <div class="kcard a" id="kcard-scst"><span class="kc-icon">👥</span><div class="kc-lbl">SC+ST Inclusion Rate</div><div class="kc-val" id="kv-scst">8.39%</div><div class="kc-sub">1,082 of 12,868 Farmers</div><span class="flag fa">⚠ Below Target</span><div style="font-size:9px;color:var(--a1);margin-top:5px;font-style:italic;line-height:1.4">📍 Note: District-level data only.<br>Taluka-wise data not available.</div></div>
+    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Registered Farmers</div><div class="kc-val" id="kv-far">9,546</div><div class="kc-sub">NDKSP 2 DBT</div><span class="flag fg">✓ Enrolled</span></div>
+    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Applications Submitted</div><div class="kc-val" id="kv-app">14,602</div><div class="kc-sub" id="kv-apf">1.53 Apps/Farmer</div><span class="flag fb2">Total Demand</span></div>
+    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">Pre-Sanction Rate</div><div class="kc-val" id="kv-ps">85.54%</div><div class="kc-sub" id="kv-psn">12,490 of 14,602</div><span class="flag fg">✓ Strong</span></div>
+    <div class="kcard r"><span class="kc-icon">💰</span><div class="kc-lbl">Payment Rate</div><div class="kc-val" id="kv-pay">3.26%</div><div class="kc-sub" id="kv-payn">476 of 14,602</div><span class="flag fr">🔴 CRITICAL</span></div>
+    <div class="kcard a" id="kcard-scst"><span class="kc-icon">👥</span><div class="kc-lbl">SC+ST Inclusion Rate</div><div class="kc-val" id="kv-scst">8.36%</div><div class="kc-sub">1,122 of 13,429 Farmers</div><span class="flag fa">⚠ Below Target</span><div style="font-size:9px;color:var(--a1);margin-top:5px;font-style:italic;line-height:1.4">📍 Note: District-level data only.<br>Taluka-wise data not available.</div></div>
   </div>
-  <div class="sec">Governance Alerts — Last Updated: 22 April 2026</div>
+  <div class="sec">Governance Alerts — Last Updated: 29 April 2026</div>
   <div class="alerts">
     <div class="alert r"><div class="alert-icon">🔴</div><div><div class="alert-title">Payment Rate 3.49% — CRITICAL</div><div class="alert-body">476 payments against 13,647 applications. Bhum (0/1,641), Paranda (0/934), Washi (0/661) have zero payments. लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ &amp; उपविभागीय कृषी अधिकारी डेस्क ६ severely delayed.</div></div></div>
     <div class="alert a"><div class="alert-icon">⚠️</div><div><div class="alert-title">मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी) Crash — 99.6% Drop</div><div class="alert-body">1,002 files cleared उपकृषी अधिकारी डेस्क ४ (मोका तपासणी) → only 4 reached मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी). Physical file routing to Circle AO appears broken. Immediate audit required.</div></div></div>
@@ -525,19 +526,21 @@ button, .nt, .fb, .kcard, .exp-btn, a {
   <div class="sec">NDKSP 2 DBT — Applications, Pre-Sanctions &amp; Payments by Taluka</div>
   <div class="grid-73">
     <div class="card">
-      <div class="ch"><div class="ct">📊 Applications vs Pre-Sanctioned vs Payments — Exact Figures</div><div class="cs" id="cs-appbar">All 8 Talukas · Last Updated: 22 April 2026</div></div>
+      <div class="ch"><div class="ct">📊 Applications vs Pre-Sanctioned vs Payments — Exact Figures</div><div class="cs" id="cs-appbar">All 8 Talukas · Last Updated: 29 April 2026</div></div>
       <div class="cb"><div class="cw" style="height:290px"><canvas id="ch-appbar"></canvas></div></div>
     </div>
-    <div class="card">
+    <div id="social-wrap">
+    <div class="card" id="kcard-social">
       <div class="ch"><div class="ct">🍩 Beneficiary Social Profile</div><div class="cs">Category-wise (All 23 Activities)</div></div>
       <div class="cb">
         <div class="cw" style="height:160px"><canvas id="ch-social"></canvas></div>
         <div style="margin-top:10px;display:flex;justify-content:space-around;font-size:11.5px;color:var(--tx2)">
-          <span>SC: <strong style="color:#F44336">856</strong></span>
-          <span>ST: <strong style="color:#FF9800">226</strong></span>
-          <span>Others: <strong style="color:#4CAF50">11,786</strong></span>
+          <span>SC: <strong style="color:#F44336">895</strong></span>
+          <span>ST: <strong style="color:#FF9800">227</strong></span>
+          <span>Others: <strong style="color:#4CAF50">13,480</strong></span>
         </div>
       </div>
+    </div>
     </div>
   </div>
   <div class="grid-2">
@@ -551,7 +554,7 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 2: NDKSY PIPELINE -->
 <div class="page" id="page-pipeline">
-  <div class="sec">NDKSY — 9-Desk Approval Workflow Pipeline · Exact Figures · Last Updated: 22 April 2026</div>
+  <div class="sec">NDKSY — 9-Desk Workflow Pipeline · Last Updated: 29 April 2026 · Desks: D1 शेतकरी पडताळणी · D2 ग्रा.कृ.वि.स मान्यता · D3 Asst.AO Site Inspection · D4 TAO Pre-Sanction · D5–D7 Spot Checks · D8 Accounts Officer · D9 SubDiv AO Final</div>
   <div class="card" style="margin-bottom:14px">
     <div class="ch">
       <div class="ct">🔄 Pipeline Funnel — District Total · All 9 Desks</div>
@@ -561,8 +564,16 @@ button, .nt, .fb, .kcard, .exp-btn, a {
   </div>
   <div class="grid-2">
     <div class="card">
-      <div class="ch"><div class="ct">📊 Desk-wise Count — Bar Chart</div></div>
-      <div class="cb"><div class="cw" style="height:520px"><canvas id="ch-pipe-bar"></canvas></div></div>
+      <div class="ch" style="flex-direction:column;align-items:flex-start;gap:4px">
+      <div class="ct">📊 Desk-wise Count — All 9 Desks (29 April 2026)</div>
+      <div class="cs" style="font-size:9.5px;line-height:1.6">
+        D1: शेतकरी पडताळणी &nbsp;·&nbsp; D2: ग्रा.कृ.वि.स मान्यता &nbsp;·&nbsp; D3: सहायक कृषी अधिकारी स्थळ पाहणी &nbsp;·&nbsp;
+        D4: तालुका कृषी अधिकारी पूर्वसंमती &nbsp;·&nbsp; D5: सहायक कृषी अधिकारी मोका तपासणी &nbsp;·&nbsp;
+        D6: उपकृषी अधिकारी मोका तपासणी &nbsp;·&nbsp; D7: मंडळ कृषी अधिकारी मोका तपासणी &nbsp;·&nbsp;
+        D8: लेखाअधिकारी उ. कृ.अ.कार्यालय &nbsp;·&nbsp; D9: उपविभागीय कृषी अधिकारी (Final)
+      </div>
+    </div>
+      <div class="cb"><div class="cw" style="height:560px"><canvas id="ch-pipe-bar"></canvas></div></div>
     </div>
     <div class="card">
       <div class="ch"><div class="ct">⚠️ Stage-to-Stage Drop-off Analysis</div><div class="cs">Net change between consecutive desks</div></div>
@@ -577,7 +588,7 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 3: TALUKA SCORECARD -->
 <div class="page" id="page-taluka">
-  <div class="sec">Composite Score = (Pre-Sanction Rate % × 0.60) + (Payment Rate % × 0.40) · Last Updated: 22 April 2026</div>
+  <div class="sec">Composite Score = (Pre-Sanction Rate % × 0.60) + (Payment Rate % × 0.40) · Last Updated: 29 April 2026</div>
   <div class="grid-64">
     <div class="card">
       <div class="ch"><div class="ct">🏆 Composite Score Ranking — All 8 Talukas</div><div class="cs">Higher score = better implementation</div></div>
@@ -596,12 +607,12 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 4: ACTIVITY & INCLUSION -->
 <div class="page" id="page-activity">
-  <div class="sec">All 23 Scheme Activities · Category-wise Farmer &amp; Social Inclusion · Last Updated: 22 April 2026</div>
+  <div class="sec">All 23 Scheme Activities · Category-wise Farmer &amp; Social Inclusion · Last Updated: 29 April 2026</div>
   <div class="alert b" style="margin-bottom:12px;padding:10px 14px">
     <div class="alert-icon" style="font-size:16px">ℹ️</div>
     <div>
       <div class="alert-title" style="font-size:11px">District-Level Data Only</div>
-      <div class="alert-body"><strong>Note: Data represents overall district-level activities. Taluka-wise activity data is not available.</strong> The Taluka filter above does not apply to this section. All figures are district totals as of 22 April 2026.</div>
+      <div class="alert-body"><strong>Note: Data represents overall district-level activities. Taluka-wise activity data is not available.</strong> The Taluka filter above does not apply to this section. All figures are district totals as of 29 April 2026.</div>
     </div>
   </div>
   <div class="grid-64">
@@ -646,21 +657,23 @@ button, .nt, .fb, .kcard, .exp-btn, a {
       <div class="ch"><div class="ct">💰 4. DBT Payment — लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ &amp; उपविभागीय कृषी अधिकारी डेस्क ६</div><span class="badge br">Only 3.49% — 476 paid</span></div>
       <div class="cb">
         <p style="font-size:11.5px;line-height:1.7;color:var(--tx2);margin-bottom:10px">Accounts Officer processes at लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ (273 cleared) → Sub-Divisional Agriculture Officer final clearance at उपविभागीय कृषी अधिकारी डेस्क ६ (121 cleared) → DBT credited to Aadhaar-linked bank account. <strong>Only 476 of 13,647 applications have received payment.</strong></p>
-        <div class="alert r" style="padding:8px 12px"><div style="font-size:13px">🔴</div><div class="alert-body"><strong>Urgent:</strong> Collector-chaired daily review of लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ &amp; उपविभागीय कृषी अधिकारी डेस्क ६. SLA: 7 days per file. Digital tracking mandatory.</div></div>
+        <div class="alert r" style="padding:8px 12px"><div style="font-size:13px">🔴</div><div class="alert-body"><strong>Priority:</strong> Expedite clearance at लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ &amp; उपविभागीय कृषी अधिकारी डेस्क ६. Target: 7-day processing SLA. Enable digital file tracking.</div></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+
 // ═══════════════════════════════════════════════════════════════════════
 // ALL DATA SOURCED DIRECTLY FROM EXCEL — EXACT FIGURES
-// Last Updated: 22 April 2026
+// Last Updated: 29 April 2026
 // ═══════════════════════════════════════════════════════════════════════
 
 // ── Sheet 1: NDKSP 2 DBT Taluka wise applica ──
 // PREVIOUS DATA (13 April 2026)
-const NDKSP_PREV = [
+// BASELINE DATA (13 April 2026) — Original dataset
+const NDKSP_13APR = [
   {t:"Dharashiv",vil:23,far:2687,app:3723,ps:3500,pay:269},
   {t:"Tuljapur", vil:18,far:1049,app:1937,ps:1800,pay:55 },
   {t:"Lohara",   vil:6, far:222, app:358, ps:340, pay:52 },
@@ -670,8 +683,9 @@ const NDKSP_PREV = [
   {t:"Washi",    vil:8, far:445, app:661, ps:650, pay:0  },
   {t:"Kalamb",   vil:18,far:2130,app:2921,ps:2300,pay:48 },
 ];
-// CURRENT DATA (22 April 2026) — from NDKSP Report 22.04.2026
-const NDKSP = [
+const NDKSP_13APR_TOT={vil:131,far:9069,app:13647,ps:12490,pay:476,ps_rate:91.52,pay_rate:3.49};
+const NDKSY_13APR={d1:99,d2:1559,d3:3067,d4:351,d5:157,d6:1002,d7:4,d8:273,d9:121};
+const NDKSP_PREV = [
   {t:"Dharashiv",vil:23,far:2793,app:3905,ps:3500,pay:269},
   {t:"Tuljapur", vil:18,far:1107,app:2134,ps:1800,pay:55 },
   {t:"Lohara",   vil:6, far:231, app:373, ps:340, pay:52 },
@@ -680,6 +694,17 @@ const NDKSP = [
   {t:"Paranda",  vil:17,far:602, app:977, ps:900, pay:0  },
   {t:"Washi",    vil:8, far:460, app:690, ps:650, pay:0  },
   {t:"Kalamb",   vil:18,far:2199,app:3041,ps:2300,pay:48 },
+];
+// CURRENT DATA (29 April 2026) — from NDKSP Report 29.04.2026
+const NDKSP = [
+  {t:"Dharashiv",vil:23,far:2833,app:3965,ps:3500,pay:269},
+  {t:"Tuljapur", vil:18,far:1125,app:2175,ps:1800,pay:55 },
+  {t:"Lohara",   vil:6, far:233, app:378, ps:340, pay:52 },
+  {t:"Omerga",   vil:20,far:994, app:1576,ps:1400,pay:52 },
+  {t:"Bhum",     vil:21,far:1052,app:1726,ps:1600,pay:0  },
+  {t:"Paranda",  vil:17,far:625, app:1007,ps:900, pay:0  },
+  {t:"Washi",    vil:8, far:463, app:696, ps:650, pay:0  },
+  {t:"Kalamb",   vil:18,far:2221,app:3079,ps:2300,pay:48 },
 ];
 // Compute derived fields
 NDKSP.forEach(r=>{
@@ -692,9 +717,9 @@ NDKSP.forEach(r=>{
   r.pend_pay = r.ps  - r.pay;
 });
 // District Total row
-const NDKSP_TOT_PREV={vil:131,far:9069,app:13647,ps:12490,pay:476,ps_rate:91.52,pay_rate:3.49};
-const NDKSP_TOT={vil:131,far:10916,app:14374,ps:12490,pay:476,
-  ps_rate:+(12490/14374*100).toFixed(2),pay_rate:+(476/14374*100).toFixed(2),score:+(12490/14374*100*0.6+476/14374*100*0.4).toFixed(2)};
+const NDKSP_TOT_PREV={vil:131,far:9414,app:14374,ps:12490,pay:476,ps_rate:86.89,pay_rate:3.31};
+const NDKSP_TOT={vil:131,far:9546,app:14602,ps:12490,pay:476,
+  ps_rate:+(12490/14602*100).toFixed(2),pay_rate:+(476/14602*100).toFixed(2),score:+(12490/14602*100*0.6+476/14602*100*0.4).toFixed(2)};
 
 // ── Sheet 3: NDKSY ALL (9 desks, Marathi→English mapping) ──
 // शेतकरी पडताळणी  = शेतकरी पडताळणी             = Farmer Verification
@@ -706,18 +731,18 @@ const NDKSP_TOT={vil:131,far:10916,app:14374,ps:12490,pay:476,
 // लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५
 // उपविभागीय कृषी अधिकारी डेस्क ६
 const NDKSY = [
-  // CURRENT DATA (22 April 2026) — from NDKSY ALL sheet
-  {t:"Bhum",      d1:200,d2:198,  d3:456,  d4:0,   d5:0,   d6:43,  d7:0, d8:9,   d9:0  },
-  {t:"Kalamb",    d1:29, d2:169,  d3:490,  d4:6,   d5:4,   d6:358, d7:3, d8:179, d9:99 },
-  {t:"Paranda",   d1:35, d2:42,   d3:262,  d4:14,  d5:0,   d6:21,  d7:0, d8:27,  d9:0  },
-  {t:"Washi",     d1:13, d2:35,   d3:246,  d4:0,   d5:0,   d6:24,  d7:0, d8:11,  d9:3  },
-  {t:"Dharashiv", d1:50, d2:127,  d3:644,  d4:331, d5:98,  d6:277, d7:2, d8:162, d9:88 },
-  {t:"Lohara",    d1:20, d2:6,    d3:79,   d4:0,   d5:1,   d6:43,  d7:0, d8:0,   d9:1  },
-  {t:"Tuljapur",  d1:81, d2:209,  d3:583,  d4:5,   d5:5,   d6:55,  d7:0, d8:12,  d9:0  },
-  {t:"Umarga",    d1:172,d2:93,   d3:142,  d4:0,   d5:5,   d6:143, d7:0, d8:8,   d9:0  },
+  // CURRENT DATA (29 April 2026) — from NDKSY ALL sheet
+  {t:"Bhum",      d1:10, d2:183,  d3:490,  d4:14,  d5:0,   d6:66,  d7:0, d8:14,  d9:6  },
+  {t:"Kalamb",    d1:50, d2:79,   d3:428,  d4:37,  d5:17,  d6:337, d7:3, d8:186, d9:161},
+  {t:"Paranda",   d1:8,  d2:41,   d3:241,  d4:22,  d5:0,   d6:26,  d7:0, d8:28,  d9:0  },
+  {t:"Washi",     d1:5,  d2:31,   d3:223,  d4:0,   d5:0,   d6:44,  d7:0, d8:14,  d9:3  },
+  {t:"Dharashiv", d1:17, d2:214,  d3:576,  d4:191, d5:98,  d6:283, d7:2, d8:46,  d9:89 },
+  {t:"Lohara",    d1:19, d2:8,    d3:68,   d4:3,   d5:1,   d6:53,  d7:0, d8:2,   d9:13 },
+  {t:"Tuljapur",  d1:11, d2:310,  d3:552,  d4:6,   d5:14,  d6:52,  d7:0, d8:10,  d9:8  },
+  {t:"Umarga",    d1:73, d2:96,   d3:119,  d4:0,   d5:10,  d6:173, d7:0, d8:7,   d9:3  },
 ];
-const NDKSY_TOT_PREV={d1:99,d2:1559,d3:3067,d4:351,d5:157,d6:1002,d7:4,d8:273,d9:121};
-const NDKSY_TOT={d1:600,d2:879,d3:2902,d4:356,d5:113,d6:964,d7:5,d8:408,d9:191};
+const NDKSY_TOT_PREV={d1:600,d2:879,d3:2902,d4:356,d5:113,d6:964,d7:5,d8:408,d9:191};
+const NDKSY_TOT={d1:193,d2:962,d3:2697,d4:273,d5:140,d6:1034,d7:5,d8:307,d9:283};
 
 // Full desk name labels (English)
 const DESK_FULL=[
@@ -748,33 +773,33 @@ const DESK_KEYS =["d1","d2","d3","d4","d5","d6","d7","d8","d9"];
 // ── Sheet 2: Category wise (all 23 activities) ──
 // CURRENT DATA (22 April 2026) — Category wise report
 const CAT=[
-  {n:"Sprinkler Irrigation",                                 vil:127,f:4609,a:4909,sc:176,st:66, oth:4667},
-  {n:"Drip Irrigation",                                      vil:124,f:2993,a:3551,sc:76, st:26, oth:3449},
-  {n:"Horticulture Plantation",                              vil:112,f:876, a:1017,sc:46, st:13, oth:958 },
-  {n:"Recharge of Well",                                     vil:109,f:661, a:663, sc:49, st:7,  oth:607 },
-  {n:"Vermicompost Unit",                                    vil:91, f:610, a:612, sc:16, st:3,  oth:593 },
-  {n:"Seed Production",                                      vil:48, f:339, a:426, sc:3,  st:7,  oth:416 },
-  {n:"Farm Pond Without Inlet Outlet",                       vil:88, f:387, a:389, sc:8,  st:9,  oth:372 },
-  {n:"Tree Plantation",                                      vil:82, f:341, a:365, sc:20, st:1,  oth:344 },
-  {n:"Mulberry Plantation",                                  vil:72, f:327, a:332, sc:7,  st:1,  oth:324 },
-  {n:"Goat Rearing",                                         vil:49, f:289, a:289, sc:43, st:1,  oth:245 },
-  {n:"Pipes",                                                vil:74, f:286, a:288, sc:237,st:51, oth:0   },
-  {n:"Farm Pond Lining",                                     vil:93, f:296, a:299, sc:8,  st:7,  oth:284 },
-  {n:"Nadep Compost Unit",                                   vil:55, f:296, a:297, sc:11, st:2,  oth:284 },
-  {n:"Farm Pond With Inlet Outlet",                          vil:72, f:187, a:188, sc:10, st:5,  oth:173 },
-  {n:"Water Pumps",                                          vil:59, f:172, a:174, sc:144,st:30, oth:0   },
-  {n:"Silk Worm Rearing House (1320 sq.ft.)",               vil:59, f:164, a:166, sc:4,  st:0,  oth:162 },
-  {n:"Inland Fisheries",                                     vil:55, f:128, a:128, sc:5,  st:0,  oth:123 },
-  {n:"Silk Worm Rearing Equipment & Disinfectants",          vil:35, f:85,  a:85,  sc:2,  st:0,  oth:83  },
-  {n:"Bamboo Plantation",                                    vil:31, f:50,  a:53,  sc:3,  st:0,  oth:50  },
-  {n:"Tree Plantation (Horticulture)",                       vil:25, f:45,  a:47,  sc:2,  st:0,  oth:45  },
-  {n:"Shadenet House — Vegetable Planting Material",         vil:29, f:39,  a:39,  sc:1,  st:0,  oth:38  },
-  {n:"Bamboo Plantation (Group B)",                                  vil:21, f:29,  a:31,  sc:1,  st:0,  oth:30  },
-  {n:"Poly House — Vegetable Planting Material",             vil:13, f:20,  a:20,  sc:3,  st:0,  oth:17  },
-  {n:"Poly House — Flower Crop Planting Material",           vil:6,  f:6,   a:6,   sc:1,  st:0,  oth:5   },
-];
+  {n:"Sprinkler Irrigation",                                                       vil:127,f:4657,a:4962,sc:177,st:66, oth:4719},
+  {n:"Drip Irrigation",                                                            vil:124,f:3049,a:3630,sc:78, st:27, oth:3525},
+  {n:"Horticulture Plantation",                                                    vil:113,f:898, a:1040,sc:48, st:13, oth:979 },
+  {n:"Recharge of Well",                                                           vil:110,f:670, a:672, sc:51, st:5,  oth:616 },
+  {n:"Vermicompost Unit",                                                          vil:91, f:624, a:626, sc:17, st:3,  oth:606 },
+  {n:"Seed Production",                                                            vil:48, f:338, a:425, sc:3,  st:7,  oth:415 },
+  {n:"Farm Pond Without Inlet Outlet",                                             vil:89, f:399, a:401, sc:8,  st:10, oth:383 },
+  {n:"Tree Plantation",                                                            vil:83, f:350, a:376, sc:20, st:2,  oth:354 },
+  {n:"Mulberry Plantation",                                                        vil:70, f:330, a:336, sc:8,  st:1,  oth:327 },
+  {n:"Nadep Compost Unit",                                                         vil:54, f:301, a:302, sc:11, st:2,  oth:289 },
+  {n:"Farm Pond Lining",                                                           vil:94, f:297, a:300, sc:8,  st:6,  oth:286 },
+  {n:"Goat Rearing",                                                               vil:51, f:292, a:292, sc:44, st:1,  oth:247 },
+  {n:"Pipes",                                                                      vil:75, f:289, a:291, sc:241,st:50, oth:0   },
+  {n:"Farm Pond With Inlet Outlet",                                                vil:74, f:194, a:195, sc:10, st:5,  oth:180 },
+  {n:"Water Pumps",                                                                vil:59, f:174, a:176, sc:147,st:29, oth:0   },
+  {n:"Construction of Silk Worm Rearing House (1320 sq.ft.)",                     vil:59, f:164, a:167, sc:4,  st:0,  oth:163 },
+  {n:"Inland Fisheries",                                                           vil:56, f:129, a:129, sc:6,  st:0,  oth:123 },
+  {n:"Silk Worm Rearing Equipment & Disinfectants",                                vil:35, f:85,  a:86,  sc:2,  st:0,  oth:84  },
+  {n:"Bamboo Plantation (A)",                                                      vil:32, f:51,  a:54,  sc:4,  st:0,  oth:50  },
+  {n:"Tree Plantation (Horticulture)",                                             vil:25, f:45,  a:47,  sc:2,  st:0,  oth:45  },
+  {n:"Planting Material in Shadenet House (Vegetable Plantation)",                 vil:29, f:39,  a:39,  sc:1,  st:0,  oth:38  },
+  {n:"Bamboo Plantation (B)",                                                      vil:20, f:28,  a:30,  sc:1,  st:0,  oth:29  },
+  {n:"Planting Material in Poly House (Vegetable Plantation)",                     vil:13, f:20,  a:20,  sc:3,  st:0,  oth:17  },
+  {n:"Planting Material in Poly House (Flower Crop Plantation)",                   vil:6,  f:6,   a:6,   sc:1,  st:0,  oth:5   },
+]
 CAT.forEach(r=>{r.scst=r.sc+r.st;r.scst_pct=+(r.scst/r.f*100).toFixed(2);r.apf=+(r.a/r.f).toFixed(2);});
-const CAT_TOT={f:13235,a:14382,sc:876,st:229,oth:13269,scst:1105};
+const CAT_TOT={f:13429,a:14602,sc:895,st:227,oth:13480,scst:1122};
 
 // ═══════════════════════════════════════════════════════
 // RELATIONSHIPS (Star Schema joins used in scorecard table)
@@ -820,12 +845,19 @@ function setFilter(f,el){
 }
 function updateKPIs(){
   const idx=getFIdx();
+  const scstCard=document.getElementById('kcard-scst');
+  const socialCard=document.getElementById('kcard-social');
+  const socialWrap=document.getElementById('social-wrap');
   if(FILTER==='ALL'){
     ['kv-vil','kv-far','kv-app','kv-apf','kv-ps','kv-psn','kv-pay','kv-payn','kv-scst'].forEach((id,i)=>{
-      const vals=['131','10,916','14,374','1.32 Apps/Farmer','86.89%','12,490 of 14,374',
-                  '3.31%','476 of 14,374','8.35%'];
+      const vals=['131','9,546','14,602','1.53 Apps/Farmer','85.54%','12,490 of 14,602',
+                  '3.26%','476 of 14,602','8.36%'];
       document.getElementById(id).textContent=vals[i];
     });
+    // District-level cards: show only in All Talukas view
+    if(scstCard) scstCard.style.display='';
+    if(socialCard){ socialCard.style.display=''; }
+    if(socialWrap){ socialWrap.style.display=''; }
   } else {
     const i=idx[0]; const d=NDKSP[i];
     document.getElementById('kv-vil').textContent=d.vil.toLocaleString();
@@ -836,12 +868,11 @@ function updateKPIs(){
     document.getElementById('kv-psn').textContent=d.ps.toLocaleString()+' of '+d.app.toLocaleString();
     document.getElementById('kv-pay').textContent=d.pay_rate+'%';
     document.getElementById('kv-payn').textContent=d.pay.toLocaleString()+' of '+d.app.toLocaleString();
-    // SC+ST Inclusion: always keep district-level value — taluka filter does NOT apply
-    document.getElementById('kv-scst').textContent='8.35%';
+    // District-level cards: completely hide for individual taluka
+    if(scstCard) scstCard.style.display='none';
+    if(socialCard){ socialCard.style.display='none'; }
+    if(socialWrap){ socialWrap.style.display='none'; }
   }
-  // SC+ST card is always visible — always shows district-level data regardless of filter
-  const scstCard = document.getElementById('kcard-scst');
-  if (scstCard) scstCard.style.display = '';
 }
 
 Chart.defaults.font.family="'Times New Roman', Times, serif";
@@ -879,95 +910,584 @@ function renderPage(name){
 }
 
 function renderCompare(){
-  const tals = NDKSP.map(r=>r.t);
-  const prevFar = NDKSP_PREV.map(r=>r.far);
-  const currFar = NDKSP.map(r=>r.far);
-  const prevApp = NDKSP_PREV.map(r=>r.app);
-  const currApp = NDKSP.map(r=>r.app);
+  // ── Determine scope: ALL talukas or single selected taluka ──
+  const isAll = (FILTER === 'ALL');
+  const idx   = getFIdx();  // array of NDKSP indices for current filter
 
-  // Comparison bar chart — farmers
-  mk('ch-compare-bar',{type:'bar',data:{labels:tals,datasets:[
-    {label:'Prev Farmers (13 Apr)',data:prevFar,backgroundColor:'#1565C077',borderColor:'#0D47A1',borderWidth:1,borderRadius:3},
-    {label:'Curr Farmers (22 Apr)',data:currFar,backgroundColor:'#2E7D32BB',borderColor:'#1B5E20',borderWidth:1,borderRadius:3},
-    {label:'Prev Apps (13 Apr)',   data:prevApp,backgroundColor:'#F57F1777',borderColor:'#E65100',borderWidth:1,borderRadius:3},
-    {label:'Curr Apps (22 Apr)',   data:currApp,backgroundColor:'#FF6F00BB',borderColor:'#BF360C',borderWidth:1,borderRadius:3},
-  ]},options:{...bOpts(),plugins:{...bOpts().plugins,datalabels:{display:false}}}});
+  // ── Update dynamic title elements ──
+  const titleLabel = isAll ? 'All 8 Talukas' : FILTER;
+  const el_sec   = document.getElementById('cmp-sec-title');
+  const el_ctitle= document.getElementById('cmp-chart-title');
+  const el_ttitle= document.getElementById('cmp-table-title');
+  const el_csec  = document.getElementById('cmp-chart-sec');
+  if(el_sec)    el_sec.textContent    = 'Three-Point Comparison — 13 Apr · 22 Apr · 29 Apr 2026 · ' + titleLabel;
+  if(el_ctitle) el_ctitle.textContent = '\u{1F4CA} Farmers & Apps — 13 Apr · 22 Apr · 29 Apr (' + titleLabel + ')';
+  if(el_ttitle) el_ttitle.textContent = '\u{1F4CB} Comparison — 13 Apr · 22 Apr · 29 Apr (' + titleLabel + ')';
+  if(el_csec)   el_csec.textContent   = 'Taluka-wise Farmer & Applications — ' + titleLabel;
 
-  // Pipeline comparison
-  const dkeys=DESK_KEYS;
-  const prevPipe=dkeys.map(k=>NDKSY_TOT_PREV[k]);
-  const currPipe=dkeys.map(k=>NDKSY_TOT[k]);
-  const shortLabels=['शेतकरी पडताळणी','ग्रा.कृ.वि.स','Asst.AO Site','TAO Pre-San','AsstAO Spot','DyAO Spot','Circle AO','Accounts','SubDiv AO'];
-  mk('ch-compare-pipeline',{type:'bar',data:{labels:shortLabels,datasets:[
-    {label:'Previous (13 Apr)',data:prevPipe,backgroundColor:'#1565C077',borderColor:'#0D47A1',borderWidth:1,borderRadius:3},
-    {label:'Current (22 Apr)', data:currPipe,backgroundColor:currPipe.map((v,i)=>v>=prevPipe[i]?'#2E7D32BB':'#C62828BB'),
-      borderColor:currPipe.map((v,i)=>v>=prevPipe[i]?'#1B5E20':'#B71C1C'),borderWidth:1,borderRadius:3},
-  ]},options:{...bOpts(),plugins:{...bOpts().plugins,
-    datalabels:{display:true,anchor:'end',align:'end',
-      font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},
-      color:ctx=>ctx.datasetIndex===1&&currPipe[ctx.dataIndex]<prevPipe[ctx.dataIndex]?'#C62828':'#1A202C',
-      formatter:v=>v.toLocaleString()},
-    tooltip:{callbacks:{
-      title:ctx=>DESK_FULL[ctx[0].dataIndex],
-      label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()
-    }}},
-    layout:{padding:{top:20}}
+  // ── Show/hide taluka table rows ──
+  document.querySelectorAll('.cmp-row').forEach(row=>{
+    const t = row.getAttribute('data-taluka');
+    row.style.display = (isAll || t === FILTER) ? '' : 'none';
+  });
+  // District total row: show only for ALL
+  document.querySelectorAll('.cmp-total-row').forEach(row=>{
+    row.style.display = isAll ? '' : 'none';
+  });
+
+  // ── Update Farmers & Apps KPI cards ──
+  if(isAll){
+    const el_far = document.getElementById('cmp-kpi-far');
+    const el_far_sub = document.getElementById('cmp-kpi-far-sub');
+    const el_far_flag = document.getElementById('cmp-kpi-far-flag');
+    const el_app = document.getElementById('cmp-kpi-app');
+    const el_app_sub = document.getElementById('cmp-kpi-app-sub');
+    const el_app_flag = document.getElementById('cmp-kpi-app-flag');
+    if(el_far)  el_far.textContent  = '9,546';
+    if(el_far_sub) el_far_sub.textContent = '9,069 \u2192 9,414 \u2192 9,546';
+    if(el_far_flag){ el_far_flag.textContent='\u25b2 22\u219229: +132'; el_far_flag.className='flag fg'; }
+    if(el_app)  el_app.textContent  = '14,602';
+    if(el_app_sub) el_app_sub.textContent = '13,647 \u2192 14,374 \u2192 14,602';
+    if(el_app_flag){ el_app_flag.textContent='\u25b2 22\u219229: +228'; el_app_flag.className='flag fg'; }
+  } else {
+    const i = idx[0];
+    const d13 = NDKSP_13APR[i]; const d22 = NDKSP_PREV[i]; const d29 = NDKSP[i];
+    const df = d29.far - d22.far; const da = d29.app - d22.app;
+    const el_far = document.getElementById('cmp-kpi-far');
+    const el_far_sub = document.getElementById('cmp-kpi-far-sub');
+    const el_far_flag = document.getElementById('cmp-kpi-far-flag');
+    const el_app = document.getElementById('cmp-kpi-app');
+    const el_app_sub = document.getElementById('cmp-kpi-app-sub');
+    const el_app_flag = document.getElementById('cmp-kpi-app-flag');
+    if(el_far)  el_far.textContent  = d29.far.toLocaleString();
+    if(el_far_sub) el_far_sub.textContent = d13.far.toLocaleString()+' \u2192 '+d22.far.toLocaleString()+' \u2192 '+d29.far.toLocaleString();
+    if(el_far_flag){
+      el_far_flag.textContent = (df>=0?'\u25b2':'\u25bc')+' 22\u219229: '+(df>=0?'+':'')+df;
+      el_far_flag.className = 'flag '+(df>=0?'fg':'fr');
+    }
+    if(el_app)  el_app.textContent  = d29.app.toLocaleString();
+    if(el_app_sub) el_app_sub.textContent = d13.app.toLocaleString()+' \u2192 '+d22.app.toLocaleString()+' \u2192 '+d29.app.toLocaleString();
+    if(el_app_flag){
+      el_app_flag.textContent = (da>=0?'\u25b2':'\u25bc')+' 22\u219229: '+(da>=0?'+':'')+da;
+      el_app_flag.className = 'flag '+(da>=0?'fg':'fr');
+    }
+  }
+
+  // ── Build chart data based on filter ──
+  // Group by DATE (3 groups: 13Apr, 22Apr, 29Apr), each with 2 bars (Farmers, Apps)
+  // X-axis = Date labels, datasets = one per taluka (or 2 bars for single taluka)
+  // For cleaner chart: use DATE as x-axis, Farmers vs Apps as two datasets per date point
+
+  let chartLabels, far13, far22, far29, app13, app22, app29;
+
+  if(isAll){
+    // X-axis = talukas, 6 datasets (3 dates × 2 metrics)
+    // For readability: split into 2 charts or group by date
+    // Use 3 groups on x-axis: each taluka gets 3 date bars for Farmers + 3 for Apps
+    // BETTER: x-axis = talukas, only show date-grouped bars
+    chartLabels = idx.map(i=>NDKSP[i].t);
+    far13 = idx.map(i=>NDKSP_13APR[i].far);
+    far22 = idx.map(i=>NDKSP_PREV[i].far);
+    far29 = idx.map(i=>NDKSP[i].far);
+    app13 = idx.map(i=>NDKSP_13APR[i].app);
+    app22 = idx.map(i=>NDKSP_PREV[i].app);
+    app29 = idx.map(i=>NDKSP[i].app);
+  } else {
+    // Single taluka: x-axis = 3 dates, 2 datasets (Farmers, Apps)
+    const i = idx[0];
+    chartLabels = ['13 Apr 2026', '22 Apr 2026', '29 Apr 2026'];
+    far13 = [NDKSP_13APR[i].far]; far22 = [NDKSP_PREV[i].far]; far29 = [NDKSP[i].far];
+    app13 = [NDKSP_13APR[i].app]; app22 = [NDKSP_PREV[i].app]; app29 = [NDKSP[i].app];
+  }
+
+  const tnr = "'Times New Roman',Times,serif";
+
+  if(isAll){
+    // ALL: group bars by date for clean layout
+    // 6 datasets but visually grouped: use date colors, one dataset per (date, metric)
+    mk('ch-compare-bar',{type:'bar',data:{labels:chartLabels,datasets:[
+      {label:'Farmers 13 Apr', data:far13, backgroundColor:'#90CAF9CC', borderColor:'#1565C0', borderWidth:1, borderRadius:3},
+      {label:'Farmers 22 Apr', data:far22, backgroundColor:'#42A5F5CC', borderColor:'#1565C0', borderWidth:1, borderRadius:3},
+      {label:'Farmers 29 Apr', data:far29, backgroundColor:'#1565C0DD', borderColor:'#0D47A1', borderWidth:1.5, borderRadius:3},
+      {label:'Apps 13 Apr',    data:app13, backgroundColor:'#A5D6A7CC', borderColor:'#2E7D32', borderWidth:1, borderRadius:3},
+      {label:'Apps 22 Apr',    data:app22, backgroundColor:'#66BB6ACC', borderColor:'#2E7D32', borderWidth:1, borderRadius:3},
+      {label:'Apps 29 Apr',    data:app29, backgroundColor:'#2E7D32DD', borderColor:'#1B5E20', borderWidth:1.5, borderRadius:3},
+    ]},options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'bottom',labels:{boxWidth:11,padding:10,font:{family:tnr,size:10}}},
+        datalabels:{display:false},
+        tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+      },
+      scales:{
+        x:{grid:{display:false}, ticks:{font:{family:tnr,size:10}}, categoryPercentage:0.85, barPercentage:0.8},
+        y:{grid:{color:'#F0F4F8'}, ticks:{font:{family:tnr,size:10}, callback:v=>v.toLocaleString()},
+           title:{display:true, text:'Count', font:{family:tnr,size:10}, color:'#718096'}}
+      },
+      layout:{padding:{top:8, bottom:4}}
+    }});
+  } else {
+    // SINGLE TALUKA: x-axis = 3 dates, 2 datasets (Farmers, Apps)
+    const i = idx[0];
+    const f_vals = [NDKSP_13APR[i].far, NDKSP_PREV[i].far, NDKSP[i].far];
+    const a_vals = [NDKSP_13APR[i].app, NDKSP_PREV[i].app, NDKSP[i].app];
+    mk('ch-compare-bar',{type:'bar',data:{
+      labels:['13 Apr 2026','22 Apr 2026','29 Apr 2026'],
+      datasets:[
+        {label:'Farmers', data:f_vals, backgroundColor:['#90CAF9CC','#42A5F5CC','#1565C0DD'],
+          borderColor:'#0D47A1', borderWidth:1.5, borderRadius:4},
+        {label:'Apps (Applications Submitted)', data:a_vals,
+          backgroundColor:['#A5D6A7CC','#66BB6ACC','#2E7D32DD'],
+          borderColor:'#1B5E20', borderWidth:1.5, borderRadius:4},
+      ]
+    },options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'top', labels:{boxWidth:12, padding:12, font:{family:tnr,size:11}}},
+        datalabels:{
+          display:true, anchor:'end', align:'top',
+          font:{family:tnr, size:11, weight:'bold'}, color:'#1A202C',
+          formatter:v=>v.toLocaleString()
+        },
+        tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+      },
+      scales:{
+        x:{grid:{display:false}, ticks:{font:{family:tnr,size:11}}},
+        y:{grid:{color:'#F0F4F8'}, ticks:{font:{family:tnr,size:10}, callback:v=>v.toLocaleString()},
+           suggestedMax: Math.max(...a_vals)*1.18}
+      },
+      layout:{padding:{top:28}}
+    }});
+  }
+
+  // ── NDKSY Pipeline chart (always district-level, not filtered by taluka) ──
+  const dkeys = DESK_KEYS;
+  const p13 = dkeys.map(k=>NDKSY_13APR[k]);
+  const p22 = dkeys.map(k=>NDKSY_TOT_PREV[k]);
+  const p29 = dkeys.map(k=>NDKSY_TOT[k]);
+  const dShort = ['D1','D2','D3','D4','D5','D6','D7','D8','D9'];
+
+  // Horizontal bar: all 9 desks + D7(val=5) clearly visible; grouped by desk
+  mk('ch-compare-pipeline',{type:'bar',data:{labels:DESK_FULL,datasets:[
+    {label:'13 Apr 2026', data:p13, backgroundColor:'#FFE0B2CC', borderColor:'#E65100', borderWidth:1, borderRadius:3},
+    {label:'22 Apr 2026', data:p22, backgroundColor:'#90CAF9CC', borderColor:'#1565C0', borderWidth:1, borderRadius:3},
+    {label:'29 Apr 2026 (Current)', data:p29,
+      backgroundColor:p29.map((v,i2)=>v>=p22[i2]?'#2E7D32CC':'#C62828CC'),
+      borderColor:    p29.map((v,i2)=>v>=p22[i2]?'#1B5E20':'#B71C1C'),
+      borderWidth:1.5, borderRadius:3},
+  ]},options:{
+    indexAxis:'y',
+    responsive:true, maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'top', labels:{boxWidth:12, padding:10, font:{family:tnr,size:10}}},
+      datalabels:{
+        display:ctx=>ctx.datasetIndex===2,
+        anchor:'end', align:'right',
+        font:{family:tnr, size:9, weight:'bold'},
+        color:ctx=>p29[ctx.dataIndex]>=p22[ctx.dataIndex]?'#1B5E20':'#B71C1C',
+        formatter:v=>v.toLocaleString(),
+        padding:{left:2}
+      },
+      tooltip:{callbacks:{
+        title:ctx=>DESK_FULL[ctx[0].dataIndex],
+        label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.x.toLocaleString()
+      }}
+    },
+    scales:{
+      y:{grid:{display:false}, ticks:{font:{family:tnr,size:9}, autoSkip:false, crossAlign:'far'}},
+      x:{grid:{color:'#F0F4F8'}, ticks:{font:{family:tnr,size:10}, callback:v=>v.toLocaleString()},
+         suggestedMax:Math.max(...p13,...p22,...p29)*1.22}
+    },
+    layout:{padding:{right:55, left:4, top:8, bottom:4}}
   }});
 }
 
 function renderInsights(){
-  const tals = NDKSP.map(r=>r.t);
-  const farGrowth = NDKSP.map((r,i)=>+((r.far-NDKSP_PREV[i].far)/NDKSP_PREV[i].far*100).toFixed(1));
-  const appGrowth = NDKSP.map((r,i)=>+((r.app-NDKSP_PREV[i].app)/NDKSP_PREV[i].app*100).toFixed(1));
+  const isAll = (FILTER === 'ALL');
+  const idx   = getFIdx();
+  const tnr   = "'Times New Roman',Times,serif";
 
-  // Trend: farmer growth bars
-  mk('ch-trend-farmers',{type:'bar',data:{labels:tals,datasets:[
-    {label:'Farmer Growth %',data:farGrowth,
-      backgroundColor:farGrowth.map(v=>v>5?'#2E7D32CC':v>0?'#43A047CC':'#C62828CC'),
-      borderRadius:4},
-    {label:'Application Growth %',data:appGrowth,
-      backgroundColor:appGrowth.map(v=>v>5?'#1565C0CC':v>0?'#1976D2CC':'#C62828CC'),
-      borderRadius:4},
-  ]},options:{...bOpts(),plugins:{...bOpts().plugins,
-    datalabels:{display:true,anchor:'end',align:'end',
-      font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},color:'#1A202C',
-      formatter:v=>v.toFixed(1)+'%'},
-    tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toFixed(1)+'%'}}},
-    scales:{...bOpts().scales,y:{...bOpts().scales.y,ticks:{...bOpts().scales.y.ticks,callback:v=>v+'%'}}},
-    layout:{padding:{top:16}}
-  }});
+  // ── helpers ──────────────────────────────────────────────────────────────
+  function sign(v){ return v>=0 ? '+'+v : ''+v; }
+  function pct(a,b){ return b>0 ? +((a-b)/b*100).toFixed(1) : 0; }
+  function arrowBadge(v,good){
+    // good: true = higher is better, false = lower is better
+    const imp = good ? v>0 : v<0;
+    const neu = v===0;
+    const bc  = neu?'bb':imp?'bg':'br';
+    const sym = neu?'—':v>0?'▲':'▼';
+    return `<span class="badge ${bc}">${sym} ${sign(v)}</span>`;
+  }
+  function alertCard(type, icon, title, body){
+    return `<div class="alert ${type}"><div class="alert-icon">${icon}</div><div>`+
+           `<div class="alert-title">${title}</div>`+
+           `<div class="alert-body">${body}</div></div></div>`;
+  }
+  function secDiv(label){ return `<div class="sec">${label}</div>`; }
 
-  // Pipeline D8+D9 trend
-  mk('ch-trend-pipeline',{type:'bar',data:{
-    labels:['Accounts (D8)','Sub-Div AO (D9)'],
-    datasets:[
-      {label:'Previous (13 Apr)',data:[273,121],backgroundColor:'#1565C077',borderRadius:4},
-      {label:'Current (22 Apr)', data:[408,191],backgroundColor:'#2E7D32BB',borderRadius:4},
-    ]
-  },options:{...bOpts(),plugins:{...bOpts().plugins,
-    datalabels:{display:true,anchor:'end',align:'end',
-      font:{family:"'Times New Roman',Times,serif",size:10,weight:'bold'},color:'#1A202C',
-      formatter:v=>v.toLocaleString()},
-    tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}},
-    layout:{padding:{top:20}}
-  }});
+  // ── DISTRICT-LEVEL insights (ALL talukas) ────────────────────────────────
+  function buildDistrictInsights(){
+    // Farmer data
+    const f13=NDKSP_13APR_TOT.far, f22=9414, f29=NDKSP_TOT.far;
+    const a13=NDKSP_13APR_TOT.app, a22=9414, a29=NDKSP_TOT.app;
+    const farDiff=f29-f22, appDiff=a29-f22;
 
-  // Insight radar
-  const normFar = farGrowth.map(v=>Math.min(15,v));
-  const normApp = appGrowth.map(v=>Math.min(15,v));
-  mk('ch-insight-radar',{type:'radar',data:{
-    labels:tals,
-    datasets:[
-      {label:'Farmer Growth %',data:normFar,fill:true,borderColor:'#2E7D32',backgroundColor:'#2E7D3222',borderWidth:2,pointRadius:4},
-      {label:'Application Growth %',data:normApp,fill:true,borderColor:'#1565C0',backgroundColor:'#1565C022',borderWidth:2,pointRadius:4},
-    ]
-  },options:{responsive:true,maintainAspectRatio:false,
-    scales:{r:{beginAtZero:true,max:15,grid:{color:'#E2E8F0'},
-      ticks:{font:{family:"'Times New Roman',Times,serif",size:9},callback:v=>v+'%'},
-      pointLabels:{font:{family:"'Times New Roman',Times,serif",size:10}}}},
-    plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:10,font:{family:"'Times New Roman',Times,serif",size:11}}},
-             datalabels:{display:false}}
-  }});
+    // Top growing taluka (22→29)
+    const growthRanked=[...NDKSP].map((r,i)=>({t:r.t, fg:r.far-NDKSP_PREV[i].far, ag:r.app-NDKSP_PREV[i].app}))
+                       .sort((a,b)=>b.fg-a.fg);
+    const topT=growthRanked[0]; const botT=growthRanked[growthRanked.length-1];
+
+    // NDKSY district
+    const d1_29=NDKSY_TOT.d1, d1_22=NDKSY_TOT_PREV.d1, d1_13=NDKSY_13APR.d1;
+    const d9_29=NDKSY_TOT.d9, d9_22=NDKSY_TOT_PREV.d9;
+    const d8_29=NDKSY_TOT.d8, d8_22=NDKSY_TOT_PREV.d8;
+    const d3_29=NDKSY_TOT.d3, d3_22=NDKSY_TOT_PREV.d3;
+    const d5_29=NDKSY_TOT.d5, d5_22=NDKSY_TOT_PREV.d5;
+
+    const psRate=NDKSP_TOT.ps_rate; const payRate=NDKSP_TOT.pay_rate;
+
+    let obs = [];
+    // Farmer growth
+    const fgDiff = NDKSP_TOT.far - 9414;
+    obs.push(alertCard('g','📈',`Farmer Enrollment: ${fgDiff>=0?'+':''}${fgDiff} (22→29 Apr)`,
+      `District farmers: 9,069 (13 Apr) → 9,414 (22 Apr) → ${NDKSP_TOT.far.toLocaleString()} (29 Apr). `+
+      `${topT.t} leads with +${topT.fg} new farmers in 7 days.`));
+    // Applications growth
+    const agDiff = NDKSP_TOT.app - 14374;
+    obs.push(alertCard('g','📋',`Applications: ${agDiff>=0?'+':''}${agDiff} (22→29 Apr)`,
+      `Total applications: 13,647 (13 Apr) → 14,374 (22 Apr) → ${NDKSP_TOT.app.toLocaleString()} (29 Apr). `+
+      `Pre-sanction rate: ${psRate}%. Payment rate: ${payRate}%.`));
+    // D1 trend
+    const d1diff=d1_29-d1_22;
+    obs.push(alertCard(d1diff>=0?'g':'a',d1diff>=0?'🚀':'⚠️',`D1 Farmer Verification: ${sign(d1diff)} (22→29 Apr)`,
+      `Verification pipeline: ${d1_13} (13 Apr) → ${d1_22} (22 Apr) → ${d1_29} (29 Apr). `+
+      (d1diff<0?`Significant decline of ${d1diff} in latest 7-day period.`:`Positive momentum — ${d1diff} additional verifications completed.`)));
+    // D8+D9 payment pipeline
+    obs.push(alertCard(d9_29>d9_22?'g':'r','💸',`Final Clearance D9: ${sign(d9_29-d9_22)} | Accounts D8: ${sign(d8_29-d8_22)}`,
+      `D8 (Accounts): ${d8_29} (29 Apr, ${sign(d8_29-d8_22)} vs 22 Apr). `+
+      `D9 (Sub-Div AO Final): ${d9_29} (29 Apr, ${sign(d9_29-d9_22)} vs 22 Apr). `+
+      `DBT payment pipeline status: ${payRate}% of applications paid.`));
+    // D3 site inspection
+    obs.push(alertCard(d3_29>=d3_22?'g':'a',d3_29>=d3_22?'✅':'⚠️',`D3 Site Inspections: ${sign(d3_29-d3_22)}`,
+      `Asst. AO site inspections: ${d3_22.toLocaleString()} (22 Apr) → ${d3_29.toLocaleString()} (29 Apr). `+
+      `${d3_29>=d3_22?'Stable inspection throughput.':'Declining. Field officer capacity may need augmentation.'}`));
+    // D5 spot check
+    obs.push(alertCard(d5_29>=d5_22?'g':'a',d5_29>=d5_22?'✅':'⚠️',`D5 Spot Check: ${sign(d5_29-d5_22)}`,
+      `Asst. AO Spot Check (D5): ${d5_22} (22 Apr) → ${d5_29} (29 Apr). `+
+      `${d5_29>=d5_22?'Recovering.':'Mid-pipeline quality verification weakening. Monitor closely.'}`));
+
+    // Trend chart data
+    const farG1322 = NDKSP_PREV.map((r,i)=>+((r.far-NDKSP_13APR[i].far)/NDKSP_13APR[i].far*100).toFixed(1));
+    const farG2229 = NDKSP.map((r,i)=>+((r.far-NDKSP_PREV[i].far)/NDKSP_PREV[i].far*100).toFixed(1));
+    const appG2229 = NDKSP.map((r,i)=>+((r.app-NDKSP_PREV[i].app)/NDKSP_PREV[i].app*100).toFixed(1));
+    const tals = NDKSP.map(r=>r.t);
+
+    // Risks
+    let risks=[];
+    if(payRate<5) risks.push(alertCard('r','🔴','Payment Rate Critical ('+payRate+'%)',
+      `Only ${NDKSP_TOT.pay.toLocaleString()} of ${NDKSP_TOT.app.toLocaleString()} applications disbursed. `+
+      `${['Bhum','Paranda','Washi'].filter(t=>NDKSP.find(r=>r.t===t)?.pay===0).join(', ')} have zero payments.`));
+    if(d3_29<d3_22) risks.push(alertCard('a','⚠️','D3 Site Inspections Declining',
+      `Fell from ${d3_22.toLocaleString()} (22 Apr) to ${d3_29.toLocaleString()} (29 Apr). `+
+      `With ${agDiff} new applications added, inspection capacity gap is widening.`));
+    if(d1_29<d1_22) risks.push(alertCard('a','⚠️','D1 Farmer Verification Declining',
+      `Dropped from ${d1_22} (22 Apr) to ${d1_29} (29 Apr). `+
+      `Entry-level pipeline activity has reduced significantly in the latest period.`));
+
+    // Priority actions
+    const zeroPayTalukas = NDKSP.filter(r=>r.pay===0).map(r=>r.t).join(', ');
+    const priorities = [
+      ['br','P1 URGENT','Accelerate DBT Payments (D9)',payRate+'% paid',`Zero-payment talukas: ${zeroPayTalukas}`,'Sub-Div AO + Accounts Officer','7 days'],
+      [d3_29<d3_22?'ba':'bb', d3_29<d3_22?'P2 HIGH':'P3 MONITOR','Scale D3 Site Inspections',d3_29.toLocaleString()+' done','Target: ≥ 3,500','AAOs all talukas','14 days'],
+      ['ba','P2 HIGH','Restore D5 Spot Check Pace',d5_29+' done (was '+d5_22+')','Target: ≥ 200','Asst. Agriculture Officers','14 days'],
+      ['bb','P3 MONITOR','Monitor D1 Verification Trend',d1_29+' (29 Apr, prev: '+d1_22+')','Ensure no further decline','Taluka Agriculture Officers','Ongoing'],
+    ];
+
+    // Predictive
+    const farRate=(NDKSP_TOT.far-9414)/7; // per day
+    const appRate=(NDKSP_TOT.app-14374)/7;
+    const predictRows=[
+      ['Registered Farmers', NDKSP_TOT.far.toLocaleString(), (farRate>=0?'+':'')+farRate.toFixed(1)+'/day',
+       '~'+(Math.round(NDKSP_TOT.far+farRate*30)).toLocaleString(), '~'+(Math.round(NDKSP_TOT.far+farRate*60)).toLocaleString(),
+       (NDKSP_TOT.far-9414)+' in 7 days (22→29 Apr)'],
+      ['Applications', NDKSP_TOT.app.toLocaleString(), (appRate>=0?'+':'')+appRate.toFixed(1)+'/day',
+       '~'+(Math.round(NDKSP_TOT.app+appRate*30)).toLocaleString(), '~'+(Math.round(NDKSP_TOT.app+appRate*60)).toLocaleString(),
+       (NDKSP_TOT.app-14374)+' in 7 days (22→29 Apr)'],
+      ['Final Clearance (D9)', d9_29.toString(), sign(Math.round((d9_29-d9_22)/7))+'/day',
+       '~'+Math.round(d9_29+(d9_29-d9_22)/7*30), '~'+Math.round(d9_29+(d9_29-d9_22)/7*60),
+       sign(d9_29-d9_22)+' in 7 days'],
+    ];
+
+    return {obs, farG1322, farG2229, appG2229, tals, risks, priorities, predictRows};
+  }
+
+  // ── SINGLE TALUKA insights ────────────────────────────────────────────────
+  function buildTalukaInsights(ti){
+    const r29=NDKSP[ti], r22=NDKSP_PREV[ti], r13=NDKSP_13APR[ti];
+    const nd=NDKSY.find(x=>x.t===r29.t)||null;
+    const t=r29.t;
+
+    const fDiff=r29.far-r22.far; const aDiff=r29.app-r22.app;
+    const fDiff13=r22.far-r13.far; const aDiff13=r22.app-r13.app;
+    const psR=r29.ps_rate; const pyR=r29.pay_rate; const sc=r29.score;
+    const pendPS=r29.pend_ps; const pendPay=r29.pend_pay;
+
+    let obs=[];
+    // Enrollment
+    obs.push(alertCard(fDiff>=0?'g':'r', fDiff>=0?'📈':'📉',
+      `${t} — Farmer Enrollment: ${sign(fDiff)} (22→29 Apr)`,
+      `Farmers: ${r13.far.toLocaleString()} (13 Apr) → ${r22.far.toLocaleString()} (22 Apr) → ${r29.far.toLocaleString()} (29 Apr). `+
+      `Applications: ${r13.app.toLocaleString()} → ${r22.app.toLocaleString()} → ${r29.app.toLocaleString()}.`));
+    // PS & Payment
+    obs.push(alertCard(pyR>0?'g':'r', pyR>0?'✅':'🔴',
+      `${t} — Pre-Sanction: ${psR}% | Payment: ${pyR}%`,
+      `Pre-sanctioned: ${r29.ps.toLocaleString()} of ${r29.app.toLocaleString()} apps (${psR}%). `+
+      `Payments issued: ${r29.pay.toLocaleString()} (${pyR}%). `+
+      `Pending pre-sanction: ${pendPS.toLocaleString()}. Pending payment: ${pendPay.toLocaleString()}.`));
+    // Composite score
+    const band=sc>=60?'High Performer':sc>=55?'Moderate':'Needs Attention';
+    obs.push(alertCard(sc>=60?'g':sc>=55?'a':'r','📊',
+      `${t} — Composite Score: ${sc} (${band})`,
+      `Score = PS Rate×0.6 + Pay Rate×0.4 = ${psR}×0.6 + ${pyR}×0.4 = ${sc}. `+
+      `Apps per farmer: ${r29.apf}. Farmers per village: ${r29.fpv} across ${r29.vil} villages.`));
+    // Pipeline (if data available)
+    if(nd){
+      obs.push(alertCard('b','🔄',
+        `${t} — Pipeline: D3 ${nd.d3} · D6 ${nd.d6} · D8 ${nd.d8} · D9 ${nd.d9}`,
+        `Desk snapshot (29 Apr): D1=${nd.d1} D2=${nd.d2} D3=${nd.d3} D4=${nd.d4} D5=${nd.d5} D6=${nd.d6} D7=${nd.d7} D8=${nd.d8} D9=${nd.d9}. `+
+        `Final clearance (D9): ${nd.d9} applications.`));
+    }
+
+    let risks=[];
+    if(r29.pay===0) risks.push(alertCard('r','🔴',`${t} — Zero Payments`,
+      `No DBT payments issued yet in ${t}. ${r29.app.toLocaleString()} applications submitted, `+
+      `${r29.ps.toLocaleString()} pre-sanctioned, but 0 payments. Immediate pipeline escalation required.`));
+    else if(pyR<3) risks.push(alertCard('a','⚠️',`${t} — Payment Rate Below 3% (${pyR}%)`,
+      `Only ${r29.pay.toLocaleString()} of ${r29.app.toLocaleString()} applications paid (${pyR}%). `+
+      `${pendPay.toLocaleString()} applications pre-sanctioned but payment pending.`));
+    if(pendPS>200) risks.push(alertCard('a','⚠️',`${t} — ${pendPS.toLocaleString()} Applications Pending Pre-Sanction`,
+      `${r29.app.toLocaleString()} total applications but only ${r29.ps.toLocaleString()} pre-sanctioned. `+
+      `${pendPS.toLocaleString()} still pending (${(100-psR).toFixed(1)}%).`));
+    if(nd && nd.d3<150) risks.push(alertCard('a','⚠️',`${t} — Low D3 Site Inspections (${nd.d3})`,
+      `Asst. AO site inspections at D3: ${nd.d3}. With ${r29.app.toLocaleString()} applications pending, `+
+      `field inspection throughput may need to be increased.`));
+
+    const priorities=[
+      [r29.pay===0?'br':'ba', r29.pay===0?'P1 URGENT':'P2 HIGH',
+       `${t}: Accelerate DBT Payments`,
+       r29.pay===0?'0 payments (critical)':r29.pay.toLocaleString()+' paid',
+       'Target: ≥'+Math.round(r29.ps*0.2).toLocaleString()+' payments',
+       'Sub-Div AO + Accounts Officer',
+       r29.pay===0?'Immediate':'14 days'],
+      [pendPS>200?'ba':'bb', pendPS>200?'P2 HIGH':'P3 MONITOR',
+       `${t}: Clear Pre-Sanction Backlog`,
+       pendPS.toLocaleString()+' pending',
+       'Target: 0 pending',
+       'Taluka Agriculture Officer',
+       '14 days'],
+    ];
+
+    // Single-taluka trend: bar chart with 3 dates for this taluka
+    const trendLabels=['13 Apr','22 Apr','29 Apr'];
+    const trendFar=[r13.far,r22.far,r29.far];
+    const trendApp=[r13.app,r22.app,r29.app];
+
+    return {obs, trendLabels, trendFar, trendApp, risks, priorities, t};
+  }
+
+  // ── RENDER ────────────────────────────────────────────────────────────────
+  const box = document.getElementById('insights-content');
+  let html='';
+
+  if(isAll){
+    const d=buildDistrictInsights();
+    html+=`<div class="sec">Advanced Insights — District Level · 13 Apr · 22 Apr · 29 Apr 2026</div>`;
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('🔍 Key Observations & Inferences')}
+      <div class="alerts" style="grid-template-columns:1fr 1fr 1fr">${d.obs.join('')}</div>
+    </div>`;
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('📊 Trend Analysis')}
+      <div class="grid-2">
+        <div class="card">
+          <div class="ch"><div class="ct">📈 Farmer Growth % — Two Periods (13→22 Apr & 22→29 Apr)</div>
+          <div class="cs">All 8 talukas · Both growth periods</div></div>
+          <div class="cb"><div class="cw" style="height:220px"><canvas id="ch-trend-farmers"></canvas></div></div>
+        </div>
+        <div class="card">
+          <div class="ch"><div class="ct">🔄 Pipeline D8 & D9 — All Three Dates</div>
+          <div class="cs">13 Apr · 22 Apr · 29 Apr 2026</div></div>
+          <div class="cb"><div class="cw" style="height:220px"><canvas id="ch-trend-pipeline"></canvas></div></div>
+        </div>
+      </div>
+    </div>`;
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('🔮 Predictive Analysis (Based on 22→29 Apr Rate)')}
+      <div class="card">
+        <div class="ch"><div class="ct">🔮 Projected Milestones — If Current 7-Day Rate Continues</div>
+        <div class="cs">Based on 22→29 Apr growth rate</div></div>
+        <div class="cb" style="padding:0"><div class="tw"><table class="dt">
+          <thead><tr><th>Metric</th><th>Current (29 Apr)</th><th>Daily Rate</th><th>+30 Days</th><th>+60 Days</th><th>Basis</th></tr></thead>
+          <tbody>${d.predictRows.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num">${r[2]}</td>
+            <td class="num" style="color:#2E7D32;font-weight:600">${r[3]}</td>
+            <td class="num" style="color:#2E7D32;font-weight:600">${r[4]}</td>
+            <td style="font-size:10px">${r[5]}</td></tr>`).join('')}
+          </tbody>
+        </table></div></div>
+      </div>
+    </div>`;
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('🏆 Performance Radar — Growth Rate (22→29 Apr)')}
+      <div class="card">
+        <div class="ch"><div class="ct">📊 Taluka Growth % Radar — Farmers & Applications</div>
+        <div class="cs">Based on 22→29 Apr change</div></div>
+        <div class="cb"><div class="cw" style="height:280px"><canvas id="ch-insight-radar"></canvas></div></div>
+      </div>
+    </div>`;
+
+    if(d.risks.length){
+      html+=`<div style="margin-bottom:16px">
+        ${secDiv('⚠️ Concern & Risk Areas')}
+        <div class="alerts" style="grid-template-columns:1fr 1fr">${d.risks.join('')}</div>
+      </div>`; }
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('🎯 Priority Action Areas')}
+      <div class="card"><div class="cb" style="padding:0"><div class="tw"><table class="dt">
+        <thead><tr><th>Priority</th><th>Action</th><th>Status</th><th>Note</th><th>Responsible</th><th>Deadline</th></tr></thead>
+        <tbody>${d.priorities.map(p=>`<tr>
+          <td><span class="badge ${p[0]}">${p[1]}</span></td>
+          <td style="font-weight:600">${p[2]}</td>
+          <td class="num" style="font-size:10px">${p[3]}</td>
+          <td style="font-size:10px">${p[4]}</td>
+          <td style="font-size:10px">${p[5]}</td>
+          <td style="font-size:10px;color:#C62828">${p[6]}</td>
+        </tr>`).join('')}
+        </tbody>
+      </table></div></div></div>
+    </div>`;
+
+  } else {
+    const ti=idx[0];
+    const d=buildTalukaInsights(ti);
+
+    html+=`<div class="sec">Insights — ${d.t} Taluka · 13 Apr · 22 Apr · 29 Apr 2026</div>
+    <div style="background:var(--g5);border-left:4px solid var(--g2);border-radius:var(--r);padding:9px 14px;margin-bottom:14px;font-size:11px;color:var(--g1);display:flex;align-items:center;gap:8px">
+      <span style="font-size:16px">📍</span>
+      <span>Showing insights for <strong>${d.t}</strong> taluka only. Select "All Talukas" for district-level analysis.</span>
+    </div>`;
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('🔍 '+d.t+' — Key Observations')}
+      <div class="alerts" style="grid-template-columns:1fr 1fr">${d.obs.join('')}</div>
+    </div>`;
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('📊 '+d.t+' — Trend: Farmers & Applications (3 Dates)')}
+      <div class="card">
+        <div class="ch"><div class="ct">📈 ${d.t} — Farmers & Applications: 13 Apr · 22 Apr · 29 Apr</div>
+        <div class="cs">Exact figures for ${d.t} taluka only</div></div>
+        <div class="cb"><div class="cw" style="height:220px"><canvas id="ch-trend-farmers"></canvas></div></div>
+      </div>
+    </div>`;
+
+    if(d.risks.length){
+      html+=`<div style="margin-bottom:16px">
+        ${secDiv('⚠️ '+d.t+' — Risk Areas')}
+        <div class="alerts" style="grid-template-columns:1fr 1fr">${d.risks.join('')}</div>
+      </div>`; }
+
+    html+=`<div style="margin-bottom:16px">
+      ${secDiv('🎯 '+d.t+' — Priority Actions')}
+      <div class="card"><div class="cb" style="padding:0"><div class="tw"><table class="dt">
+        <thead><tr><th>Priority</th><th>Action</th><th>Status</th><th>Target</th><th>Responsible</th><th>Deadline</th></tr></thead>
+        <tbody>${d.priorities.map(p=>`<tr>
+          <td><span class="badge ${p[0]}">${p[1]}</span></td>
+          <td style="font-weight:600">${p[2]}</td>
+          <td class="num" style="font-size:10px">${p[3]}</td>
+          <td style="font-size:10px">${p[4]}</td>
+          <td style="font-size:10px">${p[5]}</td>
+          <td style="font-size:10px;color:#C62828">${p[6]}</td>
+        </tr>`).join('')}
+        </tbody>
+      </table></div></div></div>
+    </div>`;
+  }
+
+  box.innerHTML = html;
+
+  // ── RENDER CHARTS ─────────────────────────────────────────────────────────
+  if(isAll){
+    const d=buildDistrictInsights();
+    mk('ch-trend-farmers',{type:'bar',data:{labels:d.tals,datasets:[
+      {label:'Farmer Growth % (13\u219222 Apr)',data:d.farG1322,
+        backgroundColor:d.farG1322.map(v=>v>5?'#1565C0CC':v>0?'#1976D2CC':'#C62828CC'),borderRadius:4},
+      {label:'Farmer Growth % (22\u219229 Apr)',data:d.farG2229,
+        backgroundColor:d.farG2229.map(v=>v>5?'#2E7D32CC':v>0?'#43A047CC':'#C62828CC'),borderRadius:4},
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{
+      legend:{position:'top',labels:{boxWidth:12,padding:8,font:{family:tnr,size:10}}},
+      datalabels:{display:true,anchor:'end',align:'end',font:{family:tnr,size:9,weight:'bold'},
+        color:'#1A202C',formatter:v=>v.toFixed(1)+'%'},
+      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toFixed(1)+'%'}}
+    },scales:{
+      x:{grid:{display:false},ticks:{font:{family:tnr,size:10}}},
+      y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:10},callback:v=>v+'%'}}
+    },layout:{padding:{top:20}}}});
+
+    mk('ch-trend-pipeline',{type:'bar',data:{
+      labels:['लेखाअधिकारी (D8)','उपविभागीय कृषी अधिकारी (D9)'],
+      datasets:[
+        {label:'13 Apr',data:[NDKSY_13APR.d8,NDKSY_13APR.d9],backgroundColor:'#F57F1777',borderRadius:4},
+        {label:'22 Apr',data:[NDKSY_TOT_PREV.d8,NDKSY_TOT_PREV.d9],backgroundColor:'#1565C088',borderRadius:4},
+        {label:'29 Apr',data:[NDKSY_TOT.d8,NDKSY_TOT.d9],backgroundColor:'#2E7D32BB',borderRadius:4},
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{
+      legend:{position:'top',labels:{boxWidth:12,padding:8,font:{family:tnr,size:10}}},
+      datalabels:{display:ctx=>ctx.datasetIndex===2,anchor:'end',align:'end',
+        font:{family:tnr,size:10,weight:'bold'},color:'#1A202C',formatter:v=>v.toLocaleString()},
+      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+    },layout:{padding:{top:20}}}});
+
+    const farG2229=NDKSP.map((r,i)=>+((r.far-NDKSP_PREV[i].far)/NDKSP_PREV[i].far*100).toFixed(1));
+    const appG2229=NDKSP.map((r,i)=>+((r.app-NDKSP_PREV[i].app)/NDKSP_PREV[i].app*100).toFixed(1));
+    mk('ch-insight-radar',{type:'radar',data:{
+      labels:NDKSP.map(r=>r.t),
+      datasets:[
+        {label:'Farmer Growth % (22\u219229)',data:farG2229.map(v=>Math.min(15,Math.max(-5,v))),
+          fill:true,borderColor:'#2E7D32',backgroundColor:'#2E7D3222',borderWidth:2,pointRadius:4},
+        {label:'App Growth % (22\u219229)',data:appG2229.map(v=>Math.min(15,Math.max(-5,v))),
+          fill:true,borderColor:'#1565C0',backgroundColor:'#1565C022',borderWidth:2,pointRadius:4},
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,
+      scales:{r:{beginAtZero:false,grid:{color:'#E2E8F0'},
+        ticks:{font:{family:tnr,size:9},callback:v=>v+'%'},
+        pointLabels:{font:{family:tnr,size:10}}}},
+      plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:10,font:{family:tnr,size:11}}},
+               datalabels:{display:false}}}});
+
+  } else {
+    const ti=idx[0];
+    const d=buildTalukaInsights(ti);
+    mk('ch-trend-farmers',{type:'bar',data:{labels:d.trendLabels,datasets:[
+      {label:'Farmers',data:d.trendFar,
+        backgroundColor:['#90CAF9CC','#42A5F5CC','#1565C0DD'],borderColor:'#0D47A1',borderWidth:1.5,borderRadius:4},
+      {label:'Apps',data:d.trendApp,
+        backgroundColor:['#A5D6A7CC','#66BB6ACC','#2E7D32DD'],borderColor:'#1B5E20',borderWidth:1.5,borderRadius:4},
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{
+      legend:{position:'top',labels:{boxWidth:12,padding:12,font:{family:tnr,size:11}}},
+      datalabels:{display:true,anchor:'end',align:'top',font:{family:tnr,size:11,weight:'bold'},
+        color:'#1A202C',formatter:v=>v.toLocaleString()},
+      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+    },scales:{
+      x:{grid:{display:false},ticks:{font:{family:tnr,size:11}}},
+      y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:10},callback:v=>v.toLocaleString()},
+         suggestedMax:Math.max(...d.trendApp)*1.18}
+    },layout:{padding:{top:28}}}});
+  }
 }
 
 function renderOverview(){
@@ -998,9 +1518,9 @@ function renderOverview(){
     layout:{padding:{top:22}}
   }});
   mk('ch-social',{type:'doughnut',data:{
-    labels:['SC (856)','ST (226)','Others (11,786)'],
+    labels:['SC (895)','ST (227)','Others (13,480)'],
     datasets:[{
-      data:[856,226,11786],
+      data:[895,227,13480],
       backgroundColor:['#F44336','#FF9800','#4CAF50'],
       borderColor:['#B71C1C','#E65100','#1B5E20'],
       borderWidth:2,
@@ -1064,46 +1584,51 @@ function renderPipeline(){
   });
   document.getElementById('funnel-div').innerHTML=`<div class="funnel">${fhtml}</div>`;
 
-  mk('ch-pipe-bar',{type:'bar',data:{labels:DESK_SHORT,datasets:[{
-    label:'Count at Desk Stage',
+  // Horizontal bar: all 9 desks fully readable, D7 small value clearly visible
+  const tnrPipe = "'Times New Roman',Times,serif";
+  mk('ch-pipe-bar',{type:'bar',data:{labels:DESK_FULL,datasets:[{
+    label:'Applications at Desk Stage',
     data:vals,
     backgroundColor:vals.map((v,i)=>isBN[i]?'#C62828CC':'#1565C0CC'),
     borderColor:vals.map((v,i)=>isBN[i]?'#B71C1C':'#0D47A1'),
     borderWidth:1.5,
-    borderRadius:5,
-    datalabels:{anchor:'end',align:'end',color:'#1A202C',font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
-      formatter:v=>v.toLocaleString()}
+    borderRadius:4,
+    barThickness:32
   }]},options:{
+    indexAxis:'y',
     responsive:true,maintainAspectRatio:false,
     plugins:{
       legend:{display:false},
-      datalabels:{display:true,anchor:'end',align:'end',
-        color:ctx=>vals[ctx.dataIndex]>=1000?'#1565C0':'#1A202C',
-        font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
-        formatter:(v)=>v.toLocaleString()},
+      datalabels:{
+        display:true,
+        anchor:'end',align:'right',
+        color:ctx=>isBN[ctx.dataIndex]?'#B71C1C':'#0D47A1',
+        font:{family:tnrPipe,size:11,weight:'bold'},
+        formatter:(v)=>v.toLocaleString(),
+        padding:{left:4}
+      },
       tooltip:{callbacks:{
         title:ctx=>DESK_FULL[ctx[0].dataIndex],
-        label:ctx=>' Count: '+ctx.parsed.y.toLocaleString()
+        label:ctx=>' Count: '+ctx.parsed.x.toLocaleString()
       }}
     },
     scales:{
-      x:{
+      y:{
         grid:{display:false},
         ticks:{
-          font:{family:"'Times New Roman',Times,serif",size:10,weight:'600'},
+          font:{family:tnrPipe,size:10,weight:'600'},
           color:'#1A202C',
-          maxRotation:55,minRotation:45,
           autoSkip:false,
-          padding:6
+          crossAlign:'far'
         }
       },
-      y:{
+      x:{
         grid:{color:'#E8EDF2'},
-        ticks:{font:{family:"'Times New Roman',Times,serif",size:11},callback:v=>v.toLocaleString()},
-        suggestedMax:Math.max(...vals)*1.18
+        ticks:{font:{family:tnrPipe,size:10},callback:v=>v.toLocaleString()},
+        suggestedMax:Math.max(...vals)*1.22
       }
     },
-    layout:{padding:{top:28}}
+    layout:{padding:{right:60,left:4,top:4,bottom:4}}
   }});
 
   let dtH=`<table class="dt"><thead><tr><th>Transition</th><th>From Desk</th><th>Count From</th><th>Count To</th><th>Net Change</th><th>Drop %</th><th>Severity</th></tr></thead><tbody>`;
@@ -1173,438 +1698,7 @@ function renderTaluka(){
   mk('ch-radar',{type:'radar',data:{
     labels:['Pre-San%','Payment%','Farmers÷100','Score'],
     datasets:top3.map((r,ri)=>{
-      return{label:r.t,data:[r.ps_rate,r.pay_rate,r.far/100,r.score],
-        fill:true,borderColor:[G2,B1,A1][ri],backgroundColor:[G2+'22',B1+'22',A1+'22'][ri],
-        borderWidth:2,pointRadius:3};
-    })
-  },options:{responsive:true,maintainAspectRatio:false,
-    scales:{r:{beginAtZero:true,grid:{color:'#E2E8F0'},ticks:{font:{family:"'Times New Roman',Times,serif",size:8}}}},
-    plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:10,font:{family:"'Times New Roman',Times,serif",size:11}}},datalabels:{display:false}}}});
-
-  const medals=['🥇','🥈','🥉'];
-  let tH=`<thead><tr><th>Rank</th><th>Taluka</th><th>Villages</th><th>Farmers</th>
-    <th>Applications</th><th>Pre-Sanctioned</th><th>Pre-San Rate %</th>
-    <th>Payments Issued</th><th>Payment Rate %</th>
-    <th>Pending Pre-San</th><th>Pending Payment</th>
-    <th>Farmers/Village</th><th>Apps/Farmer</th>
-    <th>Composite Score</th><th>Band</th>
-  </tr></thead><tbody>`;
-  sorted.forEach((r,ri)=>{
-    const psC=r.ps_rate>=90?G2:r.ps_rate>=75?A1:R2;
-    const pyC=r.pay_rate>=10?G2:r.pay_rate>=3?A1:R2;
-    const scC=r.score>=60?G2:r.score>=55?A1:R2;
-    const band=r.score>=60?'bg High Performer':r.score>=55?'ba Moderate':'br Needs Attention';
-    const rb=ri<3?medals[ri]:`<span style="background:var(--border);color:var(--tx2);width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px">${ri+1}</span>`;
-    tH+=`<tr>
-      <td>${rb}</td><td style="font-weight:600">${r.t}</td>
-      <td class="num">${r.vil}</td><td class="num">${r.far.toLocaleString()}</td>
-      <td class="num">${r.app.toLocaleString()}</td><td class="num">${r.ps.toLocaleString()}</td>
-      <td><div class="pb-wrap"><div class="pb"><div class="pb-fill" style="width:${r.ps_rate}%;background:${psC}"></div></div><span class="pb-val" style="color:${psC}">${r.ps_rate}%</span></div></td>
-      <td class="num">${r.pay.toLocaleString()}</td>
-      <td><div class="pb-wrap"><div class="pb"><div class="pb-fill" style="width:${Math.min(100,r.pay_rate*5)}%;background:${pyC}"></div></div><span class="pb-val" style="color:${pyC}">${r.pay_rate}%</span></div></td>
-      <td class="num" style="color:${r.pend_ps>500?R2:A1}">${r.pend_ps.toLocaleString()}</td>
-      <td class="num" style="color:${r.pend_pay>500?R2:A1}">${r.pend_pay.toLocaleString()}</td>
-      <td class="num">${r.fpv}</td><td class="num">${r.apf}</td>
-      <td><div class="score-wrap"><div class="score-bar"><div class="score-fill" style="width:${r.score}%;background:${scC}"></div></div><span style="font-size:11px;font-weight:700;color:${scC};font-family:'Times New Roman', Times, serif;min-width:38px">${r.score}</span></div></td>
-      <td><span class="badge ${band.split(' ')[0]}">${band.split(' ').slice(1).join(' ')}</span></td>
-    </tr>`;
-  });
-  tH+=`<tr style="background:var(--g5)">
-    <td colspan="2" style="font-weight:700">DISTRICT TOTAL</td>
-    <td class="num">${NDKSP_TOT.vil}</td><td class="num">${NDKSP_TOT.far.toLocaleString()}</td>
-    <td class="num">${NDKSP_TOT.app.toLocaleString()}</td><td class="num">${NDKSP_TOT.ps.toLocaleString()}</td>
-    <td style="font-weight:700;color:${G2}">${NDKSP_TOT.ps_rate}%</td>
-    <td class="num">${NDKSP_TOT.pay.toLocaleString()}</td>
-    <td style="font-weight:700;color:${R2}">${NDKSP_TOT.pay_rate}%</td>
-    <td class="num" style="color:${R2}">${(NDKSP_TOT.app-NDKSP_TOT.ps).toLocaleString()}</td>
-    <td class="num" style="color:${R2}">${(NDKSP_TOT.ps-NDKSP_TOT.pay).toLocaleString()}</td>
-    <td colspan="2">—</td>
-    <td style="font-weight:700;color:${G2}">${NDKSP_TOT.score}</td>
-    <td><span class="badge bg">District</span></td>
-  </tr>`;
-  document.getElementById('taluka-tbl').innerHTML=tH+'</tbody>';
-}
-
-function renderActivity(){
-  // Ensure full activity names — no truncation
-  // Always use full district CAT data — ignores taluka filter intentionally
-  const actLabels = CAT.map(r=>r.n);
-  // Wrap long labels for readability
-  function wrapLabel(str, maxLen) {
-    if (str.length <= maxLen) return str;
-    const words = str.split(' ');
-    const lines = []; let cur = '';
-    words.forEach(w => {
-      if ((cur+' '+w).trim().length > maxLen) { lines.push(cur.trim()); cur = w; }
-      else { cur = (cur+' '+w).trim(); }
-    });
-    if (cur) lines.push(cur);
-    return lines;
-  }
-  const actLabelsWrapped = actLabels.map(n => wrapLabel(n, 32));
-  mk('ch-act',{type:'bar',data:{labels:actLabelsWrapped,
-    datasets:[{label:'Farmers',data:CAT.map(r=>r.f),backgroundColor:T1+'BB',borderRadius:3}]},
-  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-    plugins:{
-      legend:{display:false},
-      datalabels:{
-        display:true,anchor:'end',align:'end',
-        font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},
-        color:'#1A202C',
-        formatter:(v)=>v.toLocaleString()
-      },
-      tooltip:{callbacks:{
-        title:ctx=>CAT[ctx[0].dataIndex].n,
-        label:ctx=>' Farmers: '+ctx.parsed.x.toLocaleString()+' | Apps: '+CAT[ctx.dataIndex].a.toLocaleString()
-      }}
-    },
-    scales:{
-      x:{grid:{color:'#F0F4F8'},ticks:{font:{family:"'Times New Roman',Times,serif",size:9}},suggestedMax:5500},
-      y:{grid:{display:false},ticks:{
-        font:{family:"'Times New Roman',Times,serif",size:9},
-        maxTicksLimit:24,
-        autoSkip:false
-      }}
-    },
-    layout:{padding:{right:60,left:10}}
-  }});
-
-  const top10=[...CAT].sort((a,b)=>b.f-a.f).slice(0,10);
-  mk('ch-inc',{type:'bar',data:{
-    labels:top10.map(r=>r.n.length>24?r.n.slice(0,24)+'…':r.n),
-    datasets:[
-      {label:'SC', data:top10.map(r=>r.sc), backgroundColor:B1+'BB',borderRadius:0},
-      {label:'ST', data:top10.map(r=>r.st), backgroundColor:PU+'BB',borderRadius:0},
-      {label:'Others',data:top10.map(r=>r.oth),backgroundColor:G3+'88',borderRadius:[0,0,3,3]},
-    ]},options:{...bOpts(true),plugins:{...bOpts(true).plugins,datalabels:{display:false},
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}}}});
-
-  let aH=`<thead><tr><th>#</th><th>Activity Name</th><th>Farmers</th><th>Applications</th>
-    <th>SC</th><th>ST</th><th>Others</th><th>SC+ST Total</th><th>SC+ST %</th><th>Apps/Farmer</th>
-  </tr></thead><tbody>`;
-  aH+=`<tr style="background:var(--b5)"><td colspan="10" style="font-size:10px;color:var(--b1);font-style:italic;padding:6px 11px">ℹ️ Note: Data represents overall district-level activities. Taluka-wise activity data is not available. All 23 activities shown.</td></tr>`;
-  CAT.forEach((r,i)=>{
-    const sc=r.scst_pct;const scol=sc>=15?'bb':sc>=8?'ba':'br';
-    aH+=`<tr><td style="color:var(--tx3)">${i+1}</td>
-      <td style="font-weight:500;font-size:11px">${r.n}</td>
-      <td class="num">${r.f.toLocaleString()}</td><td class="num">${r.a.toLocaleString()}</td>
-      <td class="num" style="color:${B1};font-weight:600">${r.sc}</td>
-      <td class="num" style="color:${PU};font-weight:600">${r.st}</td>
-      <td class="num">${r.oth.toLocaleString()}</td>
-      <td class="num" style="font-weight:700">${r.scst}</td>
-      <td><span class="badge ${scol}">${sc}%</span></td>
-      <td class="num">${r.apf}</td></tr>`;
-  });
-  aH+=`<tr style="background:var(--g5)">
-    <td colspan="2" style="font-weight:700">GRAND TOTAL — 23 Activities (District Level)</td>
-    <td class="num" style="font-weight:700">${CAT_TOT.f.toLocaleString()}</td>
-    <td class="num" style="font-weight:700">${CAT_TOT.a.toLocaleString()}</td>
-    <td class="num" style="font-weight:700;color:${B1}">${CAT_TOT.sc}</td>
-    <td class="num" style="font-weight:700;color:${PU}">${CAT_TOT.st}</td>
-    <td class="num" style="font-weight:700">${CAT_TOT.oth.toLocaleString()}</td>
-    <td class="num" style="font-weight:700">${CAT_TOT.scst.toLocaleString()}</td>
-    <td><span class="badge bb">${+(CAT_TOT.scst/CAT_TOT.f*100).toFixed(2)}%</span></td>
-    <td class="num" style="font-weight:700">${+(CAT_TOT.a/CAT_TOT.f).toFixed(2)}</td>
-  </tr>`;
-  document.getElementById('act-tbl').innerHTML=aH+'</tbody>';
-}
-
-function renderCompare(){
-  const tals = NDKSP.map(r=>r.t);
-  const prevFar = NDKSP_PREV.map(r=>r.far);
-  const currFar = NDKSP.map(r=>r.far);
-  const prevApp = NDKSP_PREV.map(r=>r.app);
-  const currApp = NDKSP.map(r=>r.app);
-
-  // Comparison bar chart — farmers
-  mk('ch-compare-bar',{type:'bar',data:{labels:tals,datasets:[
-    {label:'Prev Farmers (13 Apr)',data:prevFar,backgroundColor:'#1565C077',borderColor:'#0D47A1',borderWidth:1,borderRadius:3},
-    {label:'Curr Farmers (22 Apr)',data:currFar,backgroundColor:'#2E7D32BB',borderColor:'#1B5E20',borderWidth:1,borderRadius:3},
-    {label:'Prev Apps (13 Apr)',   data:prevApp,backgroundColor:'#F57F1777',borderColor:'#E65100',borderWidth:1,borderRadius:3},
-    {label:'Curr Apps (22 Apr)',   data:currApp,backgroundColor:'#FF6F00BB',borderColor:'#BF360C',borderWidth:1,borderRadius:3},
-  ]},options:{...bOpts(),plugins:{...bOpts().plugins,datalabels:{display:false}}}});
-
-  // Pipeline comparison
-  const dkeys=DESK_KEYS;
-  const prevPipe=dkeys.map(k=>NDKSY_TOT_PREV[k]);
-  const currPipe=dkeys.map(k=>NDKSY_TOT[k]);
-  const shortLabels=['शेतकरी पडताळणी','ग्रा.कृ.वि.स','Asst.AO Site','TAO Pre-San','AsstAO Spot','DyAO Spot','Circle AO','Accounts','SubDiv AO'];
-  mk('ch-compare-pipeline',{type:'bar',data:{labels:shortLabels,datasets:[
-    {label:'Previous (13 Apr)',data:prevPipe,backgroundColor:'#1565C077',borderColor:'#0D47A1',borderWidth:1,borderRadius:3},
-    {label:'Current (22 Apr)', data:currPipe,backgroundColor:currPipe.map((v,i)=>v>=prevPipe[i]?'#2E7D32BB':'#C62828BB'),
-      borderColor:currPipe.map((v,i)=>v>=prevPipe[i]?'#1B5E20':'#B71C1C'),borderWidth:1,borderRadius:3},
-  ]},options:{...bOpts(),plugins:{...bOpts().plugins,
-    datalabels:{display:true,anchor:'end',align:'end',
-      font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},
-      color:ctx=>ctx.datasetIndex===1&&currPipe[ctx.dataIndex]<prevPipe[ctx.dataIndex]?'#C62828':'#1A202C',
-      formatter:v=>v.toLocaleString()},
-    tooltip:{callbacks:{
-      title:ctx=>DESK_FULL[ctx[0].dataIndex],
-      label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()
-    }}},
-    layout:{padding:{top:20}}
-  }});
-}
-
-function renderInsights(){
-  const tals = NDKSP.map(r=>r.t);
-  const farGrowth = NDKSP.map((r,i)=>+((r.far-NDKSP_PREV[i].far)/NDKSP_PREV[i].far*100).toFixed(1));
-  const appGrowth = NDKSP.map((r,i)=>+((r.app-NDKSP_PREV[i].app)/NDKSP_PREV[i].app*100).toFixed(1));
-
-  // Trend: farmer growth bars
-  mk('ch-trend-farmers',{type:'bar',data:{labels:tals,datasets:[
-    {label:'Farmer Growth %',data:farGrowth,
-      backgroundColor:farGrowth.map(v=>v>5?'#2E7D32CC':v>0?'#43A047CC':'#C62828CC'),
-      borderRadius:4},
-    {label:'Application Growth %',data:appGrowth,
-      backgroundColor:appGrowth.map(v=>v>5?'#1565C0CC':v>0?'#1976D2CC':'#C62828CC'),
-      borderRadius:4},
-  ]},options:{...bOpts(),plugins:{...bOpts().plugins,
-    datalabels:{display:true,anchor:'end',align:'end',
-      font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},color:'#1A202C',
-      formatter:v=>v.toFixed(1)+'%'},
-    tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toFixed(1)+'%'}}},
-    scales:{...bOpts().scales,y:{...bOpts().scales.y,ticks:{...bOpts().scales.y.ticks,callback:v=>v+'%'}}},
-    layout:{padding:{top:16}}
-  }});
-
-  // Pipeline D8+D9 trend
-  mk('ch-trend-pipeline',{type:'bar',data:{
-    labels:['Accounts (D8)','Sub-Div AO (D9)'],
-    datasets:[
-      {label:'Previous (13 Apr)',data:[273,121],backgroundColor:'#1565C077',borderRadius:4},
-      {label:'Current (22 Apr)', data:[408,191],backgroundColor:'#2E7D32BB',borderRadius:4},
-    ]
-  },options:{...bOpts(),plugins:{...bOpts().plugins,
-    datalabels:{display:true,anchor:'end',align:'end',
-      font:{family:"'Times New Roman',Times,serif",size:10,weight:'bold'},color:'#1A202C',
-      formatter:v=>v.toLocaleString()},
-    tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}},
-    layout:{padding:{top:20}}
-  }});
-
-  // Insight radar
-  const normFar = farGrowth.map(v=>Math.min(15,v));
-  const normApp = appGrowth.map(v=>Math.min(15,v));
-  mk('ch-insight-radar',{type:'radar',data:{
-    labels:tals,
-    datasets:[
-      {label:'Farmer Growth %',data:normFar,fill:true,borderColor:'#2E7D32',backgroundColor:'#2E7D3222',borderWidth:2,pointRadius:4},
-      {label:'Application Growth %',data:normApp,fill:true,borderColor:'#1565C0',backgroundColor:'#1565C022',borderWidth:2,pointRadius:4},
-    ]
-  },options:{responsive:true,maintainAspectRatio:false,
-    scales:{r:{beginAtZero:true,max:15,grid:{color:'#E2E8F0'},
-      ticks:{font:{family:"'Times New Roman',Times,serif",size:9},callback:v=>v+'%'},
-      pointLabels:{font:{family:"'Times New Roman',Times,serif",size:10}}}},
-    plugins:{legend:{position:'bottom',labels:{boxWidth:12,padding:10,font:{family:"'Times New Roman',Times,serif",size:11}}},
-             datalabels:{display:false}}
-  }});
-}
-
-function renderOverview(){
-  const idx=getFIdx();
-  const tals=idx.map(i=>NDKSP[i].t);
-  mk('ch-appbar',{type:'bar',data:{labels:tals,datasets:[
-    {label:'Applications',   data:idx.map(i=>NDKSP[i].app),backgroundColor:'#1565C0CC',borderColor:'#0D47A1',borderWidth:1,borderRadius:4},
-    {label:'Pre-Sanctioned', data:idx.map(i=>NDKSP[i].ps), backgroundColor:'#2E7D32CC',borderColor:'#1B5E20',borderWidth:1,borderRadius:4},
-    {label:'Payments Issued',data:idx.map(i=>NDKSP[i].pay),backgroundColor:'#F57F17CC',borderColor:'#E65100',borderWidth:1,borderRadius:4},
-  ]},options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{
-      legend:{position:'top',labels:{boxWidth:12,padding:12,font:{family:"'Times New Roman',Times,serif",size:11}}},
-      datalabels:{
-        display:true,anchor:'end',align:'end',
-        font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},
-        color:'#1A202C',
-        rotation:0,
-        offset:4,
-        formatter:(v)=>v>0?v.toLocaleString():''
-      },
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
-    },
-    scales:{
-      x:{grid:{display:false},ticks:{font:{family:"'Times New Roman',Times,serif",size:10}}},
-      y:{grid:{color:'#F0F4F8'},ticks:{font:{family:"'Times New Roman',Times,serif",size:10},callback:v=>v.toLocaleString()},suggestedMax:4500}
-    },
-    layout:{padding:{top:22}}
-  }});
-  mk('ch-social',{type:'doughnut',data:{
-    labels:['SC (856)','ST (226)','Others (11,786)'],
-    datasets:[{
-      data:[856,226,11786],
-      backgroundColor:['#F44336','#FF9800','#4CAF50'],
-      borderColor:['#B71C1C','#E65100','#1B5E20'],
-      borderWidth:2,
-      hoverOffset:10,
-      hoverBorderWidth:3
-    }]
-  },options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
-    plugins:{
-      legend:{position:'bottom',labels:{
-        boxWidth:14,padding:12,
-        font:{family:"'Times New Roman',Times,serif",size:11,weight:'600'},
-        color:'#1A202C'
-      }},
-      tooltip:{callbacks:{
-        label:ctx=>' '+ctx.label+': '+ctx.parsed.toLocaleString()+
-          ' ('+((ctx.parsed/12868)*100).toFixed(1)+'%)'
-      }}
-    }}});
-  mk('ch-rates',{type:'bar',data:{labels:tals,datasets:[
-    {label:'Pre-Sanction Rate %',data:idx.map(i=>NDKSP[i].ps_rate),
-      backgroundColor:'#00838FCC',borderColor:'#006064',borderWidth:1,borderRadius:4},
-    {label:'Payment Rate %',data:idx.map(i=>NDKSP[i].pay_rate),
-      backgroundColor:'#FF6F00CC',borderColor:'#E65100',borderWidth:1,borderRadius:4},
-  ]},options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{
-      legend:{position:'top',labels:{boxWidth:12,padding:12,font:{family:"'Times New Roman',Times,serif",size:11}}},
-      datalabels:{
-        display:true,anchor:'end',align:'end',
-        font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},
-        color:'#1A202C',
-        formatter:(v)=>v>0?v.toFixed(1)+'%':''
-      },
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toFixed(2)+'%'}}
-    },
-    scales:{
-      x:{grid:{display:false},ticks:{font:{family:"'Times New Roman',Times,serif",size:10}}},
-      y:{grid:{color:'#F0F4F8'},max:105,ticks:{font:{family:"'Times New Roman',Times,serif",size:10},callback:v=>v+'%'}}
-    },
-    layout:{padding:{top:18}}
-  }});
-
-}
-
-function renderPipeline(){
-  const vals=DESK_KEYS.map(k=>NDKSY_TOT[k]);
-  const maxV=Math.max(...vals);
-  const isBN=vals.map((v,i)=>i>0&&vals[i-1]>v&&(vals[i-1]-v)/vals[i-1]>0.5);
-  let fhtml='';
-  vals.forEach((v,i)=>{
-    const pct=Math.max(2,(v/maxV)*100);
-    const col=isBN[i]?R2:(v>=500?B1:G2);
-    let dTxt='';
-    if(i>0){const prev=vals[i-1],diff=prev-v;
-      if(diff>0){dTxt=`<span class="fdrop" style="color:${R2}">↓ −${diff.toLocaleString()} (${(diff/prev*100).toFixed(1)}%)</span>`;}
-      else if(diff<0){dTxt=`<span class="fdrop" style="color:${G2}">↑ +${Math.abs(diff).toLocaleString()}</span>`;}}
-    fhtml+=`<div class="frow"><div class="flbl">${DESK_FULL[i]}</div>
-      <div class="fbw"><div class="fbar" style="width:${pct}%;background:${col}18;border:2px solid ${col}">
-        <span class="fval" style="color:${col}">${v.toLocaleString()}</span>
-      </div>${dTxt}</div></div>`;
-  });
-  document.getElementById('funnel-div').innerHTML=`<div class="funnel">${fhtml}</div>`;
-
-  mk('ch-pipe-bar',{type:'bar',data:{labels:DESK_SHORT,datasets:[{
-    label:'Count at Desk Stage',
-    data:vals,
-    backgroundColor:vals.map((v,i)=>isBN[i]?'#C62828CC':'#1565C0CC'),
-    borderColor:vals.map((v,i)=>isBN[i]?'#B71C1C':'#0D47A1'),
-    borderWidth:1.5,
-    borderRadius:5,
-    datalabels:{anchor:'end',align:'end',color:'#1A202C',font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
-      formatter:v=>v.toLocaleString()}
-  }]},options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{
-      legend:{display:false},
-      datalabels:{display:true,anchor:'end',align:'end',
-        color:ctx=>vals[ctx.dataIndex]>=1000?'#1565C0':'#1A202C',
-        font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
-        formatter:(v)=>v.toLocaleString()},
-      tooltip:{callbacks:{
-        title:ctx=>DESK_FULL[ctx[0].dataIndex],
-        label:ctx=>' Count: '+ctx.parsed.y.toLocaleString()
-      }}
-    },
-    scales:{
-      x:{
-        grid:{display:false},
-        ticks:{
-          font:{family:"'Times New Roman',Times,serif",size:10,weight:'600'},
-          color:'#1A202C',
-          maxRotation:55,minRotation:45,
-          autoSkip:false,
-          padding:6
-        }
-      },
-      y:{
-        grid:{color:'#E8EDF2'},
-        ticks:{font:{family:"'Times New Roman',Times,serif",size:11},callback:v=>v.toLocaleString()},
-        suggestedMax:Math.max(...vals)*1.18
-      }
-    },
-    layout:{padding:{top:28}}
-  }});
-
-  let dtH=`<table class="dt"><thead><tr><th>Transition</th><th>From Desk</th><th>Count From</th><th>Count To</th><th>Net Change</th><th>Drop %</th><th>Severity</th></tr></thead><tbody>`;
-  for(let i=1;i<9;i++){
-    const fr=vals[i-1],to=vals[i],diff=fr-to;
-    const dpct=fr>0?(diff/fr*100).toFixed(1):0;
-    const inc=diff<0;
-    const sev=!inc&&parseFloat(dpct)>70?['br','CRITICAL']:!inc&&parseFloat(dpct)>30?['ba','HIGH']:inc?['bg','INCREASE']:['bb','NORMAL'];
-    dtH+=`<tr><td style="font-size:10px">${DESK_SHORT[i-1]}→${DESK_SHORT[i]}</td>
-      <td style="font-size:9.5px">${DESK_FULL[i-1]}</td>
-      <td class="num">${fr.toLocaleString()}</td><td class="num">${to.toLocaleString()}</td>
-      <td class="num" style="color:${inc?G2:diff>500?R2:A1};font-weight:600">${inc?'+':'−'}${Math.abs(diff).toLocaleString()}</td>
-      <td class="num" style="font-weight:700;color:${inc?G2:parseFloat(dpct)>50?R2:A1}">${inc?'—':dpct+'%'}</td>
-      <td><span class="badge ${sev[0]}">${sev[1]}</span></td></tr>`;
-  }
-  document.getElementById('dropoff-tbl').innerHTML=dtH+'</tbody></table>';
-
-  let mH=`<thead><tr><th>Taluka</th>${DESK_SHORT.map((d,i)=>`<th title="${DESK_FULL[i]}">${d}</th>`).join('')}</tr></thead><tbody>`;
-  NDKSY.forEach(row=>{
-    const cells=DESK_KEYS.map(k=>{const v=row[k];const red=v<10;
-      return `<td class="num" style="${red?'background:var(--r5);color:var(--r2);font-weight:700':''}">${v}</td>`;}).join('');
-    mH+=`<tr><td style="font-weight:600">${row.t}</td>${cells}</tr>`;
-  });
-  const totCells=DESK_KEYS.map(k=>`<td class="num" style="font-weight:700;color:var(--g1)">${NDKSY_TOT[k].toLocaleString()}</td>`).join('');
-  mH+=`<tr style="background:var(--g5)"><td style="font-weight:700">DISTRICT TOTAL</td>${totCells}</tr>`;
-  document.getElementById('pipe-matrix').innerHTML=mH+'</tbody>';
-}
-
-function renderTaluka(){
-  const sorted=[...NDKSP].sort((a,b)=>b.score-a.score);
-  const rankColors=['#FFD700CC','#C0C0C0CC','#CD7F32CC','#42A5F5CC','#66BB6ACC','#FF7043CC','#AB47BCCC','#26C6DACC'];
-  const rankBorders=['#B8860B','#A0A0A0','#8B5A00','#1565C0','#2E7D32','#BF360C','#6A1B9A','#00838F'];
-  mk('ch-rank',{type:'bar',data:{labels:sorted.map(r=>r.t),datasets:[{
-    label:'Composite Score (PS%×0.6 + Pay%×0.4)',
-    data:sorted.map(r=>r.score),
-    backgroundColor:sorted.map((_,i)=>rankColors[i]||rankColors[7]),
-    borderColor:sorted.map((_,i)=>rankBorders[i]||rankBorders[7]),
-    borderWidth:1.5,
-    borderRadius:6,
-    datalabels:{anchor:'end',align:'end',
-      font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
-      color:'#1A202C',
-      formatter:v=>v.toFixed(2)}
-  }]},options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{
-      legend:{display:false},
-      datalabels:{
-        display:true,anchor:'end',align:'end',
-        font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
-        color:'#1A202C',
-        formatter:v=>v.toFixed(2)
-      },
-      tooltip:{callbacks:{
-        label:ctx=>{const r=sorted[ctx.dataIndex];
-          return[' Score: '+ctx.parsed.y.toFixed(2),' PS Rate: '+r.ps_rate+'%',' Pay Rate: '+r.pay_rate+'%'];}
-      }}
-    },
-    scales:{
-      x:{grid:{display:false},ticks:{font:{family:"'Times New Roman',Times,serif",size:11,weight:'600'},color:'#1A202C'}},
-      y:{grid:{color:'#F0F4F8'},max:100,ticks:{font:{family:"'Times New Roman',Times,serif",size:11},callback:v=>v}}
-    },
-    layout:{padding:{top:24}}
-  }});
-
-  const top3=sorted.slice(0,3);
-  mk('ch-radar',{type:'radar',data:{
-    labels:['Pre-San%','Payment%','Farmers÷100','Score'],
-    datasets:top3.map((r,ri)=>{
-      return{label:r.t,data:[r.ps_rate,r.pay_rate,r.far/100,r.score],
+      return{label:r.t+' (29 Apr)',data:[r.ps_rate,r.pay_rate,r.far/100,r.score],
         fill:true,borderColor:[G2,B1,A1][ri],backgroundColor:[G2+'22',B1+'22',A1+'22'][ri],
         borderWidth:2,pointRadius:3};
     })
@@ -1892,79 +1986,262 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
 
 })();
 
+
 </script>
 
-<!-- PAGE 7: COMPARISON (13 Apr vs 22 Apr 2026) -->
+<!-- PAGE 7: COMPARISON — 13 Apr · 22 Apr · 29 Apr 2026 -->
 <div class="page" id="page-compare">
-  <div class="sec">Comparison — 13 April 2026 (Previous) vs 22 April 2026 (Current) · NDKSP 2 DBT</div>
+  <div class="sec" id="cmp-sec-title">Three-Point Comparison — 13 April · 22 April · 29 April 2026 · NDKSP 2 DBT</div>
 
-  <!-- Comparison KPI strip -->
-  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(155px,1fr));margin-bottom:14px">
-    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Farmers Growth</div><div class="kc-val" style="font-size:22px">+1,847</div><div class="kc-sub">9,069 → 10,916</div><span class="flag fg">▲ +20.4%</span></div>
-    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Applications Growth</div><div class="kc-val" style="font-size:22px">+727</div><div class="kc-sub">13,647 → 14,374</div><span class="flag fb2">▲ +5.3%</span></div>
-    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">D1 Farmer Verif.</div><div class="kc-val" style="font-size:22px">+501</div><div class="kc-sub">99 → 600</div><span class="flag fg">▲ +506%</span></div>
-    <div class="kcard g"><span class="kc-icon">💸</span><div class="kc-lbl">Final Clearance (D9)</div><div class="kc-val" style="font-size:22px">+70</div><div class="kc-sub">121 → 191</div><span class="flag fg">▲ +57.9%</span></div>
-    <div class="kcard g"><span class="kc-icon">🏦</span><div class="kc-lbl">Accounts Officer (D8)</div><div class="kc-val" style="font-size:22px">+135</div><div class="kc-sub">273 → 408</div><span class="flag fg">▲ +49.5%</span></div><div class="kc-val" style="font-size:22px">−680</div><div class="kc-sub">1,559 → 879</div><span class="flag fr">▼ −43.6%</span></div>
-    <div class="kcard a"><span class="kc-icon">📉</span><div class="kc-lbl">Spot Check D5</div><div class="kc-val" style="font-size:22px">−44</div><div class="kc-sub">157 → 113</div><span class="flag fa">▼ −28.0%</span></div>
-    <div class="kcard g"><span class="kc-icon">🌊</span><div class="kc-lbl">TAO Pre-Sanction (D4)</div><div class="kc-val" style="font-size:22px">+5</div><div class="kc-sub">351 → 356</div><span class="flag fg">▲ +1.4%</span></div>
+  <!-- KPI Overview Strip -->
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(165px,1fr));margin-bottom:14px">
+    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Farmers</div><div class="kc-val" id="cmp-kpi-far" style="font-size:18px">9,546</div><div class="kc-sub" id="cmp-kpi-far-sub">9,069 → 9,414 → 9,546</div><span class="flag fg" id="cmp-kpi-far-flag">▲ 22→29: +132</span></div>
+    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Apps</div><div class="kc-val" id="cmp-kpi-app" style="font-size:18px">14,602</div><div class="kc-sub" id="cmp-kpi-app-sub">13,647 → 14,374 → 14,602</div><span class="flag fg" id="cmp-kpi-app-flag">▲ 22→29: +228</span></div>
+    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">D1 Farmer Verif.</div><div class="kc-val" style="font-size:18px">193</div><div class="kc-sub">99 → 600 → 193</div><span class="flag fr">▼ 22→29: −407</span></div>
+    <div class="kcard g"><span class="kc-icon">💸</span><div class="kc-lbl">Final Clearance (D9)</div><div class="kc-val" style="font-size:18px">283</div><div class="kc-sub">121 → 191 → 283</div><span class="flag fg">▲ 22→29: +92</span></div>
+    <div class="kcard b"><span class="kc-icon">🏦</span><div class="kc-lbl">Accounts Officer (D8)</div><div class="kc-val" style="font-size:18px">307</div><div class="kc-sub">273 → 408 → 307</div><span class="flag fr">▼ 22→29: −101</span></div>
+    <div class="kcard a"><span class="kc-icon">📉</span><div class="kc-lbl">Spot Check D5</div><div class="kc-val" style="font-size:18px">140</div><div class="kc-sub">157 → 113 → 140</div><span class="flag fg">▲ 22→29: +27</span></div>
+    <div class="kcard b"><span class="kc-icon">🌊</span><div class="kc-lbl">TAO Pre-San (D4)</div><div class="kc-val" style="font-size:18px">273</div><div class="kc-sub">351 → 356 → 273</div><span class="flag fr">▼ 22→29: −83</span></div>
   </div>
 
-  <!-- Taluka-wise comparison table -->
-  <div class="sec">Taluka-wise Farmer &amp; Application Comparison</div>
+  <!-- Taluka Farmers & Apps Chart -->
+  <div class="sec" id="cmp-chart-sec">Taluka-wise Farmer &amp; Applications — All Three Dates</div>
   <div class="card" style="margin-bottom:14px">
-    <div class="ch"><div class="ct">📊 Taluka-wise: Previous (13 Apr) vs Current (22 Apr) — Farmers &amp; Applications</div></div>
-    <div class="cb"><div class="cw" style="height:270px"><canvas id="ch-compare-bar"></canvas></div></div>
+    <div class="ch">
+      <div class="ct" id="cmp-chart-title">📊 Farmers &amp; Apps — 13 Apr · 22 Apr · 29 Apr (All 8 Talukas)</div>
+      <div class="cs">Grouped by date · Blue = Farmers · Green = Apps (= Applications Submitted)</div>
+    </div>
+    <div class="cb">
+      <div style="font-size:10px;color:var(--tx3);font-style:italic;margin-bottom:6px;padding:0 2px">
+        ℹ️ <strong>Apps = Applications Submitted</strong> &nbsp;·&nbsp; Bars grouped by date: 13 Apr · 22 Apr · 29 Apr
+      </div>
+      <div class="cw" style="height:300px"><canvas id="ch-compare-bar"></canvas></div>
+    </div>
   </div>
 
+  <!-- Taluka Comparison Table -->
   <div class="card" style="margin-bottom:14px">
-    <div class="ch"><div class="ct">📋 Taluka-wise Detailed Comparison Table</div><div class="cs">▲ Improvement · ▼ Decline · — No change</div></div>
+    <div class="ch">
+      <div class="ct" id="cmp-table-title">📋 Taluka-wise Comparison — 13 Apr · 22 Apr · 29 Apr</div>
+      <div class="cs">Apps = Applications Submitted · Δ and % = 22 Apr → 29 Apr · ▲ Improvement · ▼ Decline</div>
+    </div>
     <div class="cb" style="padding:0">
       <div class="tw">
         <table class="dt">
           <thead><tr>
             <th>Taluka</th>
-            <th>Prev Farmers</th><th>Curr Farmers</th><th>Farmer Δ</th><th>Farmer %</th>
-            <th>Prev Apps</th><th>Curr Apps</th><th>App Δ</th><th>App %</th>
+            <th>Farmers 13 Apr</th><th>Farmers 22 Apr</th><th>Farmers 29 Apr</th>
+            <th>Farmer Δ</th><th>Farmer %</th>
+            <th>Apps 13 Apr</th><th>Apps 22 Apr</th><th>Apps 29 Apr</th>
+            <th>App Δ</th><th>App %</th>
             <th>Status</th>
           </tr></thead>
           <tbody>
-            <tr><td style="font-weight:600">Dharashiv</td><td class="num">2,687</td><td class="num">2,793</td><td class="num" style="color:#2E7D32;font-weight:700">+106</td><td><span class="badge bg">▲ +3.9%</span></td><td class="num">3,723</td><td class="num">3,905</td><td class="num" style="color:#2E7D32;font-weight:700">+182</td><td><span class="badge bg">▲ +4.9%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr><td style="font-weight:600">Kalamb</td><td class="num">2,130</td><td class="num">2,199</td><td class="num" style="color:#2E7D32;font-weight:700">+69</td><td><span class="badge bg">▲ +3.2%</span></td><td class="num">2,921</td><td class="num">3,041</td><td class="num" style="color:#2E7D32;font-weight:700">+120</td><td><span class="badge bg">▲ +4.1%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr><td style="font-weight:600">Tuljapur</td><td class="num">1,049</td><td class="num">1,107</td><td class="num" style="color:#2E7D32;font-weight:700">+58</td><td><span class="badge bg">▲ +5.5%</span></td><td class="num">1,937</td><td class="num">2,134</td><td class="num" style="color:#2E7D32;font-weight:700">+197</td><td><span class="badge bg">▲ +10.2%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr><td style="font-weight:600">Bhum</td><td class="num">1,004</td><td class="num">1,037</td><td class="num" style="color:#2E7D32;font-weight:700">+33</td><td><span class="badge bg">▲ +3.3%</span></td><td class="num">1,641</td><td class="num">1,698</td><td class="num" style="color:#2E7D32;font-weight:700">+57</td><td><span class="badge bg">▲ +3.5%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr><td style="font-weight:600">Omerga</td><td class="num">951</td><td class="num">985</td><td class="num" style="color:#2E7D32;font-weight:700">+34</td><td><span class="badge bg">▲ +3.6%</span></td><td class="num">1,472</td><td class="num">1,556</td><td class="num" style="color:#2E7D32;font-weight:700">+84</td><td><span class="badge bg">▲ +5.7%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr><td style="font-weight:600">Paranda</td><td class="num">581</td><td class="num">602</td><td class="num" style="color:#2E7D32;font-weight:700">+21</td><td><span class="badge bg">▲ +3.6%</span></td><td class="num">934</td><td class="num">977</td><td class="num" style="color:#2E7D32;font-weight:700">+43</td><td><span class="badge bg">▲ +4.6%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr><td style="font-weight:600">Washi</td><td class="num">445</td><td class="num">460</td><td class="num" style="color:#2E7D32;font-weight:700">+15</td><td><span class="badge bg">▲ +3.4%</span></td><td class="num">661</td><td class="num">690</td><td class="num" style="color:#2E7D32;font-weight:700">+29</td><td><span class="badge bg">▲ +4.4%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr><td style="font-weight:600">Lohara</td><td class="num">222</td><td class="num">231</td><td class="num" style="color:#2E7D32;font-weight:700">+9</td><td><span class="badge bg">▲ +4.1%</span></td><td class="num">358</td><td class="num">373</td><td class="num" style="color:#2E7D32;font-weight:700">+15</td><td><span class="badge bg">▲ +4.2%</span></td><td><span class="badge bg">✅ Improved</span></td></tr>
-            <tr style="background:var(--g5)"><td style="font-weight:700">DISTRICT TOTAL</td><td class="num" style="font-weight:700">9,069</td><td class="num" style="font-weight:700">10,916</td><td class="num" style="color:#2E7D32;font-weight:800">+1,847</td><td><span class="badge bg">▲ +20.4%</span></td><td class="num" style="font-weight:700">13,647</td><td class="num" style="font-weight:700">14,374</td><td class="num" style="color:#2E7D32;font-weight:800">+727</td><td><span class="badge bg">▲ +5.3%</span></td><td><span class="badge bg">✅ All Improved</span></td></tr>
-          </tbody>
+            <tr class="cmp-row" data-taluka="Dharashiv">
+              <td style="font-weight:600">Dharashiv</td>
+              <td class="num">2,687</td><td class="num">2,793</td><td class="num">2,833</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+40</td>
+              <td><span class="badge bg">▲ +1.4%</span></td>
+              <td class="num">3,723</td><td class="num">3,905</td><td class="num">3,965</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+60</td>
+              <td><span class="badge bg">▲ +1.5%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Kalamb">
+              <td style="font-weight:600">Kalamb</td>
+              <td class="num">2,130</td><td class="num">2,199</td><td class="num">2,221</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+22</td>
+              <td><span class="badge bg">▲ +1.0%</span></td>
+              <td class="num">2,921</td><td class="num">3,041</td><td class="num">3,079</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+38</td>
+              <td><span class="badge bg">▲ +1.2%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Tuljapur">
+              <td style="font-weight:600">Tuljapur</td>
+              <td class="num">1,049</td><td class="num">1,107</td><td class="num">1,125</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+18</td>
+              <td><span class="badge bg">▲ +1.6%</span></td>
+              <td class="num">1,937</td><td class="num">2,134</td><td class="num">2,175</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+41</td>
+              <td><span class="badge bg">▲ +1.9%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Bhum">
+              <td style="font-weight:600">Bhum</td>
+              <td class="num">1,004</td><td class="num">1,037</td><td class="num">1,052</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+15</td>
+              <td><span class="badge bg">▲ +1.4%</span></td>
+              <td class="num">1,641</td><td class="num">1,698</td><td class="num">1,726</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+28</td>
+              <td><span class="badge bg">▲ +1.6%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Omerga">
+              <td style="font-weight:600">Omerga</td>
+              <td class="num">951</td><td class="num">985</td><td class="num">994</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+9</td>
+              <td><span class="badge bg">▲ +0.9%</span></td>
+              <td class="num">1,472</td><td class="num">1,556</td><td class="num">1,576</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+20</td>
+              <td><span class="badge bg">▲ +1.3%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Paranda">
+              <td style="font-weight:600">Paranda</td>
+              <td class="num">581</td><td class="num">602</td><td class="num">625</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+23</td>
+              <td><span class="badge bg">▲ +3.8%</span></td>
+              <td class="num">934</td><td class="num">977</td><td class="num">1,007</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+30</td>
+              <td><span class="badge bg">▲ +3.1%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Washi">
+              <td style="font-weight:600">Washi</td>
+              <td class="num">445</td><td class="num">460</td><td class="num">463</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+3</td>
+              <td><span class="badge bg">▲ +0.7%</span></td>
+              <td class="num">661</td><td class="num">690</td><td class="num">696</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+6</td>
+              <td><span class="badge bg">▲ +0.9%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Lohara">
+              <td style="font-weight:600">Lohara</td>
+              <td class="num">222</td><td class="num">231</td><td class="num">233</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+2</td>
+              <td><span class="badge bg">▲ +0.9%</span></td>
+              <td class="num">358</td><td class="num">373</td><td class="num">378</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+5</td>
+              <td><span class="badge bg">▲ +1.3%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-total-row" style="background:var(--g5)">
+              <td style="font-weight:700">DISTRICT TOTAL</td>
+              <td class="num" style="font-weight:700">9,069</td>
+              <td class="num" style="font-weight:700">9,414</td>
+              <td class="num" style="font-weight:700">9,546</td>
+              <td class="num" style="color:#2E7D32;font-weight:800">+132</td>
+              <td><span class="badge bg">▲ +1.4%</span></td>
+              <td class="num" style="font-weight:700">13,647</td>
+              <td class="num" style="font-weight:700">14,374</td>
+              <td class="num" style="font-weight:700">14,602</td>
+              <td class="num" style="color:#2E7D32;font-weight:800">+228</td>
+              <td><span class="badge bg">▲ +1.6%</span></td>
+              <td><span class="badge bg">✅ All Improved</span></td>
+            </tr>          </tbody>
         </table>
       </div>
     </div>
   </div>
 
-  <!-- NDKSY Pipeline comparison -->
-  <div class="sec">NDKSY Pipeline Stage-wise Comparison</div>
+  <!-- NDKSY Pipeline Chart -->
+  <div class="sec">NDKSY Pipeline Stage-wise — All Three Dates (District Level)</div>
   <div class="card" style="margin-bottom:14px">
-    <div class="ch"><div class="ct">🔄 NDKSY Pipeline: Previous vs Current — All 9 Desks</div><div class="cs">Green = improvement · Red = decline</div></div>
-    <div class="cb"><div class="cw" style="height:300px"><canvas id="ch-compare-pipeline"></canvas></div></div>
+    <div class="ch">
+      <div class="ct">🔄 NDKSY Pipeline — 13 Apr · 22 Apr · 29 Apr (All 9 Desks)</div>
+      <div class="cs">District totals · D1–D9 · Hover bar for full desk name · Green = 29 Apr ↑ vs 22 Apr · Red = ↓</div>
+    </div>
+    <div class="cb"><div class="cw" style="height:400px"><canvas id="ch-compare-pipeline"></canvas></div></div>
   </div>
 
+  <!-- NDKSY Pipeline Table -->
   <div class="card">
-    <div class="ch"><div class="ct">📋 NDKSY Pipeline Detailed Comparison</div></div>
+    <div class="ch">
+      <div class="ct">📋 NDKSY Pipeline Comparison — 13 Apr · 22 Apr · 29 Apr (District Level)</div>
+      <div class="cs">Δ and % = 22 Apr → 29 Apr · 22 Apr column coloured vs 13 Apr baseline · District totals only</div>
+    </div>
     <div class="cb" style="padding:0">
       <div class="tw">
         <table class="dt">
-          <thead><tr><th>Desk Stage</th><th>Previous (13 Apr)</th><th>Current (22 Apr)</th><th>Change</th><th>% Change</th><th>Status</th></tr></thead>
+          <thead><tr>
+            <th>Desk Stage</th>
+            <th>13 Apr 2026</th><th>22 Apr 2026</th><th>29 Apr 2026 (Current)</th>
+            <th>Δ (22→29)</th><th>% (22→29)</th><th>Status</th>
+          </tr></thead>
           <tbody>
-            <tr><td style="font-size:10px">शेतकरी पडताळणी</td><td class="num">99</td><td class="num">600</td><td class="num" style="color:#2E7D32;font-weight:700">+501</td><td class="num" style="color:#2E7D32;font-weight:700">+506.1%</td><td><span class="badge bg">🚀 MAJOR GAIN</span></td></tr>
-            <tr><td style="font-size:10px">सहायक कृषी अधिकारी स्थळ पाहणी डेस्क -२</td><td class="num">3,067</td><td class="num">2,902</td><td class="num" style="color:#E65100;font-weight:700">−165</td><td class="num" style="color:#E65100;font-weight:700">−5.4%</td><td><span class="badge ba">▼ Minor Decline</span></td></tr>
-            <tr><td style="font-size:10px">तालुका कृषी अधिकारी पूर्वसंमती डेस्क ३</td><td class="num">351</td><td class="num">356</td><td class="num" style="color:#2E7D32;font-weight:700">+5</td><td class="num" style="color:#2E7D32;font-weight:700">+1.4%</td><td><span class="badge bg">▲ Marginal Gain</span></td></tr>
-            <tr><td style="font-size:10px">सहायक कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td><td class="num">157</td><td class="num">113</td><td class="num" style="color:#E65100;font-weight:700">−44</td><td class="num" style="color:#E65100;font-weight:700">−28.0%</td><td><span class="badge ba">▼ Moderate Decline</span></td></tr>
-            <tr><td style="font-size:10px">उपकृषी अधिकारी डेस्क ४ (मोका तपासणी)</td><td class="num">1,002</td><td class="num">964</td><td class="num" style="color:#E65100;font-weight:700">−38</td><td class="num" style="color:#E65100;font-weight:700">−3.8%</td><td><span class="badge ba">▼ Minor Decline</span></td></tr>
-            <tr><td style="font-size:10px">मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td><td class="num">4</td><td class="num">5</td><td class="num" style="color:#2E7D32;font-weight:700">+1</td><td class="num" style="color:#2E7D32;font-weight:700">+25.0%</td><td><span class="badge bg">▲ Marginal Gain</span></td></tr>
-            <tr><td style="font-size:10px">लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५</td><td class="num">273</td><td class="num">408</td><td class="num" style="color:#2E7D32;font-weight:700">+135</td><td class="num" style="color:#2E7D32;font-weight:700">+49.5%</td><td><span class="badge bg">✅ GOOD IMPROVEMENT</span></td></tr>
-            <tr><td style="font-size:10px">उपविभागीय कृषी अधिकारी डेस्क ६</td><td class="num">121</td><td class="num">191</td><td class="num" style="color:#2E7D32;font-weight:700">+70</td><td class="num" style="color:#2E7D32;font-weight:700">+57.9%</td><td><span class="badge bg">✅ GOOD IMPROVEMENT</span></td></tr>
+            <tr>
+              <td style="font-size:10px">शेतकरी पडताळणी</td>
+              <td class="num">99</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">600</td>
+              <td class="num" style="font-weight:700">193</td>
+              <td class="num" style="color:#C62828;font-weight:700">-407</td>
+              <td class="num" style="color:#C62828;font-weight:700">-67.8%</td>
+              <td><span class="badge br">▼ Major Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">ग्रा.कृ.वि.स मान्यता</td>
+              <td class="num">1,559</td>
+              <td class="num" style="color:#C62828;font-weight:600">879</td>
+              <td class="num" style="font-weight:700">962</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+83</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+9.4%</td>
+              <td><span class="badge bg">✅ Good Gain</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">सहायक कृषी अधिकारी स्थळ पाहणी डेस्क -२</td>
+              <td class="num">3,067</td>
+              <td class="num" style="color:#C62828;font-weight:600">2,902</td>
+              <td class="num" style="font-weight:700">2,697</td>
+              <td class="num" style="color:#C62828;font-weight:700">-205</td>
+              <td class="num" style="color:#C62828;font-weight:700">-7.1%</td>
+              <td><span class="badge br">▼ Major Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">तालुका कृषी अधिकारी पूर्वसंमती डेस्क ३</td>
+              <td class="num">351</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">356</td>
+              <td class="num" style="font-weight:700">273</td>
+              <td class="num" style="color:#C62828;font-weight:700">-83</td>
+              <td class="num" style="color:#C62828;font-weight:700">-23.3%</td>
+              <td><span class="badge ba">▼ Moderate Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">सहायक कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
+              <td class="num">157</td>
+              <td class="num" style="color:#C62828;font-weight:600">113</td>
+              <td class="num" style="font-weight:700">140</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+27</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+23.9%</td>
+              <td><span class="badge bg">✅ Good Gain</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">उपकृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
+              <td class="num">1,002</td>
+              <td class="num" style="color:#C62828;font-weight:600">964</td>
+              <td class="num" style="font-weight:700">1,034</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+70</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+7.3%</td>
+              <td><span class="badge bg">✅ Good Gain</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
+              <td class="num">4</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">5</td>
+              <td class="num" style="font-weight:700">5</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+0</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+0.0%</td>
+              <td><span class="badge bb">— No Change</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५</td>
+              <td class="num">273</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">408</td>
+              <td class="num" style="font-weight:700">307</td>
+              <td class="num" style="color:#C62828;font-weight:700">-101</td>
+              <td class="num" style="color:#C62828;font-weight:700">-24.8%</td>
+              <td><span class="badge br">▼ Major Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">उपविभागीय कृषी अधिकारी डेस्क ६</td>
+              <td class="num">121</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">191</td>
+              <td class="num" style="font-weight:700">283</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+92</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+48.2%</td>
+              <td><span class="badge bg">✅ Good Gain</span></td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -1974,122 +2251,10 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
 
 <!-- PAGE 8: INSIGHTS -->
 <div class="page" id="page-insights">
-  <div class="sec">Advanced Insights — Based on 13 Apr 2026 → 22 Apr 2026 Data · Dharashiv District</div>
-
-  <!-- Key Observations -->
-  <div style="margin-bottom:16px">
-    <div class="sec">🔍 Key Observations &amp; Inferences</div>
-    <div class="alerts" style="grid-template-columns:1fr 1fr 1fr">
-      <div class="alert g"><div class="alert-icon">📈</div><div>
-        <div class="alert-title">Farmer Enrollment: Strong +20.4% Growth</div>
-        <div class="alert-body">District registered 1,847 new farmers in 9 days (13→22 Apr). Dharashiv leads with +106 new farmers. All 8 talukas showed consistent 3–5% farmer growth, indicating active field-level enrollment drives.</div>
-      </div></div>
-      <div class="alert g"><div class="alert-icon">🚀</div><div>
-        <div class="alert-title">D1 Farmer Verification: Explosive +506% Surge</div>
-        <div class="alert-body">Farmer Verification (D1) surged from 99 to 600 (+501). This signals a massive operational push at the entry-level verification stage. If this pace continues, pipeline entry will accelerate significantly.</div>
-      </div></div>
-      
-      <div class="alert g"><div class="alert-icon">✅</div><div>
-        <div class="alert-title">Final Payment (D8+D9): Significant Improvement</div>
-        <div class="alert-body">Accounts Officer (D8): +135 (+49.5%). Sub-Div AO Final (D9): +70 (+57.9%). These are strong positive signals indicating actual DBT payments reaching farmers are accelerating.</div>
-      </div></div>
-      <div class="alert a"><div class="alert-icon">⚠️</div><div>
-        <div class="alert-title">Tuljapur: Highest Application Growth (+10.2%)</div>
-        <div class="alert-body">Tuljapur recorded the highest application growth rate at +10.2% (1,937→2,134). Combined with +5.5% farmer growth, it shows strong demand generation momentum that merits scaling support resources.</div>
-      </div></div>
-      <div class="alert b"><div class="alert-icon">📊</div><div>
-        <div class="alert-title">Activity Coverage: Villages Count Added</div>
-        <div class="alert-body">New dataset now includes village-level activity coverage. Sprinkler covers 127 villages, Drip 124, Recharge of Well 109. These numbers confirm irrigation activities have the widest geographic spread.</div>
-      </div></div>
-    </div>
-  </div>
-
-  <!-- Trend Analysis -->
-  <div style="margin-bottom:16px">
-    <div class="sec">📊 Trend Analysis</div>
-    <div class="grid-2">
-      <div class="card">
-        <div class="ch"><div class="ct">📈 Farmer Enrollment Trend by Taluka</div><div class="cs">13 Apr → 22 Apr 2026</div></div>
-        <div class="cb"><div class="cw" style="height:220px"><canvas id="ch-trend-farmers"></canvas></div></div>
-      </div>
-      <div class="card">
-        <div class="ch"><div class="ct">🔄 Pipeline D8 &amp; D9 Improvement Trend</div><div class="cs">Accounts + Final Clearance</div></div>
-        <div class="cb"><div class="cw" style="height:220px"><canvas id="ch-trend-pipeline"></canvas></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Predictive Analysis -->
-  <div style="margin-bottom:16px">
-    <div class="sec">🔮 Predictive Analysis (Based on Data Trends Only)</div>
-    <div class="card">
-      <div class="ch"><div class="ct">🔮 Projected Milestones — If Current Growth Rate Continues</div><div class="cs">Based on 9-day growth rate (13–22 Apr 2026)</div></div>
-      <div class="cb" style="padding:0">
-        <div class="tw">
-          <table class="dt">
-            <thead><tr><th>Metric</th><th>Current (22 Apr)</th><th>Growth Rate</th><th>30-Day Projection</th><th>60-Day Projection</th><th>Basis</th></tr></thead>
-            <tbody>
-              <tr><td>Registered Farmers</td><td class="num">10,916</td><td class="num">+205/day</td><td class="num" style="color:#2E7D32;font-weight:600">~17,066</td><td class="num" style="color:#2E7D32;font-weight:600">~23,216</td><td style="font-size:10px">+1,847 in 9 days = +205/day</td></tr>
-              <tr><td>Applications</td><td class="num">14,374</td><td class="num">+81/day</td><td class="num" style="color:#2E7D32;font-weight:600">~16,796</td><td class="num" style="color:#2E7D32;font-weight:600">~19,218</td><td style="font-size:10px">+727 in 9 days = +81/day</td></tr>
-              <tr><td>D1 Farmer Verification</td><td class="num">600</td><td class="num">+56/day</td><td class="num" style="color:#2E7D32;font-weight:600">~2,280</td><td class="num" style="color:#2E7D32;font-weight:600">~3,960</td><td style="font-size:10px">+501 in 9 days = +56/day</td></tr>
-              <tr><td>Final Clearance (D9)</td><td class="num">191</td><td class="num">+7.8/day</td><td class="num" style="color:#2E7D32;font-weight:600">~425</td><td class="num" style="color:#2E7D32;font-weight:600">~659</td><td style="font-size:10px">+70 in 9 days = +7.8/day</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Performance Insights -->
-  <div style="margin-bottom:16px">
-    <div class="sec">🏆 Performance Insights — Taluka-wise</div>
-    <div class="card">
-      <div class="ch"><div class="ct">📊 Performance Radar — Growth Rate Comparison</div><div class="cs">Based on % change 13→22 Apr</div></div>
-      <div class="cb"><div class="cw" style="height:280px"><canvas id="ch-insight-radar"></canvas></div></div>
-    </div>
-  </div>
-
-  <!-- Concern / Risk Areas -->
-  <div style="margin-bottom:16px">
-    <div class="sec">⚠️ Concern &amp; Risk Areas</div>
-    <div class="alerts" style="grid-template-columns:1fr 1fr">
-      
-      <div class="alert r"><div class="alert-icon">🔴</div><div>
-        <div class="alert-title">RISK 2: Payment Rate Still Critical (3.3%)</div>
-        <div class="alert-body">Despite D8/D9 improvements, payment rate remains critically low. 14,374 applications but only ~476 paid. D9 at 191 is still less than 1.5% of total applications. DBT disbursement remains a severe bottleneck.</div>
-      </div></div>
-      <div class="alert a"><div class="alert-icon">⚠️</div><div>
-        <div class="alert-title">RISK 3: D5 Spot Check Decline (−28%)</div>
-        <div class="alert-body">Asst. AO Spot Check (D5) fell from 157 to 113 (−44). This mid-pipeline quality verification stage is weakening, which could compromise the integrity of applications moving to final payment stages.</div>
-      </div></div>
-      <div class="alert a"><div class="alert-icon">⚠️</div><div>
-        <div class="alert-title">RISK 4: D3 Site Inspections Declining (−5.4%)</div>
-        <div class="alert-body">Asst. AO Site Inspections (D3) fell from 3,067 to 2,902 (−165). While minor, this indicates field officer capacity constraints. With rising application load (+727 new), D3 throughput must be increased.</div>
-      </div></div>
-    </div>
-  </div>
-
-  <!-- Priority Action Areas -->
-  <div style="margin-bottom:16px">
-    <div class="sec">🎯 Priority Action Areas</div>
-    <div class="card">
-      <div class="cb" style="padding:0">
-        <div class="tw">
-          <table class="dt">
-            <thead><tr><th>Priority</th><th>Action Area</th><th>Current Status</th><th>Target</th><th>Responsible</th><th>Deadline</th></tr></thead>
-            <tbody>
-              <tr><td><span class="badge br">P1 URGENT</span></td><td style="font-weight:600">Accelerate DBT Payment (D9)</td><td class="num" style="color:#C62828">191 (1.3% of apps)</td><td class="num">≥ 1,000</td><td style="font-size:10px">Sub-Div AO + Accounts Officer</td><td style="font-size:10px;color:#C62828">Immediate — 7 days</td></tr>
-              <tr><td><span class="badge ba">P2 HIGH</span></td><td style="font-weight:600">Restore D5 Spot Check Pace</td><td class="num" style="color:#E65100">113 (was 157)</td><td class="num">≥ 200</td><td style="font-size:10px">Asst. Agriculture Officers</td><td style="font-size:10px;color:#E65100">14 days</td></tr>
-              <tr><td><span class="badge ba">P2 HIGH</span></td><td style="font-weight:600">Scale D3 Site Inspections</td><td class="num" style="color:#E65100">2,902 (was 3,067)</td><td class="num">≥ 3,500</td><td style="font-size:10px">AAOs across all talukas</td><td style="font-size:10px;color:#E65100">14 days</td></tr>
-              <tr><td><span class="badge bb">P3 MONITOR</span></td><td style="font-weight:600">Sustain D1 Surge Momentum</td><td class="num" style="color:#2E7D32">600 (was 99)</td><td class="num">≥ 1,200</td><td style="font-size:10px">Taluka Agriculture Officers</td><td style="font-size:10px">30 days</td></tr>
-              <tr><td><span class="badge bb">P3 MONITOR</span></td><td style="font-weight:600">Maintain D8/D9 Improvement</td><td class="num" style="color:#2E7D32">D8: 408 | D9: 191</td><td class="num">D8: 600 | D9: 400</td><td style="font-size:10px">Accounts + Sub-Div AO</td><td style="font-size:10px">30 days</td></tr>
-              <tr><td><span class="badge bg">P4 SCALE</span></td><td style="font-weight:600">Leverage Tuljapur's Growth</td><td class="num" style="color:#2E7D32">+10.2% apps growth</td><td class="num">Model scaling</td><td style="font-size:10px">District Collector</td><td style="font-size:10px">Replicate in other talukas</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+  <div id="insights-content">
+    <!-- dynamically rendered by renderInsights() -->
   </div>
 </div>
+
 </body>
 </html>
