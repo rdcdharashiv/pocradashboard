@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-title" content="PoCRA 2.0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
 <title>PoCRA 2.0 — District Dashboard | Dharashiv</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js" crossorigin="anonymous"></script>
 
 <style>
 :root{
@@ -45,9 +45,9 @@ body{font-family:'Times New Roman', Times, serif;background:var(--bg);color:var(
 .nt{padding:13px 18px;font-size:12px;font-weight:500;color:var(--tx3);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:6px;user-select:none}
 .nt:hover{color:var(--g2)}
 .nt.active{color:var(--g1);border-bottom-color:var(--g1);font-weight:700}
-.fbar{background:var(--surface);border-bottom:1px solid var(--border);padding:8px 20px 8px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;row-gap:7px;position:sticky;top:calc(var(--topbar-h) + var(--nav-h));z-index:100}
-.flabel{font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;flex-shrink:0}
-.fb{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--tx2);font-size:11px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;line-height:1.4;font-family:inherit}
+.fbar{background:var(--surface);border-bottom:1px solid var(--border);padding:7px 16px;display:flex;align-items:center;gap:4px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;position:sticky;top:calc(var(--topbar-h) + var(--nav-h));z-index:150;}.fbar::-webkit-scrollbar{display:none}
+.flabel{font-size:9.5px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;flex-shrink:0}
+.fb{padding:4px 9px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);color:var(--tx2);font-size:10px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap;line-height:1.4;font-family:inherit}
 .fb:hover{border-color:var(--g3);color:var(--g2)}
 .fb.active{background:var(--g1);border-color:var(--g1);color:#fff}
 .fdiv{width:1px;height:18px;background:var(--border);flex-shrink:0;align-self:center}
@@ -78,7 +78,7 @@ body{font-family:'Times New Roman', Times, serif;background:var(--bg);color:var(
 .ct{font-size:11.5px;font-weight:600;color:var(--tx1);display:flex;align-items:center;gap:6px}
 .cs{font-size:10px;color:var(--tx3)}
 .cb{padding:14px 16px}
-.cw{position:relative}
+.cw{position:relative;min-height:120px}
 .sec{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--tx3);margin:4px 0 12px;display:flex;align-items:center;gap:8px}
 .sec::after{content:'';flex:1;height:1px;background:var(--border)}
 .tw{overflow:auto;max-height:390px}
@@ -455,6 +455,7 @@ button, .nt, .fb, .kcard, .exp-btn, a {
   .card { break-inside: avoid; }
   .exp-btn, .fdiv { display: none; }
   body { padding-bottom: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 }
 
 </style>
@@ -470,7 +471,7 @@ button, .nt, .fb, .kcard, .exp-btn, a {
     </div>
   </div>
   <div class="tb-right">
-    <span class="pill-date">📅 Last Updated: 29 April 2026</span>
+    <span class="pill-date">📅 Last Updated: 6 May 2026</span>
     <span class="pill">📍 Dharashiv District, Maharashtra</span>
     <span class="live">LIVE</span>
   </div>
@@ -480,7 +481,6 @@ button, .nt, .fb, .kcard, .exp-btn, a {
   <div class="nt"        id="tab-pipeline"   onclick="showPage('pipeline')">  🔄 NDKSY Pipeline</div>
   <div class="nt"        id="tab-taluka"     onclick="showPage('taluka')">    📍 Taluka Scorecard</div>
   <div class="nt"        id="tab-activity"   onclick="showPage('activity')">  🌾 Activity &amp; Inclusion</div>
-  <div class="nt"        id="tab-story"      onclick="showPage('story')">     🏘 Village Story</div>
   <div class="nt"        id="tab-compare"    onclick="showPage('compare')">   📈 Comparison</div>
   <div class="nt"        id="tab-insights"   onclick="showPage('insights')">  💡 Insights</div>
 </div>
@@ -509,16 +509,16 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 1: EXECUTIVE OVERVIEW -->
 <div class="page active" id="page-overview">
-  <div class="sec">Key Performance Indicators — Last Updated: 29 April 2026</div>
+  <div class="sec">Key Performance Indicators — Last Updated: 6 May 2026</div>
   <div class="kpi-grid">
     <div class="kcard g"><span class="kc-icon">🏘</span><div class="kc-lbl">Villages Covered</div><div class="kc-val" id="kv-vil">131</div><div class="kc-sub">Across 8 Talukas</div><span class="flag fg">✓ Scheme Active</span></div>
-    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Registered Farmers</div><div class="kc-val" id="kv-far">9,546</div><div class="kc-sub">NDKSP 2 DBT</div><span class="flag fg">✓ Enrolled</span></div>
-    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Applications Submitted</div><div class="kc-val" id="kv-app">14,602</div><div class="kc-sub" id="kv-apf">1.53 Apps/Farmer</div><span class="flag fb2">Total Demand</span></div>
-    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">Pre-Sanction Rate</div><div class="kc-val" id="kv-ps">85.54%</div><div class="kc-sub" id="kv-psn">12,490 of 14,602</div><span class="flag fg">✓ Strong</span></div>
-    <div class="kcard r"><span class="kc-icon">💰</span><div class="kc-lbl">Payment Rate</div><div class="kc-val" id="kv-pay">3.26%</div><div class="kc-sub" id="kv-payn">476 of 14,602</div><span class="flag fr">🔴 CRITICAL</span></div>
-    <div class="kcard a" id="kcard-scst"><span class="kc-icon">👥</span><div class="kc-lbl">SC+ST Inclusion Rate</div><div class="kc-val" id="kv-scst">8.36%</div><div class="kc-sub">1,122 of 13,429 Farmers</div><span class="flag fa">⚠ Below Target</span><div style="font-size:9px;color:var(--a1);margin-top:5px;font-style:italic;line-height:1.4">📍 Note: District-level data only.<br>Taluka-wise data not available.</div></div>
+    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Registered Farmers</div><div class="kc-val" id="kv-far">9,656</div><div class="kc-sub">NDKSP 2 DBT</div><span class="flag fg">✓ Enrolled</span></div>
+    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Applications Submitted</div><div class="kc-val" id="kv-app">14,784</div><div class="kc-sub" id="kv-apf">1.53 Apps/Farmer</div><span class="flag fb2">Total Demand</span></div>
+    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">Pre-Sanction Rate</div><div class="kc-val" id="kv-ps">84.48%</div><div class="kc-sub" id="kv-psn">12,490 of 14,784</div><span class="flag fg">✓ Strong</span></div>
+    <div class="kcard r"><span class="kc-icon">💰</span><div class="kc-lbl">Payment Rate</div><div class="kc-val" id="kv-pay">3.22%</div><div class="kc-sub" id="kv-payn">476 of 14,784</div><span class="flag fr">🔴 CRITICAL</span></div>
+    <div class="kcard a" id="kcard-scst"><span class="kc-icon">👥</span><div class="kc-lbl">SC+ST Inclusion Rate</div><div class="kc-val" id="kv-scst">8.44%</div><div class="kc-sub">1,147 of 13,592 Farmers</div><span class="flag fa">⚠ Below Target</span><div style="font-size:9px;color:var(--a1);margin-top:5px;font-style:italic;line-height:1.4">📍 Note: District-level data only.<br>Taluka-wise data not available.</div></div>
   </div>
-  <div class="sec">Governance Alerts — Last Updated: 29 April 2026</div>
+  <div class="sec">Governance Alerts — Last Updated: 6 May 2026</div>
   <div class="alerts">
     <div class="alert r"><div class="alert-icon">🔴</div><div><div class="alert-title">Payment Rate 3.49% — CRITICAL</div><div class="alert-body">476 payments against 13,647 applications. Bhum (0/1,641), Paranda (0/934), Washi (0/661) have zero payments. लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ &amp; उपविभागीय कृषी अधिकारी डेस्क ६ severely delayed.</div></div></div>
     <div class="alert a"><div class="alert-icon">⚠️</div><div><div class="alert-title">मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी) Crash — 99.6% Drop</div><div class="alert-body">1,002 files cleared उपकृषी अधिकारी डेस्क ४ (मोका तपासणी) → only 4 reached मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी). Physical file routing to Circle AO appears broken. Immediate audit required.</div></div></div>
@@ -526,7 +526,7 @@ button, .nt, .fb, .kcard, .exp-btn, a {
   <div class="sec">NDKSP 2 DBT — Applications, Pre-Sanctions &amp; Payments by Taluka</div>
   <div class="grid-73">
     <div class="card">
-      <div class="ch"><div class="ct">📊 Applications vs Pre-Sanctioned vs Payments — Exact Figures</div><div class="cs" id="cs-appbar">All 8 Talukas · Last Updated: 29 April 2026</div></div>
+      <div class="ch"><div class="ct">📊 Applications vs Pre-Sanctioned vs Payments — Exact Figures</div><div class="cs" id="cs-appbar">All 8 Talukas · Last Updated: 6 May 2026</div></div>
       <div class="cb"><div class="cw" style="height:290px"><canvas id="ch-appbar"></canvas></div></div>
     </div>
     <div id="social-wrap">
@@ -535,9 +535,9 @@ button, .nt, .fb, .kcard, .exp-btn, a {
       <div class="cb">
         <div class="cw" style="height:160px"><canvas id="ch-social"></canvas></div>
         <div style="margin-top:10px;display:flex;justify-content:space-around;font-size:11.5px;color:var(--tx2)">
-          <span>SC: <strong style="color:#F44336">895</strong></span>
-          <span>ST: <strong style="color:#FF9800">227</strong></span>
-          <span>Others: <strong style="color:#4CAF50">13,480</strong></span>
+          <span>SC: <strong style="color:#C0392B">917</strong></span>
+          <span>ST: <strong style="color:#D35400">230</strong></span>
+          <span>Others: <strong style="color:#1A8A52">13,637</strong></span>
         </div>
       </div>
     </div>
@@ -554,7 +554,7 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 2: NDKSY PIPELINE -->
 <div class="page" id="page-pipeline">
-  <div class="sec">NDKSY — 9-Desk Workflow Pipeline · Last Updated: 29 April 2026 · Desks: D1 शेतकरी पडताळणी · D2 ग्रा.कृ.वि.स मान्यता · D3 Asst.AO Site Inspection · D4 TAO Pre-Sanction · D5–D7 Spot Checks · D8 Accounts Officer · D9 SubDiv AO Final</div>
+  <div class="sec">NDKSY — 9-Desk Workflow Pipeline · Last Updated: 6 May 2026 · Desks: D1 शेतकरी पडताळणी · D2 ग्रा.कृ.वि.स मान्यता · D3 Asst.AO Site Inspection · D4 TAO Pre-Sanction · D5–D7 Spot Checks · D8 Accounts Officer · D9 SubDiv AO Final</div>
   <div class="card" style="margin-bottom:14px">
     <div class="ch">
       <div class="ct">🔄 Pipeline Funnel — District Total · All 9 Desks</div>
@@ -588,7 +588,8 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 3: TALUKA SCORECARD -->
 <div class="page" id="page-taluka">
-  <div class="sec">Composite Score = (Pre-Sanction Rate % × 0.60) + (Payment Rate % × 0.40) · Last Updated: 29 April 2026</div>
+  <div class="sec">Composite Score = (Pre-Sanction Rate % × 0.60) + (Payment Rate % × 0.40) · Last Updated: 6 May 2026</div>
+  <div style="background:var(--b5);border-left:4px solid var(--b1);border-radius:var(--r);padding:8px 14px;margin-bottom:12px;font-size:11px;color:var(--b1);display:flex;align-items:center;gap:7px"><span>ℹ️</span><span>Taluka Scorecard always shows <strong>all 8 talukas</strong> ranked. Taluka filter does not apply here.</span></div>
   <div class="grid-64">
     <div class="card">
       <div class="ch"><div class="ct">🏆 Composite Score Ranking — All 8 Talukas</div><div class="cs">Higher score = better implementation</div></div>
@@ -607,12 +608,12 @@ button, .nt, .fb, .kcard, .exp-btn, a {
 
 <!-- PAGE 4: ACTIVITY & INCLUSION -->
 <div class="page" id="page-activity">
-  <div class="sec">All 23 Scheme Activities · Category-wise Farmer &amp; Social Inclusion · Last Updated: 29 April 2026</div>
+  <div class="sec">All 23 Scheme Activities · Category-wise Farmer &amp; Social Inclusion · Last Updated: 6 May 2026</div>
   <div class="alert b" style="margin-bottom:12px;padding:10px 14px">
     <div class="alert-icon" style="font-size:16px">ℹ️</div>
     <div>
       <div class="alert-title" style="font-size:11px">District-Level Data Only</div>
-      <div class="alert-body"><strong>Note: Data represents overall district-level activities. Taluka-wise activity data is not available.</strong> The Taluka filter above does not apply to this section. All figures are district totals as of 29 April 2026.</div>
+      <div class="alert-body"><strong>Note: Data represents overall district-level activities. Taluka-wise activity data is not available.</strong> The Taluka filter above does not apply to this section. All figures are district totals as of 6 May 2026.</div>
     </div>
   </div>
   <div class="grid-64">
@@ -631,43 +632,437 @@ button, .nt, .fb, .kcard, .exp-btn, a {
   </div>
 </div>
 
-<!-- PAGE 6: VILLAGE STORY -->
-<div class="page" id="page-story">
-  <div class="sec">Village Transformation — Theory of Change · PoCRA 2.0 · Dharashiv District</div>
-  <div class="flow">
-    <div class="fs"><div class="fs-icon">⚠️</div><div class="fs-title">Baseline Condition</div><div class="fs-items">• Water scarcity<br>• Low crop yield<br>• Climate stress<br>• Limited income<br>• Small landholdings</div></div>
-    <div class="fs"><div class="fs-icon">🏛️</div><div class="fs-title">Intervention</div><div class="fs-items">• PoCRA 2.0 scheme<br>• Farmer enrollment<br>• DBT subsidy design<br>• District targeting</div></div>
-    <div class="fs"><div class="fs-icon">⚙️</div><div class="fs-title">Implementation</div><div class="fs-items">• Water conservation scheme<br>• • Farm pond creation<br>• Vermicompost units<br>• 9-desk approvals</div></div>
-    <div class="fs"><div class="fs-icon">📋</div><div class="fs-title">Output</div><div class="fs-items">• 13,647 applications<br>• 91.52% pre-sanctioned<br>• ⚠ 476 payments done</div></div>
-    <div class="fs"><div class="fs-icon">📈</div><div class="fs-title">Outcome</div><div class="fs-items">• Improved soil health<br>• Better crop variety<br>• Water use efficiency<br>• Reduced crop loss</div></div>
-    <div class="fs"><div class="fs-icon" style="color:#fff">🌱</div><div class="fs-title">Impact</div><div class="fs-items">• Higher farm income<br>• Food security<br>• Climate resilience<br>• Reduced migration<br>• Better livelihoods</div></div>
+
+
+<!-- PAGE 7: COMPARISON — 4-Date Dynamic Selector -->
+<div class="page" id="page-compare">
+  <div class="sec" id="cmp-sec-title">Four-Date Comparison — 13 Apr · 22 Apr · 29 Apr · 6 May 2026 · NDKSP 2 DBT</div>
+
+  <!-- Dynamic date selector -->
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:14px">
+    <div style="font-size:10px;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">
+      📅 Select Dates to Compare (multi-select)
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;font-weight:500;color:var(--tx2)">
+        <input type="checkbox" id="cmp-d13" value="13Apr" onchange="renderCompare()" style="accent-color:var(--a1)" checked> 13 Apr 2026
+      </label>
+      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;font-weight:500;color:var(--tx2)">
+        <input type="checkbox" id="cmp-d22" value="22Apr" onchange="renderCompare()" style="accent-color:var(--b1)" checked> 22 Apr 2026
+      </label>
+      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;font-weight:500;color:var(--tx2)">
+        <input type="checkbox" id="cmp-d29" value="29Apr" onchange="renderCompare()" style="accent-color:var(--g2)" checked> 29 Apr 2026
+      </label>
+      <label style="display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11.5px;font-weight:500;color:var(--tx2)">
+        <input type="checkbox" id="cmp-d6m" value="6May" onchange="renderCompare()" style="accent-color:#6A1B9A" checked> 6 May 2026
+      </label>
+      <div style="margin-left:auto;display:flex;gap:6px">
+        <button onclick="[...document.querySelectorAll('[id^=cmp-d]')].forEach(c=>c.checked=true);renderCompare()" style="font-family:'Times New Roman',Times,serif;padding:4px 12px;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);font-size:10px;font-weight:600;cursor:pointer;color:var(--tx2)">All 4 Dates</button>
+        <button onclick="[...document.querySelectorAll('[id^=cmp-d]')].forEach((c,i)=>c.checked=i>1);renderCompare()" style="font-family:'Times New Roman',Times,serif;padding:4px 12px;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);font-size:10px;font-weight:600;cursor:pointer;color:var(--tx2)">Latest 2</button>
+      </div>
+    </div>
   </div>
-  <div class="sec">Officer–Farmer Governance Touchpoints — 4 Key Interactions</div>
+
+  <!-- KPI Strip (always shows latest = 6 May) -->
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(165px,1fr));margin-bottom:14px">
+    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Farmers (6 May)</div><div class="kc-val" id="cmp-kpi-far" style="font-size:18px">9,656</div><div class="kc-sub" id="cmp-kpi-far-sub">9,069→9,414→9,546→9,656</div><span class="flag fg" id="cmp-kpi-far-flag">▲ 29Apr→6May: +110</span></div>
+    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Apps (6 May)</div><div class="kc-val" id="cmp-kpi-app" style="font-size:18px">14,784</div><div class="kc-sub" id="cmp-kpi-app-sub">13,647→14,374→14,602→14,784</div><span class="flag fg" id="cmp-kpi-app-flag">▲ 29Apr→6May: +182</span></div>
+    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">D9 Final (6 May)</div><div class="kc-val" style="font-size:18px">223</div><div class="kc-sub">121→191→283→223</div><span class="flag fr">▼ 29Apr→6May: −60</span></div>
+    <div class="kcard b"><span class="kc-icon">🏦</span><div class="kc-lbl">Accounts D8 (6 May)</div><div class="kc-val" style="font-size:18px">368</div><div class="kc-sub">273→408→307→368</div><span class="flag fg">▲ 29Apr→6May: +61</span></div>
+    <div class="kcard pu" style="--pu:#6A1B9A;--pu5:#F3E5F5"><span class="kc-icon">🆕</span><div class="kc-lbl">D10 Mumbai PMC (6 May)</div><div class="kc-val" style="font-size:18px;color:#6A1B9A">21</div><div class="kc-sub" style="font-size:9px">13:— | 22:191 | 29:254 | 6May:21</div><span class="flag" style="background:#F3E5F5;color:#6A1B9A">New D10</span></div>
+    <div class="kcard a"><span class="kc-icon">📉</span><div class="kc-lbl">D1 Farmer Verif.</div><div class="kc-val" style="font-size:18px">120</div><div class="kc-sub">99→600→193→120</div><span class="flag fr">▼ 29Apr→6May: −73</span></div>
+  </div>
+
+  <!-- Dynamic bar chart -->
+  <div class="sec" id="cmp-chart-sec">Taluka-wise Comparison</div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="ch">
+      <div class="ct" id="cmp-chart-title">📊 Farmers &amp; Apps — Selected Dates</div>
+      <div class="cs">Apps = Applications Submitted · Select dates above · Grouped by taluka</div>
+    </div>
+    <div class="cb">
+      <div style="font-size:10px;color:var(--tx3);font-style:italic;margin-bottom:6px">ℹ️ <strong>Apps = Applications Submitted</strong></div>
+      <div class="cw" style="height:320px"><canvas id="ch-compare-bar"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Taluka table (4 dates, static) -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="ch">
+      <div class="ct" id="cmp-table-title">📋 Taluka-wise — 13 Apr · 22 Apr · 29 Apr · 6 May 2026</div>
+      <div class="cs">Apps = Applications Submitted · Δ and % = 29 Apr → 6 May · ▲ Improvement · ▼ Decline</div>
+    </div>
+    <div class="cb" style="padding:0">
+      <div class="tw">
+        <table class="dt">
+          <thead><tr>
+            <th>Taluka</th>
+            <th>Far 13Apr</th><th>Far 22Apr</th><th>Far 29Apr</th><th>Far 6May</th>
+            <th>Far Δ</th><th>Far %</th>
+            <th>Apps 13Apr</th><th>Apps 22Apr</th><th>Apps 29Apr</th><th>Apps 6May</th>
+            <th>App Δ</th><th>App %</th>
+            <th>Status</th>
+          </tr></thead>
+          <tbody>
+            <tr class="cmp-row" data-taluka="Dharashiv">
+              <td style="font-weight:600">Dharashiv</td>
+              <td class="num">2,687</td><td class="num">2,793</td><td class="num">2,833</td><td class="num">2,855</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+22</td>
+              <td><span class="badge bg">▲ +0.8%</span></td>
+              <td class="num">3,723</td><td class="num">3,905</td><td class="num">3,965</td><td class="num">4,016</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+51</td>
+              <td><span class="badge bg">▲ +1.3%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Kalamb">
+              <td style="font-weight:600">Kalamb</td>
+              <td class="num">2,130</td><td class="num">2,199</td><td class="num">2,221</td><td class="num">2,240</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+19</td>
+              <td><span class="badge bg">▲ +0.9%</span></td>
+              <td class="num">2,921</td><td class="num">3,041</td><td class="num">3,079</td><td class="num">3,108</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+29</td>
+              <td><span class="badge bg">▲ +0.9%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Tuljapur">
+              <td style="font-weight:600">Tuljapur</td>
+              <td class="num">1,049</td><td class="num">1,107</td><td class="num">1,125</td><td class="num">1,142</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+17</td>
+              <td><span class="badge bg">▲ +1.5%</span></td>
+              <td class="num">1,937</td><td class="num">2,134</td><td class="num">2,175</td><td class="num">2,199</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+24</td>
+              <td><span class="badge bg">▲ +1.1%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Bhum">
+              <td style="font-weight:600">Bhum</td>
+              <td class="num">1,004</td><td class="num">1,037</td><td class="num">1,052</td><td class="num">1,069</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+17</td>
+              <td><span class="badge bg">▲ +1.6%</span></td>
+              <td class="num">1,641</td><td class="num">1,698</td><td class="num">1,726</td><td class="num">1,751</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+25</td>
+              <td><span class="badge bg">▲ +1.4%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Omerga">
+              <td style="font-weight:600">Omerga</td>
+              <td class="num">951</td><td class="num">985</td><td class="num">994</td><td class="num">1,002</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+8</td>
+              <td><span class="badge bg">▲ +0.8%</span></td>
+              <td class="num">1,472</td><td class="num">1,556</td><td class="num">1,576</td><td class="num">1,595</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+19</td>
+              <td><span class="badge bg">▲ +1.2%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Paranda">
+              <td style="font-weight:600">Paranda</td>
+              <td class="num">581</td><td class="num">602</td><td class="num">625</td><td class="num">638</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+13</td>
+              <td><span class="badge bg">▲ +2.1%</span></td>
+              <td class="num">934</td><td class="num">977</td><td class="num">1,007</td><td class="num">1,024</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+17</td>
+              <td><span class="badge bg">▲ +1.7%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Washi">
+              <td style="font-weight:600">Washi</td>
+              <td class="num">445</td><td class="num">460</td><td class="num">463</td><td class="num">466</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+3</td>
+              <td><span class="badge bg">▲ +0.6%</span></td>
+              <td class="num">661</td><td class="num">690</td><td class="num">696</td><td class="num">699</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+3</td>
+              <td><span class="badge bg">▲ +0.4%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-row" data-taluka="Lohara">
+              <td style="font-weight:600">Lohara</td>
+              <td class="num">222</td><td class="num">231</td><td class="num">233</td><td class="num">244</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+11</td>
+              <td><span class="badge bg">▲ +4.7%</span></td>
+              <td class="num">358</td><td class="num">373</td><td class="num">378</td><td class="num">392</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+14</td>
+              <td><span class="badge bg">▲ +3.7%</span></td>
+              <td><span class="badge bg">✅ Improved</span></td>
+            </tr>
+            <tr class="cmp-total-row" style="background:var(--g5)">
+              <td style="font-weight:700">DISTRICT TOTAL</td>
+              <td class="num" style="font-weight:700">9,069</td>
+              <td class="num" style="font-weight:700">9,414</td>
+              <td class="num" style="font-weight:700">9,546</td>
+              <td class="num" style="font-weight:700">9,656</td>
+              <td class="num" style="color:#2E7D32;font-weight:800">+110</td>
+              <td><span class="badge bg">▲ +1.2%</span></td>
+              <td class="num" style="font-weight:700">13,647</td>
+              <td class="num" style="font-weight:700">14,374</td>
+              <td class="num" style="font-weight:700">14,602</td>
+              <td class="num" style="font-weight:700">14,784</td>
+              <td class="num" style="color:#2E7D32;font-weight:800">+182</td>
+              <td><span class="badge bg">▲ +1.2%</span></td>
+              <td><span class="badge bg">✅ All Improved</span></td>
+            </tr>          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- NDKSY Pipeline Chart (dynamic) -->
+  <div class="sec">NDKSY Pipeline — All 10 Desks (District Level)</div>
+  <div class="card" style="margin-bottom:14px">
+    <div class="ch">
+      <div class="ct">🔄 NDKSY Pipeline — Selected Dates (All 10 Desks)</div>
+      <div class="cs">D1–D9 existing · D10: प्रकल्प व्यवस्थापन कक्ष मुंबई डेस्क ७ (New in 6 May) · Hover for full desk name</div>
+    </div>
+    <div class="cb"><div class="cw" style="height:480px"><canvas id="ch-compare-pipeline"></canvas></div></div>
+  </div>
+
+  <!-- NDKSY Pipeline Table (all 4 dates, static) -->
+  <div class="card">
+    <div class="ch">
+      <div class="ct">📋 NDKSY Pipeline — 13 Apr · 22 Apr · 29 Apr · 6 May 2026 (District Level)</div>
+      <div class="cs">All 10 Desks · Δ and % = 29 Apr → 6 May · D10 New</div>
+    </div>
+    <div class="cb" style="padding:0">
+      <div class="tw">
+        <table class="dt">
+          <thead><tr>
+            <th>Desk Stage</th>
+            <th>13 Apr</th><th>22 Apr</th><th>29 Apr</th><th>6 May (Current)</th>
+            <th>Δ (29→6May)</th><th>% (29→6May)</th><th>Status</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td style="font-size:10px">शेतकरी पडताळणी</td>
+              <td class="num">99</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">600</td>
+              <td class="num" style="color:#C62828;font-weight:600">193</td>
+              <td class="num" style="font-weight:700">120</td>
+              <td class="num" style="color:#C62828;font-weight:700">-73</td>
+              <td class="num" style="color:#C62828;font-weight:700">-37.8%</td>
+              <td><span class="badge br">▼ Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">ग्रा.कृ.वि.स मान्यता</td>
+              <td class="num">1,559</td>
+              <td class="num" style="color:#C62828;font-weight:600">879</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">962</td>
+              <td class="num" style="font-weight:700">902</td>
+              <td class="num" style="color:#C62828;font-weight:700">-60</td>
+              <td class="num" style="color:#C62828;font-weight:700">-6.2%</td>
+              <td><span class="badge br">▼ Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">सहायक कृषी अधिकारी स्थळ पाहणी डेस्क -२</td>
+              <td class="num">3,067</td>
+              <td class="num" style="color:#C62828;font-weight:600">2,902</td>
+              <td class="num" style="color:#C62828;font-weight:600">2,697</td>
+              <td class="num" style="font-weight:700">2,497</td>
+              <td class="num" style="color:#C62828;font-weight:700">-200</td>
+              <td class="num" style="color:#C62828;font-weight:700">-7.4%</td>
+              <td><span class="badge br">▼ Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">तालुका कृषी अधिकारी पूर्वसंमती डेस्क ३</td>
+              <td class="num">351</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">356</td>
+              <td class="num" style="color:#C62828;font-weight:600">273</td>
+              <td class="num" style="font-weight:700">267</td>
+              <td class="num" style="color:#C62828;font-weight:700">-6</td>
+              <td class="num" style="color:#C62828;font-weight:700">-2.2%</td>
+              <td><span class="badge br">▼ Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">सहायक कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
+              <td class="num">157</td>
+              <td class="num" style="color:#C62828;font-weight:600">113</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">140</td>
+              <td class="num" style="font-weight:700">121</td>
+              <td class="num" style="color:#C62828;font-weight:700">-19</td>
+              <td class="num" style="color:#C62828;font-weight:700">-13.6%</td>
+              <td><span class="badge br">▼ Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">उपकृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
+              <td class="num">1,002</td>
+              <td class="num" style="color:#C62828;font-weight:600">964</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">1,034</td>
+              <td class="num" style="font-weight:700">1,055</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+21</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+2.0%</td>
+              <td><span class="badge bg">▲ Gain</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
+              <td class="num">4</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">5</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">5</td>
+              <td class="num" style="font-weight:700">5</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+0</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+0.0%</td>
+              <td><span class="badge bb">— No Change</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५</td>
+              <td class="num">273</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">408</td>
+              <td class="num" style="color:#C62828;font-weight:600">307</td>
+              <td class="num" style="font-weight:700">368</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+61</td>
+              <td class="num" style="color:#2E7D32;font-weight:700">+19.9%</td>
+              <td><span class="badge bg">▲ Gain</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">उपविभागीय कृषी अधिकारी डेस्क ६</td>
+              <td class="num">121</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">191</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">283</td>
+              <td class="num" style="font-weight:700">223</td>
+              <td class="num" style="color:#C62828;font-weight:700">-60</td>
+              <td class="num" style="color:#C62828;font-weight:700">-21.2%</td>
+              <td><span class="badge br">▼ Decline</span></td>
+            </tr>
+            <tr>
+              <td style="font-size:10px">प्रकल्प व्यवस्थापन कक्ष मुंबई डेस्क ७</td>
+              <td class="num" style="color:var(--tx3)">— (No data)</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">191</td>
+              <td class="num" style="color:#2E7D32;font-weight:600">254</td>
+              <td class="num" style="font-weight:700">21</td>
+              <td class="num" style="color:#C62828;font-weight:700">−233</td>
+              <td class="num" style="color:#C62828;font-weight:700">−91.7%</td>
+              <td><span class="badge br">▼ Decline</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity & Inclusion Multi-Date Comparison -->
+  <div class="sec" style="margin-top:16px">Activity &amp; Inclusion — Multi-Date Comparison (District Level)</div>
+  <div class="grid-2" style="margin-bottom:14px">
+    <div class="card">
+      <div class="ch">
+        <div class="ct">🌾 Top Activities — Farmers (Selected Dates)</div>
+        <div class="cs">District-level · Top 8 activities · Select dates above</div>
+      </div>
+      <div class="cb"><div class="cw" style="height:260px"><canvas id="ch-cmp-activity"></canvas></div></div>
+    </div>
+    <div class="card">
+      <div class="ch">
+        <div class="ct">👥 SC + ST Inclusion Trend (Selected Dates)</div>
+        <div class="cs">District-level · SC, ST counts and inclusion rate %</div>
+      </div>
+      <div class="cb"><div class="cw" style="height:260px"><canvas id="ch-cmp-inclusion"></canvas></div></div>
+    </div>
+  </div>
+
+  <!-- Activity & Inclusion Comparison -->
+  <div class="sec">Activity & Inclusion — Date-wise Comparison</div>
+  
+  <!-- Activity comparison: farmer count by date for top activities -->
+  <div class="card" style="margin-bottom:14px">
+    <div class="ch">
+      <div class="ct" id="act-cmp-title">🌾 Top Activity Farmer Count — Selected Dates</div>
+      <div class="cs">Top 10 activities by total farmer count · District level</div>
+    </div>
+    <div class="cb">
+      <div style="font-size:10px;color:var(--tx3);font-style:italic;margin-bottom:6px">ℹ️ Activity data is district-level only. Select dates above to compare.</div>
+      <div class="cw" style="height:340px"><canvas id="ch-act-compare"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Inclusion (SC+ST) comparison -->
   <div class="grid-2">
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch">
+        <div class="ct" id="inc-cmp-title">👥 SC+ST Inclusion — Selected Dates</div>
+        <div class="cs">Social inclusion rate (%) by date</div>
+      </div>
+      <div class="cb"><div class="cw" style="height:240px"><canvas id="ch-inc-compare"></canvas></div></div>
+    </div>
+    <div class="card" style="margin-bottom:14px">
+      <div class="ch">
+        <div class="ct">📋 Inclusion Numbers — Selected Dates</div>
+        <div class="cs">SC, ST, Total farmers by date</div>
+      </div>
+      <div class="cb"><div class="cw" style="height:240px"><canvas id="ch-inc-bar-compare"></canvas></div></div>
+    </div>
+  </div>
+
+  <!-- Activity & Inclusion static comparison table (all 4 dates) -->
+  <div class="card">
+    <div class="ch">
+      <div class="ct">📋 Activity & Inclusion — 13 Apr · 22 Apr · 29 Apr · 6 May 2026</div>
+      <div class="cs">Key metrics across all dates · District level</div>
+    </div>
+    <div class="cb" style="padding:0">
+      <div class="tw">
+        <table class="dt">
+          <thead><tr>
+            <th>Metric</th>
+            <th>13 Apr 2026</th><th>22 Apr 2026</th><th>29 Apr 2026</th><th>6 May 2026 (Current)</th>
+            <th>Δ (29→6May)</th><th>Status</th>
+          </tr></thead>
+          <tbody>
+            <tr><td style="font-weight:600">Total Farmers (Activities)</td>
+              <td class="num">12,868</td><td class="num">13,235</td><td class="num">13,429</td><td class="num">13,592</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+163</td>
+              <td><span class="badge bg">▲ +1.2%</span></td></tr>
+            <tr><td style="font-weight:600">Total Applications</td>
+              <td class="num">13,647</td><td class="num">14,374</td><td class="num">14,602</td><td class="num">14,784</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+182</td>
+              <td><span class="badge bg">▲ +1.2%</span></td></tr>
+            <tr><td style="font-weight:600">SC Beneficiaries</td>
+              <td class="num">856</td><td class="num">876</td><td class="num">895</td><td class="num">917</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+22</td>
+              <td><span class="badge bg">▲ +2.5%</span></td></tr>
+            <tr><td style="font-weight:600">ST Beneficiaries</td>
+              <td class="num">226</td><td class="num">229</td><td class="num">227</td><td class="num">230</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+3</td>
+              <td><span class="badge bg">▲ +1.3%</span></td></tr>
+            <tr><td style="font-weight:600">SC+ST Total</td>
+              <td class="num">1,082</td><td class="num">1,105</td><td class="num">1,122</td><td class="num">1,147</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+25</td>
+              <td><span class="badge bg">▲ +2.2%</span></td></tr>
+            <tr><td style="font-weight:600">SC+ST Inclusion Rate</td>
+              <td class="num">8.41%</td><td class="num">8.35%</td><td class="num">8.36%</td><td class="num">8.44%</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+0.08%</td>
+              <td><span class="badge bg">▲ Steady</span></td></tr>
+            <tr><td style="font-weight:600">Sprinkler Irrigation Farmers</td>
+              <td class="num">4,545</td><td class="num">4,609</td><td class="num">4,657</td><td class="num">4,692</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+35</td>
+              <td><span class="badge bg">▲ +0.8%</span></td></tr>
+            <tr><td style="font-weight:600">Drip Irrigation Farmers</td>
+              <td class="num">2,903</td><td class="num">2,993</td><td class="num">3,049</td><td class="num">3,090</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+41</td>
+              <td><span class="badge bg">▲ +1.3%</span></td></tr>
+            <tr><td style="font-weight:600">Horticulture Plantation</td>
+              <td class="num">840</td><td class="num">876</td><td class="num">898</td><td class="num">926</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">+28</td>
+              <td><span class="badge bg">▲ +3.1%</span></td></tr>
+            <tr><td style="font-weight:600">Villages Covered</td>
+              <td class="num">131</td><td class="num">131</td><td class="num">131</td><td class="num">131</td>
+              <td class="num" style="color:#1A8A52;font-weight:700">—</td>
+              <td><span class="badge bb">— No Change</span></td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-    <div class="card">
-      <div class="ch"><div class="ct">🔍 2. Site Inspection — सहायक कृषी अधिकारी स्थळ पाहणी डेस्क -२</div><span class="badge bg">3,067 done</span></div>
-      <div class="cb">
-        <p style="font-size:11.5px;line-height:1.7;color:var(--tx2);margin-bottom:10px">Asst. Agriculture Officer visits farmer's field → inspects landholding &amp; crop pattern → completes सहायक कृषी अधिकारी स्थळ पाहणी डेस्क -२ site inspection → file forwarded to तालुका कृषी अधिकारी पूर्वसंमती डेस्क ३. <strong>3,067 site inspections completed.</strong> Dharashiv leads (642), Kalamb (534).</p>
-        <div class="alert g" style="padding:8px 12px"><div style="font-size:13px">✅</div><div class="alert-body"><strong>Strength:</strong> Site inspection stage is the pipeline's strongest point. Maintain pace.</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="ch"><div class="ct">💰 4. DBT Payment — लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ &amp; उपविभागीय कृषी अधिकारी डेस्क ६</div><span class="badge br">Only 3.49% — 476 paid</span></div>
-      <div class="cb">
-        <p style="font-size:11.5px;line-height:1.7;color:var(--tx2);margin-bottom:10px">Accounts Officer processes at लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ (273 cleared) → Sub-Divisional Agriculture Officer final clearance at उपविभागीय कृषी अधिकारी डेस्क ६ (121 cleared) → DBT credited to Aadhaar-linked bank account. <strong>Only 476 of 13,647 applications have received payment.</strong></p>
-        <div class="alert r" style="padding:8px 12px"><div style="font-size:13px">🔴</div><div class="alert-body"><strong>Priority:</strong> Expedite clearance at लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५ &amp; उपविभागीय कृषी अधिकारी डेस्क ६. Target: 7-day processing SLA. Enable digital file tracking.</div></div>
-      </div>
-    </div>
+  </div>
+
+</div>
+
+<!-- PAGE 8: INSIGHTS -->
+<div class="page" id="page-insights">
+  <div id="insights-content">
+    <!-- dynamically rendered by renderInsights() -->
   </div>
 </div>
 
-<script>
 
+<script>
 // ═══════════════════════════════════════════════════════════════════════
 // ALL DATA SOURCED DIRECTLY FROM EXCEL — EXACT FIGURES
-// Last Updated: 29 April 2026
+// Last Updated: 6 May 2026
 // ═══════════════════════════════════════════════════════════════════════
 
 // ── Sheet 1: NDKSP 2 DBT Taluka wise applica ──
@@ -684,8 +1079,12 @@ const NDKSP_13APR = [
   {t:"Kalamb",   vil:18,far:2130,app:2921,ps:2300,pay:48 },
 ];
 const NDKSP_13APR_TOT={vil:131,far:9069,app:13647,ps:12490,pay:476,ps_rate:91.52,pay_rate:3.49};
-const NDKSY_13APR={d1:99,d2:1559,d3:3067,d4:351,d5:157,d6:1002,d7:4,d8:273,d9:121};
-const NDKSP_PREV = [
+const NDKSP_22APR_TOT={vil:131,far:9414,app:14374,ps:12490,pay:476,ps_rate:86.89,pay_rate:3.31};
+const NDKSP_29APR_TOT={vil:131,far:9546,app:14602,ps:12490,pay:476,ps_rate:85.54,pay_rate:3.26};
+const NDKSY_13APR={d1:99,d2:1559,d3:3067,d4:351,d5:157,d6:1002,d7:4,d8:273,d9:121,d10:0};
+const NDKSY_22APR={d1:600,d2:879,d3:2902,d4:356,d5:113,d6:964,d7:5,d8:408,d9:191,d10:191};
+const NDKSY_29APR_TOT={d1:193,d2:962,d3:2697,d4:273,d5:140,d6:1034,d7:5,d8:307,d9:283,d10:254};
+const NDKSP_22APR = [
   {t:"Dharashiv",vil:23,far:2793,app:3905,ps:3500,pay:269},
   {t:"Tuljapur", vil:18,far:1107,app:2134,ps:1800,pay:55 },
   {t:"Lohara",   vil:6, far:231, app:373, ps:340, pay:52 },
@@ -695,8 +1094,12 @@ const NDKSP_PREV = [
   {t:"Washi",    vil:8, far:460, app:690, ps:650, pay:0  },
   {t:"Kalamb",   vil:18,far:2199,app:3041,ps:2300,pay:48 },
 ];
-// CURRENT DATA (29 April 2026) — from NDKSP Report 29.04.2026
-const NDKSP = [
+
+// PREV-PREV DATA (22 April 2026) alias
+const NDKSP_PREV = NDKSP_22APR;
+
+// DATA (29 April 2026)
+const NDKSP_29APR = [
   {t:"Dharashiv",vil:23,far:2833,app:3965,ps:3500,pay:269},
   {t:"Tuljapur", vil:18,far:1125,app:2175,ps:1800,pay:55 },
   {t:"Lohara",   vil:6, far:233, app:378, ps:340, pay:52 },
@@ -706,20 +1109,44 @@ const NDKSP = [
   {t:"Washi",    vil:8, far:463, app:696, ps:650, pay:0  },
   {t:"Kalamb",   vil:18,far:2221,app:3079,ps:2300,pay:48 },
 ];
+// Derived fields computed above in batch forEach
+
+// CURRENT DATA (6 May 2026) — from NDKSP Report 6.05.2026
+const NDKSP = [
+  {t:"Dharashiv",vil:23,far:2855,app:4016,ps:3500,pay:269},
+  {t:"Tuljapur", vil:18,far:1142,app:2199,ps:1800,pay:55 },
+  {t:"Lohara",   vil:6, far:244, app:392, ps:340, pay:52 },
+  {t:"Omerga",   vil:20,far:1002,app:1595,ps:1400,pay:52 },
+  {t:"Bhum",     vil:21,far:1069,app:1751,ps:1600,pay:0  },
+  {t:"Paranda",  vil:17,far:638, app:1024,ps:900, pay:0  },
+  {t:"Washi",    vil:8, far:466, app:699, ps:650, pay:0  },
+  {t:"Kalamb",   vil:18,far:2240,app:3108,ps:2300,pay:48 },
+];
 // Compute derived fields
-NDKSP.forEach(r=>{
-  r.ps_rate  = +(r.ps /r.app*100).toFixed(2);
-  r.pay_rate = +(r.pay/r.app*100).toFixed(2);
+[NDKSP,NDKSP_29APR,NDKSP_22APR,NDKSP_13APR].forEach(arr=>arr.forEach(r=>{
+  r.ps_rate  = r.app>0 ? +(r.ps /r.app*100).toFixed(2) : 0;
+  r.pay_rate = r.app>0 ? +(r.pay/r.app*100).toFixed(2) : 0;
   r.score    = +(r.ps_rate*0.6 + r.pay_rate*0.4).toFixed(2);
-  r.fpv      = +(r.far/r.vil).toFixed(1);
-  r.apf      = +(r.app/r.far).toFixed(2);
+  r.fpv      = r.vil>0 ? +(r.far/r.vil).toFixed(1) : 0;
+  r.apf      = r.far>0 ? +(r.app/r.far).toFixed(2) : 0;
   r.pend_ps  = r.app - r.ps;
   r.pend_pay = r.ps  - r.pay;
-});
+}));
+// Derived fields for historical NDKSP arrays
+[NDKSP_29APR,NDKSP_22APR,NDKSP_13APR].forEach(arr=>arr.forEach(r=>{
+  r.ps_rate  = r.app>0?+(r.ps /r.app*100).toFixed(2):0;
+  r.pay_rate = r.app>0?+(r.pay/r.app*100).toFixed(2):0;
+  r.score    = +(r.ps_rate*0.6+r.pay_rate*0.4).toFixed(2);
+  r.fpv      = r.vil>0?+(r.far/r.vil).toFixed(1):0;
+  r.apf      = r.far>0?+(r.app/r.far).toFixed(2):0;
+  r.pend_ps  = r.app-r.ps;
+  r.pend_pay = r.ps -r.pay;
+}));
 // District Total row
-const NDKSP_TOT_PREV={vil:131,far:9414,app:14374,ps:12490,pay:476,ps_rate:86.89,pay_rate:3.31};
-const NDKSP_TOT={vil:131,far:9546,app:14602,ps:12490,pay:476,
-  ps_rate:+(12490/14602*100).toFixed(2),pay_rate:+(476/14602*100).toFixed(2),score:+(12490/14602*100*0.6+476/14602*100*0.4).toFixed(2)};
+const NDKSP_TOT_29APR={vil:131,far:9546,app:14602,ps:12490,pay:476,ps_rate:85.54,pay_rate:3.26};
+const NDKSP_TOT_PREV=NDKSP_TOT_29APR;
+const NDKSP_TOT={vil:131,far:9656,app:14784,ps:12490,pay:476,
+  ps_rate:+(12490/14784*100).toFixed(2),pay_rate:+(476/14784*100).toFixed(2),score:+(12490/14784*100*0.6+476/14784*100*0.4).toFixed(2)};
 
 // ── Sheet 3: NDKSY ALL (9 desks, Marathi→English mapping) ──
 // शेतकरी पडताळणी  = शेतकरी पडताळणी             = Farmer Verification
@@ -730,19 +1157,30 @@ const NDKSP_TOT={vil:131,far:9546,app:14602,ps:12490,pay:476,
 // मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी)
 // लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५
 // उपविभागीय कृषी अधिकारी डेस्क ६
-const NDKSY = [
-  // CURRENT DATA (29 April 2026) — from NDKSY ALL sheet
-  {t:"Bhum",      d1:10, d2:183,  d3:490,  d4:14,  d5:0,   d6:66,  d7:0, d8:14,  d9:6  },
-  {t:"Kalamb",    d1:50, d2:79,   d3:428,  d4:37,  d5:17,  d6:337, d7:3, d8:186, d9:161},
-  {t:"Paranda",   d1:8,  d2:41,   d3:241,  d4:22,  d5:0,   d6:26,  d7:0, d8:28,  d9:0  },
-  {t:"Washi",     d1:5,  d2:31,   d3:223,  d4:0,   d5:0,   d6:44,  d7:0, d8:14,  d9:3  },
-  {t:"Dharashiv", d1:17, d2:214,  d3:576,  d4:191, d5:98,  d6:283, d7:2, d8:46,  d9:89 },
-  {t:"Lohara",    d1:19, d2:8,    d3:68,   d4:3,   d5:1,   d6:53,  d7:0, d8:2,   d9:13 },
-  {t:"Tuljapur",  d1:11, d2:310,  d3:552,  d4:6,   d5:14,  d6:52,  d7:0, d8:10,  d9:8  },
-  {t:"Umarga",    d1:73, d2:96,   d3:119,  d4:0,   d5:10,  d6:173, d7:0, d8:7,   d9:3  },
+// NDKSY 29 April 2026
+const NDKSY_29APR = [
+  {t:"Bhum",      d1:10, d2:183,  d3:490,  d4:14,  d5:0,   d6:66,  d7:0, d8:14,  d9:6,  d10:0  },
+  {t:"Kalamb",    d1:50, d2:79,   d3:428,  d4:37,  d5:17,  d6:337, d7:3, d8:186, d9:161,d10:25 },
+  {t:"Paranda",   d1:8,  d2:41,   d3:241,  d4:22,  d5:0,   d6:26,  d7:0, d8:28,  d9:0,  d10:0  },
+  {t:"Washi",     d1:5,  d2:31,   d3:223,  d4:0,   d5:0,   d6:44,  d7:0, d8:14,  d9:3,  d10:1  },
+  {t:"Dharashiv", d1:17, d2:214,  d3:576,  d4:191, d5:98,  d6:283, d7:2, d8:46,  d9:89, d10:203},
+  {t:"Lohara",    d1:19, d2:8,    d3:68,   d4:3,   d5:1,   d6:53,  d7:0, d8:2,   d9:13, d10:4  },
+  {t:"Tuljapur",  d1:11, d2:310,  d3:552,  d4:6,   d5:14,  d6:52,  d7:0, d8:10,  d9:8,  d10:1  },
+  {t:"Umarga",    d1:73, d2:96,   d3:119,  d4:0,   d5:10,  d6:173, d7:0, d8:7,   d9:3,  d10:20 },
 ];
-const NDKSY_TOT_PREV={d1:600,d2:879,d3:2902,d4:356,d5:113,d6:964,d7:5,d8:408,d9:191};
-const NDKSY_TOT={d1:193,d2:962,d3:2697,d4:273,d5:140,d6:1034,d7:5,d8:307,d9:283};
+// CURRENT DATA (6 May 2026) — from NDKSY ALL sheet (10 desks)
+const NDKSY = [
+  {t:"Bhum",      d1:8,  d2:97,   d3:494,  d4:79,  d5:16,  d6:76,  d7:0, d8:11,  d9:7,  d10:0},
+  {t:"Kalamb",    d1:20, d2:117,  d3:439,  d4:68,  d5:16,  d6:391, d7:4, d8:152, d9:192,d10:8},
+  {t:"Paranda",   d1:10, d2:29,   d3:199,  d4:6,   d5:0,   d6:32,  d7:0, d8:18,  d9:9,  d10:0},
+  {t:"Washi",     d1:5,  d2:17,   d3:203,  d4:0,   d5:0,   d6:28,  d7:0, d8:31,  d9:6,  d10:1},
+  {t:"Dharashiv", d1:17, d2:175,  d3:569,  d4:92,  d5:66,  d6:295, d7:1, d8:95,  d9:2,  d10:11},
+  {t:"Lohara",    d1:20, d2:61,   d3:56,   d4:3,   d5:1,   d6:37,  d7:0, d8:17,  d9:1,  d10:0},
+  {t:"Tuljapur",  d1:15, d2:360,  d3:444,  d4:11,  d5:12,  d6:43,  d7:0, d8:15,  d9:1,  d10:0},
+  {t:"Umarga",    d1:25, d2:46,   d3:93,   d4:8,   d5:10,  d6:153, d7:0, d8:29,  d9:5,  d10:1},
+];
+const NDKSY_TOT_PREV={d1:193,d2:962,d3:2697,d4:273,d5:140,d6:1034,d7:5,d8:307,d9:283,d10:254};
+const NDKSY_TOT={d1:120,d2:902,d3:2497,d4:267,d5:121,d6:1055,d7:5,d8:368,d9:223,d10:21};
 
 // Full desk name labels (English)
 const DESK_FULL=[
@@ -754,7 +1192,8 @@ const DESK_FULL=[
   "उपकृषी अधिकारी डेस्क ४ (मोका तपासणी)",
   "मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी)",
   "लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५",
-  "उपविभागीय कृषी अधिकारी डेस्क ६"
+  "उपविभागीय कृषी अधिकारी डेस्क ६",
+  "प्रकल्प व्यवस्थापन कक्ष मुंबई डेस्क ७"
 ];
 const DESK_SHORT=[
   "शेतकरी पडताळणी",
@@ -765,41 +1204,73 @@ const DESK_SHORT=[
   "उपकृषी अधिकारी डेस्क ४ (मोका तपासणी)",
   "मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी)",
   "लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५",
-  "उपविभागीय कृषी अधिकारी डेस्क ६"
+  "उपविभागीय कृषी अधिकारी डेस्क ६",
+  "प्रकल्प व्यवस्थापन कक्ष मुंबई डेस्क ७"
 ];
-const DESK_KEYS =["d1","d2","d3","d4","d5","d6","d7","d8","d9"];
+const DESK_KEYS =["d1","d2","d3","d4","d5","d6","d7","d8","d9","d10"];
 
 
 // ── Sheet 2: Category wise (all 23 activities) ──
 // CURRENT DATA (22 April 2026) — Category wise report
 const CAT=[
-  {n:"Sprinkler Irrigation",                                                       vil:127,f:4657,a:4962,sc:177,st:66, oth:4719},
-  {n:"Drip Irrigation",                                                            vil:124,f:3049,a:3630,sc:78, st:27, oth:3525},
-  {n:"Horticulture Plantation",                                                    vil:113,f:898, a:1040,sc:48, st:13, oth:979 },
-  {n:"Recharge of Well",                                                           vil:110,f:670, a:672, sc:51, st:5,  oth:616 },
-  {n:"Vermicompost Unit",                                                          vil:91, f:624, a:626, sc:17, st:3,  oth:606 },
-  {n:"Seed Production",                                                            vil:48, f:338, a:425, sc:3,  st:7,  oth:415 },
-  {n:"Farm Pond Without Inlet Outlet",                                             vil:89, f:399, a:401, sc:8,  st:10, oth:383 },
-  {n:"Tree Plantation",                                                            vil:83, f:350, a:376, sc:20, st:2,  oth:354 },
-  {n:"Mulberry Plantation",                                                        vil:70, f:330, a:336, sc:8,  st:1,  oth:327 },
+  {n:"Sprinkler Irrigation",                                                       vil:127,f:4692,a:5006,sc:179,st:66, oth:4761},
+  {n:"Drip Irrigation",                                                            vil:124,f:3090,a:3676,sc:79, st:27, oth:3570},
+  {n:"Horticulture Plantation",                                                    vil:113,f:926, a:1071,sc:53, st:13, oth:1005},
+  {n:"Recharge of Well",                                                           vil:110,f:676, a:680, sc:53, st:5,  oth:622 },
+  {n:"Vermicompost Unit",                                                          vil:91, f:627, a:629, sc:17, st:3,  oth:609 },
+  {n:"Seed Production",                                                            vil:47, f:337, a:424, sc:3,  st:7,  oth:414 },
+  {n:"Farm Pond Without Inlet Outlet",                                             vil:90, f:415, a:418, sc:9,  st:10, oth:399 },
+  {n:"Tree Plantation",                                                            vil:83, f:351, a:377, sc:21, st:2,  oth:354 },
+  {n:"Mulberry Plantation",                                                        vil:70, f:335, a:341, sc:8,  st:1,  oth:332 },
+  {n:"Farm Pond Lining",                                                           vil:94, f:300, a:303, sc:9,  st:6,  oth:288 },
   {n:"Nadep Compost Unit",                                                         vil:54, f:301, a:302, sc:11, st:2,  oth:289 },
-  {n:"Farm Pond Lining",                                                           vil:94, f:297, a:300, sc:8,  st:6,  oth:286 },
+  {n:"Pipes",                                                                      vil:77, f:299, a:301, sc:248,st:53, oth:0   },
   {n:"Goat Rearing",                                                               vil:51, f:292, a:292, sc:44, st:1,  oth:247 },
-  {n:"Pipes",                                                                      vil:75, f:289, a:291, sc:241,st:50, oth:0   },
-  {n:"Farm Pond With Inlet Outlet",                                                vil:74, f:194, a:195, sc:10, st:5,  oth:180 },
-  {n:"Water Pumps",                                                                vil:59, f:174, a:176, sc:147,st:29, oth:0   },
-  {n:"Construction of Silk Worm Rearing House (1320 sq.ft.)",                     vil:59, f:164, a:167, sc:4,  st:0,  oth:163 },
-  {n:"Inland Fisheries",                                                           vil:56, f:129, a:129, sc:6,  st:0,  oth:123 },
-  {n:"Silk Worm Rearing Equipment & Disinfectants",                                vil:35, f:85,  a:86,  sc:2,  st:0,  oth:84  },
-  {n:"Bamboo Plantation (A)",                                                      vil:32, f:51,  a:54,  sc:4,  st:0,  oth:50  },
-  {n:"Tree Plantation (Horticulture)",                                             vil:25, f:45,  a:47,  sc:2,  st:0,  oth:45  },
+  {n:"Farm Pond With Inlet Outlet",                                                vil:74, f:197, a:198, sc:10, st:5,  oth:183 },
+  {n:"Water Pumps",                                                                vil:60, f:176, a:178, sc:149,st:29, oth:0   },
+  {n:"Construction of Silk Worm Rearing House (1320 sq.ft.)",                     vil:59, f:168, a:171, sc:4,  st:0,  oth:167 },
+  {n:"Inland Fisheries",                                                           vil:56, f:130, a:130, sc:6,  st:0,  oth:124 },
+  {n:"Silk Worm Rearing Equipment & Disinfectants",                                vil:37, f:88,  a:89,  sc:2,  st:0,  oth:87  },
+  {n:"Bamboo Plantation (A)",                                                      vil:32, f:51,  a:53,  sc:4,  st:0,  oth:49  },
+  {n:"Tree Plantation (Horticulture)",                                             vil:25, f:46,  a:48,  sc:2,  st:0,  oth:46  },
   {n:"Planting Material in Shadenet House (Vegetable Plantation)",                 vil:29, f:39,  a:39,  sc:1,  st:0,  oth:38  },
   {n:"Bamboo Plantation (B)",                                                      vil:20, f:28,  a:30,  sc:1,  st:0,  oth:29  },
-  {n:"Planting Material in Poly House (Vegetable Plantation)",                     vil:13, f:20,  a:20,  sc:3,  st:0,  oth:17  },
-  {n:"Planting Material in Poly House (Flower Crop Plantation)",                   vil:6,  f:6,   a:6,   sc:1,  st:0,  oth:5   },
+  {n:"Planting Material in Poly House (Vegetable Plantation)",                     vil:13, f:21,  a:21,  sc:3,  st:0,  oth:18  },
+  {n:"Planting Material in Poly House (Flower Crop Plantation)",                   vil:7,  f:7,   a:7,   sc:1,  st:0,  oth:6   },
 ]
 CAT.forEach(r=>{r.scst=r.sc+r.st;r.scst_pct=+(r.scst/r.f*100).toFixed(2);r.apf=+(r.a/r.f).toFixed(2);});
-const CAT_TOT={f:13429,a:14602,sc:895,st:227,oth:13480,scst:1122};
+const CAT_TOT={f:13592,a:14784,sc:917,st:230,oth:13637,scst:1147};
+// Historical district-level category totals
+const CAT_TOT_13APR={f:12868,a:13971,sc:856,st:226,scst:1082};
+const CAT_TOT_22APR={f:13235,a:14382,sc:876,st:229,scst:1105};
+const CAT_TOT_29APR={f:13429,a:14602,sc:895,st:227,scst:1122};
+const CAT_TOT_6MAY={f:13592,a:14784,sc:917,st:230,scst:1147};
+// Top 8 activity farmers per date (Sprinkler, Drip, Horticulture, Recharge, Vermicompost, Farm Pond No IO, Tree, Mulberry)
+
+// ── Inclusion comparison data (SC, ST per top-8 activity across 4 dates) ──
+const INC_COMPARE={
+  labels:['Sprinkler','Drip','Horticulture','Recharge','Vermicompost','Farm Pond (NoIO)','Tree Plant.','Mulberry'],
+  sc13:[174,73,41,49,16,8,19,7],
+  sc22:[176,78,46,51,17,8,20,8],
+  sc29:[177,78,48,51,17,8,20,8],
+  sc6m:[179,79,53,53,17,9,21,8],
+  st13:[65,25,13,7,3,9,1,1],
+  st22:[66,27,13,5,3,10,2,1],
+  st29:[66,27,13,5,3,10,2,1],
+  st6m:[66,27,13,5,3,10,2,1],
+  // District totals per date
+  totSC:[856,876,895,917],
+  totST:[226,229,227,230],
+  totF:[12868,13235,13429,13592],
+  dateLabels:['13 Apr','22 Apr','29 Apr','6 May']
+};
+const ACT_COMPARE={
+  labels:['Sprinkler Irrig.','Drip Irrig.','Horticulture','Recharge of Well','Vermicompost','Farm Pond (No IO)','Tree Plantation','Mulberry'],
+  f13: [4545,2903,840,644,585,353,326,312],
+  f22: [4609,2993,876,661,610,387,341,327],
+  f29: [4657,3049,898,670,624,399,350,330],
+  f6m: [4692,3090,926,676,627,415,351,335],
+};
 
 // ═══════════════════════════════════════════════════════
 // RELATIONSHIPS (Star Schema joins used in scorecard table)
@@ -822,8 +1293,10 @@ function getFIdx(){
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nt').forEach(t=>t.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  document.getElementById('tab-'+name).classList.add('active');
+  const pageEl=document.getElementById('page-'+name);
+  const tabEl =document.getElementById('tab-'+name);
+  if(pageEl) pageEl.classList.add('active');
+  if(tabEl)  tabEl.classList.add('active');
   // Show district-only notice on Activity & Inclusion page; hide taluka filter buttons
   const notice = document.getElementById('fbar-district-notice');
   if(notice){
@@ -838,9 +1311,10 @@ function showPage(name){
 function setFilter(f,el){
   FILTER=f;
   document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
+  if(el) el.classList.add('active');
   updateKPIs();
-  const ap=document.querySelector('.nt.active').id.replace('tab-','');
+  const activeTab=document.querySelector('.nt.active');
+  const ap=activeTab?activeTab.id.replace('tab-',''):'overview';
   renderPage(ap);
 }
 function updateKPIs(){
@@ -850,9 +1324,11 @@ function updateKPIs(){
   const socialWrap=document.getElementById('social-wrap');
   if(FILTER==='ALL'){
     ['kv-vil','kv-far','kv-app','kv-apf','kv-ps','kv-psn','kv-pay','kv-payn','kv-scst'].forEach((id,i)=>{
-      const vals=['131','9,546','14,602','1.53 Apps/Farmer','85.54%','12,490 of 14,602',
-                  '3.26%','476 of 14,602','8.36%'];
-      document.getElementById(id).textContent=vals[i];
+      const kpiEl=document.getElementById(id);
+      if(!kpiEl) return;
+      const vals=['131','9,656','14,784','1.53 Apps/Farmer','84.48%','12,490 of 14,784',
+                  '3.22%','476 of 14,784','8.44%'];
+      kpiEl.textContent=vals[i];
     });
     // District-level cards: show only in All Talukas view
     if(scstCard) scstCard.style.display='';
@@ -860,14 +1336,15 @@ function updateKPIs(){
     if(socialWrap){ socialWrap.style.display=''; }
   } else {
     const i=idx[0]; const d=NDKSP[i];
-    document.getElementById('kv-vil').textContent=d.vil.toLocaleString();
-    document.getElementById('kv-far').textContent=d.far.toLocaleString();
-    document.getElementById('kv-app').textContent=d.app.toLocaleString();
-    document.getElementById('kv-apf').textContent=d.apf+' Apps/Farmer';
-    document.getElementById('kv-ps').textContent=d.ps_rate+'%';
-    document.getElementById('kv-psn').textContent=d.ps.toLocaleString()+' of '+d.app.toLocaleString();
-    document.getElementById('kv-pay').textContent=d.pay_rate+'%';
-    document.getElementById('kv-payn').textContent=d.pay.toLocaleString()+' of '+d.app.toLocaleString();
+    const _set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+    _set('kv-vil',d.vil.toLocaleString());
+    _set('kv-far',d.far.toLocaleString());
+    _set('kv-app',d.app.toLocaleString());
+    _set('kv-apf',(d.apf!=null?d.apf:'—')+' Apps/Farmer');
+    _set('kv-ps',d.ps_rate+'%');
+    _set('kv-psn',d.ps.toLocaleString()+' of '+d.app.toLocaleString());
+    _set('kv-pay',d.pay_rate+'%');
+    _set('kv-payn',d.pay.toLocaleString()+' of '+d.app.toLocaleString());
     // District-level cards: completely hide for individual taluka
     if(scstCard) scstCard.style.display='none';
     if(socialCard){ socialCard.style.display='none'; }
@@ -875,16 +1352,50 @@ function updateKPIs(){
   }
 }
 
-Chart.defaults.font.family="'Times New Roman', Times, serif";
-Chart.register(ChartDataLabels);
-// Disable datalabels globally by default; enable per chart
-Chart.defaults.set('plugins.datalabels',{display:false});
-Chart.defaults.font.size=11;
-Chart.defaults.color='#718096';
-function D(id){if(charts[id]){charts[id].destroy();delete charts[id];}}
-function mk(id,cfg){D(id);charts[id]=new Chart(document.getElementById(id),cfg);}
-const G1='#1B5E20',G2='#2E7D32',G3='#43A047';
-const B1='#1565C0',R2='#C62828',A1='#E65100',T1='#00695C',PU='#6A1B9A';
+if(typeof Chart!=='undefined'){
+  Chart.defaults.font.family="'Times New Roman', Times, serif";
+  Chart.defaults.font.size=11;
+  Chart.defaults.color='#718096';
+  Chart.defaults.animation={duration:300,easing:'easeInOutQuart'};
+  Chart.defaults.hover={mode:'nearest',intersect:false};
+  Chart.defaults.plugins.tooltip={
+    enabled:true,
+    mode:'index',
+    intersect:false,
+    callbacks:{
+      label:function(ctx){
+        const v=ctx.parsed.y!=null?ctx.parsed.y:(ctx.parsed.x!=null?ctx.parsed.x:ctx.parsed);
+        return ' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(typeof v==='number'&&!isNaN(v)?v.toLocaleString():'—');
+      }
+    }
+  };
+  if(typeof ChartDataLabels!=='undefined'){try{Chart.register(ChartDataLabels);}catch(_e){}}
+  try{Chart.defaults.set('plugins.datalabels',{display:false,formatter:function(v){return v!=null&&typeof v==='number'?v.toLocaleString():v!=null?String(v):'';}});}catch(_e){}
+}
+function D(id){try{if(charts[id]){charts[id].destroy();delete charts[id];}}catch(e){delete charts[id];}}
+function mk(id,cfg){
+  try{
+    if(typeof Chart==='undefined'){return;}
+    D(id);
+    const el=document.getElementById(id);
+    if(!el){return;}
+    charts[id]=new Chart(el,cfg);
+  }catch(e){}
+}
+// Premium color palette — Tableau/PowerBI quality
+const G1='#0D6B3F',G2='#1A8A52',G3='#34A85A';
+const B1='#1A4FAE',R2='#C0392B',A1='#D35400',T1='#148A7A',PU='#6C3483';
+// Extended premium palette
+const CLRS={
+  blue:   ['#1A4FAE','#2E6CC8','#5B90D9','#94BDE8'],
+  green:  ['#0D6B3F','#1A8A52','#27B56B','#6DD49A'],
+  red:    ['#A93226','#C0392B','#D35555','#E8888A'],
+  amber:  ['#B7410E','#D35400','#E67E22','#F0A65A'],
+  teal:   ['#0E6655','#148A7A','#1ABD9F','#5DD9C4'],
+  purple: ['#4A235A','#6C3483','#9B59B6','#C39BD3'],
+  navy:   ['#1B2A4A','#2E4372','#4A6FA5','#7B9CC9'],
+  gold:   ['#7D6608','#B7950B','#D4AC0D','#F1C40F'],
+};
 
 function bOpts(stacked=false){
   const tf={family:"'Times New Roman',Times,serif",size:11};
@@ -892,7 +1403,7 @@ function bOpts(stacked=false){
     plugins:{
       legend:{position:'top',labels:{boxWidth:12,padding:12,font:{...tf}}},
       datalabels:{display:false},
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+      tooltip:{callbacks:{label:ctx=>{const v=ctx.parsed.y!=null?ctx.parsed.y:ctx.parsed.x;return' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(v!=null?v.toLocaleString():'—');}}}
     },
     scales:{
       x:{stacked,grid:{display:false},ticks:{font:{...tf}}},
@@ -901,205 +1412,347 @@ function bOpts(stacked=false){
 }
 
 function renderPage(name){
-  if(name==='overview')   renderOverview();
-  else if(name==='pipeline')   renderPipeline();
-  else if(name==='taluka')     renderTaluka();
-  else if(name==='activity')   renderActivity();
-  else if(name==='compare')    renderCompare();
-  else if(name==='insights')   renderInsights();
+  var pg=document.getElementById('page-'+name);
+  if(!pg||!pg.classList.contains('active')) return;
+  try{
+    if(name==='overview')        renderOverview();
+    else if(name==='pipeline')   renderPipeline();
+    else if(name==='taluka')     renderTaluka();
+    else if(name==='activity')   renderActivity();
+    else if(name==='compare')    renderCompare();
+    else if(name==='insights')   renderInsights();
+  }catch(e){}
 }
 
 function renderCompare(){
-  // ── Determine scope: ALL talukas or single selected taluka ──
   const isAll = (FILTER === 'ALL');
-  const idx   = getFIdx();  // array of NDKSP indices for current filter
+  const idx   = getFIdx();
+  const tnr   = "'Times New Roman',Times,serif";
 
-  // ── Update dynamic title elements ──
+  // ── Get selected dates ──
+  const sel13 = document.getElementById('cmp-d13')?.checked !== false;
+  const sel22 = document.getElementById('cmp-d22')?.checked !== false;
+  const sel29 = document.getElementById('cmp-d29')?.checked !== false;
+  const sel6m = document.getElementById('cmp-d6m')?.checked !== false;
+  const selCount = [sel13,sel22,sel29,sel6m].filter(Boolean).length;
+  if(selCount < 1){
+    ['ch-compare-bar','ch-compare-pipeline','ch-cmp-activity','ch-cmp-inclusion','ch-act-compare','ch-inc-compare','ch-inc-bar-compare'].forEach(id=>D(id));
+    return;
+    
+    const warningEl=document.getElementById('cmp-sec-title');
+    if(warningEl) warningEl.textContent='⚠ Please select at least one date to compare.';
+    return;
+  }
+
+  // ── Date config ──
+  const dateConfig = [
+    {key:'13Apr', label:'13 Apr 2026', color:'#F57F17', ndksp: NDKSP_13APR, ndksy: NDKSY_13APR, selected: sel13},
+    {key:'22Apr', label:'22 Apr 2026', color:'#1565C0', ndksp: NDKSP_22APR, ndksy: NDKSY_22APR, selected: sel22},
+    {key:'29Apr', label:'29 Apr 2026', color:'#2E7D32', ndksp: NDKSP_29APR, ndksy: NDKSY_29APR_TOT, selected: sel29},
+    {key:'6May',  label:'6 May 2026',  color:'#6A1B9A', ndksp: NDKSP,       ndksy: NDKSY_TOT,      selected: sel6m},
+  ];
+  const activeDates = dateConfig.filter(d=>d.selected);
+
+  // ── Update title ──
   const titleLabel = isAll ? 'All 8 Talukas' : FILTER;
-  const el_sec   = document.getElementById('cmp-sec-title');
-  const el_ctitle= document.getElementById('cmp-chart-title');
-  const el_ttitle= document.getElementById('cmp-table-title');
-  const el_csec  = document.getElementById('cmp-chart-sec');
-  if(el_sec)    el_sec.textContent    = 'Three-Point Comparison — 13 Apr · 22 Apr · 29 Apr 2026 · ' + titleLabel;
-  if(el_ctitle) el_ctitle.textContent = '\u{1F4CA} Farmers & Apps — 13 Apr · 22 Apr · 29 Apr (' + titleLabel + ')';
-  if(el_ttitle) el_ttitle.textContent = '\u{1F4CB} Comparison — 13 Apr · 22 Apr · 29 Apr (' + titleLabel + ')';
-  if(el_csec)   el_csec.textContent   = 'Taluka-wise Farmer & Applications — ' + titleLabel;
+  const dateStr = activeDates.map(d=>d.label.replace(' 2026','')).join(' · ');
+  const el_ctitle = document.getElementById('cmp-chart-title');
+  const el_sec    = document.getElementById('cmp-sec-title');
+  if(el_ctitle) el_ctitle.textContent = '📊 Farmers & Apps — '+dateStr+' ('+titleLabel+')';
+  if(el_sec)    el_sec.textContent    = 'Comparison — '+dateStr+' · NDKSP 2 DBT';
 
-  // ── Show/hide taluka table rows ──
+  // ── Show/hide table rows ──
   document.querySelectorAll('.cmp-row').forEach(row=>{
-    const t = row.getAttribute('data-taluka');
-    row.style.display = (isAll || t === FILTER) ? '' : 'none';
+    row.style.display = (isAll || row.getAttribute('data-taluka')===FILTER) ? '' : 'none';
   });
-  // District total row: show only for ALL
   document.querySelectorAll('.cmp-total-row').forEach(row=>{
     row.style.display = isAll ? '' : 'none';
   });
 
-  // ── Update Farmers & Apps KPI cards ──
+  // ── Update KPI cards ──
+  const kfar=document.getElementById('cmp-kpi-far'), kapp=document.getElementById('cmp-kpi-app');
+  const kfarsub=document.getElementById('cmp-kpi-far-sub'), kappsub=document.getElementById('cmp-kpi-app-sub');
+  const kfarflag=document.getElementById('cmp-kpi-far-flag'), kappflag=document.getElementById('cmp-kpi-app-flag');
   if(isAll){
-    const el_far = document.getElementById('cmp-kpi-far');
-    const el_far_sub = document.getElementById('cmp-kpi-far-sub');
-    const el_far_flag = document.getElementById('cmp-kpi-far-flag');
-    const el_app = document.getElementById('cmp-kpi-app');
-    const el_app_sub = document.getElementById('cmp-kpi-app-sub');
-    const el_app_flag = document.getElementById('cmp-kpi-app-flag');
-    if(el_far)  el_far.textContent  = '9,546';
-    if(el_far_sub) el_far_sub.textContent = '9,069 \u2192 9,414 \u2192 9,546';
-    if(el_far_flag){ el_far_flag.textContent='\u25b2 22\u219229: +132'; el_far_flag.className='flag fg'; }
-    if(el_app)  el_app.textContent  = '14,602';
-    if(el_app_sub) el_app_sub.textContent = '13,647 \u2192 14,374 \u2192 14,602';
-    if(el_app_flag){ el_app_flag.textContent='\u25b2 22\u219229: +228'; el_app_flag.className='flag fg'; }
+    if(kfar)   kfar.textContent = NDKSP_TOT.far.toLocaleString();
+    if(kapp)   kapp.textContent = NDKSP_TOT.app.toLocaleString();
+    const lastTwo = activeDates.slice(-2);
+    if(lastTwo.length===2){
+      const prevNd=lastTwo[0].ndksp; const currNd=lastTwo[1].ndksp;
+      const pTotFar=prevNd.reduce?(prevNd.reduce((s,r)=>s+r.far,0)):(prevNd.far||0);
+      const cTotFar=NDKSP_TOT.far;
+      const pTotApp=prevNd.reduce?(prevNd.reduce((s,r)=>s+r.app,0)):(prevNd.app||0);
+      const cTotApp=NDKSP_TOT.app;
+    }
   } else {
-    const i = idx[0];
-    const d13 = NDKSP_13APR[i]; const d22 = NDKSP_PREV[i]; const d29 = NDKSP[i];
-    const df = d29.far - d22.far; const da = d29.app - d22.app;
-    const el_far = document.getElementById('cmp-kpi-far');
-    const el_far_sub = document.getElementById('cmp-kpi-far-sub');
-    const el_far_flag = document.getElementById('cmp-kpi-far-flag');
-    const el_app = document.getElementById('cmp-kpi-app');
-    const el_app_sub = document.getElementById('cmp-kpi-app-sub');
-    const el_app_flag = document.getElementById('cmp-kpi-app-flag');
-    if(el_far)  el_far.textContent  = d29.far.toLocaleString();
-    if(el_far_sub) el_far_sub.textContent = d13.far.toLocaleString()+' \u2192 '+d22.far.toLocaleString()+' \u2192 '+d29.far.toLocaleString();
-    if(el_far_flag){
-      el_far_flag.textContent = (df>=0?'\u25b2':'\u25bc')+' 22\u219229: '+(df>=0?'+':'')+df;
-      el_far_flag.className = 'flag '+(df>=0?'fg':'fr');
-    }
-    if(el_app)  el_app.textContent  = d29.app.toLocaleString();
-    if(el_app_sub) el_app_sub.textContent = d13.app.toLocaleString()+' \u2192 '+d22.app.toLocaleString()+' \u2192 '+d29.app.toLocaleString();
-    if(el_app_flag){
-      el_app_flag.textContent = (da>=0?'\u25b2':'\u25bc')+' 22\u219229: '+(da>=0?'+':'')+da;
-      el_app_flag.className = 'flag '+(da>=0?'fg':'fr');
-    }
+    const i=(idx[0]!==undefined?idx[0]:0); const r6m=NDKSP[i]||NDKSP[0];
+    if(kfar)   kfar.textContent  = r6m.far.toLocaleString();
+    if(kapp)   kapp.textContent  = r6m.app.toLocaleString();
+    const r29=NDKSP_29APR[i];
+    const df=r6m.far-r29.far; const da=r6m.app-r29.app;
+    if(kfarsub) kfarsub.textContent = ((NDKSP_13APR[i]||{}).far||'—')+' → '+((NDKSP_22APR[i]||{}).far||'—')+' → '+r29.far+' → '+r6m.far;
+    if(kappsub) kappsub.textContent = ((NDKSP_13APR[i]||{}).app||'—')+' → '+((NDKSP_22APR[i]||{}).app||'—')+' → '+r29.app+' → '+r6m.app;
+    if(kfarflag){ kfarflag.textContent=(df>=0?'▲':'▼')+' 29Apr→6May: '+(df>=0?'+':'')+df; kfarflag.className='flag '+(df>=0?'fg':'fr'); }
+    if(kappflag){ kappflag.textContent=(da>=0?'▲':'▼')+' 29Apr→6May: '+(da>=0?'+':'')+da; kappflag.className='flag '+(da>=0?'fg':'fr'); }
   }
 
-  // ── Build chart data based on filter ──
-  // Group by DATE (3 groups: 13Apr, 22Apr, 29Apr), each with 2 bars (Farmers, Apps)
-  // X-axis = Date labels, datasets = one per taluka (or 2 bars for single taluka)
-  // For cleaner chart: use DATE as x-axis, Farmers vs Apps as two datasets per date point
-
-  let chartLabels, far13, far22, far29, app13, app22, app29;
-
-  if(isAll){
-    // X-axis = talukas, 6 datasets (3 dates × 2 metrics)
-    // For readability: split into 2 charts or group by date
-    // Use 3 groups on x-axis: each taluka gets 3 date bars for Farmers + 3 for Apps
-    // BETTER: x-axis = talukas, only show date-grouped bars
-    chartLabels = idx.map(i=>NDKSP[i].t);
-    far13 = idx.map(i=>NDKSP_13APR[i].far);
-    far22 = idx.map(i=>NDKSP_PREV[i].far);
-    far29 = idx.map(i=>NDKSP[i].far);
-    app13 = idx.map(i=>NDKSP_13APR[i].app);
-    app22 = idx.map(i=>NDKSP_PREV[i].app);
-    app29 = idx.map(i=>NDKSP[i].app);
-  } else {
-    // Single taluka: x-axis = 3 dates, 2 datasets (Farmers, Apps)
-    const i = idx[0];
-    chartLabels = ['13 Apr 2026', '22 Apr 2026', '29 Apr 2026'];
-    far13 = [NDKSP_13APR[i].far]; far22 = [NDKSP_PREV[i].far]; far29 = [NDKSP[i].far];
-    app13 = [NDKSP_13APR[i].app]; app22 = [NDKSP_PREV[i].app]; app29 = [NDKSP[i].app];
-  }
-
-  const tnr = "'Times New Roman',Times,serif";
+  // ── Build chart data ──
+  // Farmers and Apps chart: grouped by taluka (or single taluka: grouped by date)
+  const farBgAlpha = ['#4E79A7BB','#F28E2BBB','#59A14FBB','#B07AA1BB'];
+  const appBgAlpha = ['#76B7B2BB','#EDC948BB','#E15759BB','#9C755FBB'];
+  const farBorder  = ['#B7950B','#1A4FAE','#0D6B3F','#4A235A'];
+  const appBorder  = ['#B7410E','#1A4FAE','#0D6B3F','#4A235A'];
 
   if(isAll){
-    // ALL: group bars by date for clean layout
-    // 6 datasets but visually grouped: use date colors, one dataset per (date, metric)
-    mk('ch-compare-bar',{type:'bar',data:{labels:chartLabels,datasets:[
-      {label:'Farmers 13 Apr', data:far13, backgroundColor:'#90CAF9CC', borderColor:'#1565C0', borderWidth:1, borderRadius:3},
-      {label:'Farmers 22 Apr', data:far22, backgroundColor:'#42A5F5CC', borderColor:'#1565C0', borderWidth:1, borderRadius:3},
-      {label:'Farmers 29 Apr', data:far29, backgroundColor:'#1565C0DD', borderColor:'#0D47A1', borderWidth:1.5, borderRadius:3},
-      {label:'Apps 13 Apr',    data:app13, backgroundColor:'#A5D6A7CC', borderColor:'#2E7D32', borderWidth:1, borderRadius:3},
-      {label:'Apps 22 Apr',    data:app22, backgroundColor:'#66BB6ACC', borderColor:'#2E7D32', borderWidth:1, borderRadius:3},
-      {label:'Apps 29 Apr',    data:app29, backgroundColor:'#2E7D32DD', borderColor:'#1B5E20', borderWidth:1.5, borderRadius:3},
-    ]},options:{
-      responsive:true, maintainAspectRatio:false,
+    const tals = NDKSP.map(r=>r.t);
+    const farDatasets = activeDates.map((d,di)=>({
+      label:'Farmers '+d.label.replace(' 2026',''),
+      data: Array.isArray(d.ndksp) ? d.ndksp.map(r=>r.far||0) : tals.map((_,i)=>NDKSP[i].far||0),
+      backgroundColor: farBgAlpha[dateConfig.indexOf(d)],
+      borderColor: farBorder[dateConfig.indexOf(d)],
+      borderWidth:1, borderRadius:3
+    }));
+    const appDatasets = activeDates.map((d,di)=>({
+      label:'Apps '+d.label.replace(' 2026',''),
+      data: Array.isArray(d.ndksp) ? d.ndksp.map(r=>r.app||0) : tals.map((_,i)=>NDKSP[i].app||0),
+      backgroundColor: appBgAlpha[dateConfig.indexOf(d)],
+      borderColor: appBorder[dateConfig.indexOf(d)],
+      borderWidth:1, borderRadius:3
+    }));
+    mk('ch-compare-bar',{type:'bar',data:{labels:tals,datasets:[...farDatasets,...appDatasets]},options:{
+      responsive:true,maintainAspectRatio:false,
       plugins:{
-        legend:{position:'bottom',labels:{boxWidth:11,padding:10,font:{family:tnr,size:10}}},
+        legend:{position:'bottom',labels:{boxWidth:10,padding:8,font:{family:tnr,size:9}}},
         datalabels:{display:false},
-        tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+        tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}
       },
       scales:{
-        x:{grid:{display:false}, ticks:{font:{family:tnr,size:10}}, categoryPercentage:0.85, barPercentage:0.8},
-        y:{grid:{color:'#F0F4F8'}, ticks:{font:{family:tnr,size:10}, callback:v=>v.toLocaleString()},
-           title:{display:true, text:'Count', font:{family:tnr,size:10}, color:'#718096'}}
+        x:{grid:{display:false},ticks:{font:{family:tnr,size:9}},categoryPercentage:0.85,barPercentage:0.8},
+        y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:9},callback:v=>v.toLocaleString()}}
       },
-      layout:{padding:{top:8, bottom:4}}
+      layout:{padding:{top:6,bottom:4}}
     }});
   } else {
-    // SINGLE TALUKA: x-axis = 3 dates, 2 datasets (Farmers, Apps)
-    const i = idx[0];
-    const f_vals = [NDKSP_13APR[i].far, NDKSP_PREV[i].far, NDKSP[i].far];
-    const a_vals = [NDKSP_13APR[i].app, NDKSP_PREV[i].app, NDKSP[i].app];
+    const i=idx[0];
+    const farVals = activeDates.map(d=>Array.isArray(d.ndksp)?(d.ndksp.find(r=>r.t===FILTER)||d.ndksp[i]||{}).far||0:(d.ndksp?.far||0));
+    const appVals = activeDates.map(d=>Array.isArray(d.ndksp)?(d.ndksp.find(r=>r.t===FILTER)||d.ndksp[i]||{}).app||0:(d.ndksp?.app||0));
     mk('ch-compare-bar',{type:'bar',data:{
-      labels:['13 Apr 2026','22 Apr 2026','29 Apr 2026'],
+      labels:activeDates.map(d=>d.label),
       datasets:[
-        {label:'Farmers', data:f_vals, backgroundColor:['#90CAF9CC','#42A5F5CC','#1565C0DD'],
-          borderColor:'#0D47A1', borderWidth:1.5, borderRadius:4},
-        {label:'Apps (Applications Submitted)', data:a_vals,
-          backgroundColor:['#A5D6A7CC','#66BB6ACC','#2E7D32DD'],
-          borderColor:'#1B5E20', borderWidth:1.5, borderRadius:4},
+        {label:'Farmers',data:farVals,backgroundColor:activeDates.map(d=>farBgAlpha[dateConfig.indexOf(d)]),borderColor:farBorder,borderWidth:1.5,borderRadius:4},
+        {label:'Apps',   data:appVals,backgroundColor:activeDates.map(d=>appBgAlpha[dateConfig.indexOf(d)]),borderColor:appBorder,borderWidth:1.5,borderRadius:4},
       ]
     },options:{
-      responsive:true, maintainAspectRatio:false,
+      responsive:true,maintainAspectRatio:false,
       plugins:{
-        legend:{position:'top', labels:{boxWidth:12, padding:12, font:{family:tnr,size:11}}},
-        datalabels:{
-          display:true, anchor:'end', align:'top',
-          font:{family:tnr, size:11, weight:'bold'}, color:'#1A202C',
-          formatter:v=>v.toLocaleString()
-        },
-        tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+        legend:{position:'top',labels:{boxWidth:12,padding:12,font:{family:tnr,size:11}}},
+        datalabels:{display:true,anchor:'end',align:'top',font:{family:tnr,size:11,weight:'bold'},color:'#1A202C',formatter:v=>(v!=null&&!isNaN(+v)?(+v).toLocaleString():"")},
+        tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}
       },
       scales:{
-        x:{grid:{display:false}, ticks:{font:{family:tnr,size:11}}},
-        y:{grid:{color:'#F0F4F8'}, ticks:{font:{family:tnr,size:10}, callback:v=>v.toLocaleString()},
-           suggestedMax: Math.max(...a_vals)*1.18}
+        x:{grid:{display:false},ticks:{font:{family:tnr,size:10}}},
+        y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:10},callback:v=>v.toLocaleString()},suggestedMax:Math.max(...appVals)*1.2}
       },
       layout:{padding:{top:28}}
     }});
   }
 
-  // ── NDKSY Pipeline chart (always district-level, not filtered by taluka) ──
-  const dkeys = DESK_KEYS;
-  const p13 = dkeys.map(k=>NDKSY_13APR[k]);
-  const p22 = dkeys.map(k=>NDKSY_TOT_PREV[k]);
-  const p29 = dkeys.map(k=>NDKSY_TOT[k]);
-  const dShort = ['D1','D2','D3','D4','D5','D6','D7','D8','D9'];
+  // ── NDKSY Pipeline chart (always district-level, selected dates) ──
+  // Horizontal bar for all 10 desks
+  const ndksyByDate = {
+    '13Apr': NDKSY_13APR, '22Apr': NDKSY_22APR, '29Apr': NDKSY_29APR_TOT, '6May': NDKSY_TOT
+  };
+  const pipeColors  = {'13Apr':'#4E79A7BB','22Apr':'#F28E2BBB','29Apr':'#59A14FBB','6May':'#B07AA1BB'};
+  const pipeBorders = {'13Apr':'#2C5F8A','22Apr':'#C47210','29Apr':'#3E7036','6May':'#7A5070'};
+  const pipeDatasets = activeDates.map(d=>({
+    label: d.label,
+    data: DESK_KEYS.map(k=>(ndksyByDate[d.key]||{})[k]||0),
+    backgroundColor: pipeColors[d.key],
+    borderColor: pipeBorders[d.key],
+    borderWidth: d.key==='6May'?1.5:1,
+    borderRadius: 3
+  }));
+  if(activeDates.length===0) return;
+  const lastActive = activeDates[activeDates.length-1];
 
-  // Horizontal bar: all 9 desks + D7(val=5) clearly visible; grouped by desk
-  mk('ch-compare-pipeline',{type:'bar',data:{labels:DESK_FULL,datasets:[
-    {label:'13 Apr 2026', data:p13, backgroundColor:'#FFE0B2CC', borderColor:'#E65100', borderWidth:1, borderRadius:3},
-    {label:'22 Apr 2026', data:p22, backgroundColor:'#90CAF9CC', borderColor:'#1565C0', borderWidth:1, borderRadius:3},
-    {label:'29 Apr 2026 (Current)', data:p29,
-      backgroundColor:p29.map((v,i2)=>v>=p22[i2]?'#2E7D32CC':'#C62828CC'),
-      borderColor:    p29.map((v,i2)=>v>=p22[i2]?'#1B5E20':'#B71C1C'),
-      borderWidth:1.5, borderRadius:3},
-  ]},options:{
+  mk('ch-compare-pipeline',{type:'bar',data:{labels:DESK_FULL,datasets:pipeDatasets},options:{
     indexAxis:'y',
-    responsive:true, maintainAspectRatio:false,
+    responsive:true,maintainAspectRatio:false,
     plugins:{
-      legend:{position:'top', labels:{boxWidth:12, padding:10, font:{family:tnr,size:10}}},
+      legend:{position:'top',labels:{boxWidth:11,padding:9,font:{family:tnr,size:10}}},
       datalabels:{
-        display:ctx=>ctx.datasetIndex===2,
-        anchor:'end', align:'right',
-        font:{family:tnr, size:9, weight:'bold'},
-        color:ctx=>p29[ctx.dataIndex]>=p22[ctx.dataIndex]?'#1B5E20':'#B71C1C',
-        formatter:v=>v.toLocaleString(),
+        display:ctx=>(Array.isArray(activeDates)&&ctx.datasetIndex===activeDates.length-1),
+        anchor:'end',align:'right',
+        font:{family:tnr,size:9,weight:'bold'},
+        color:ctx=>{
+          const k=lastActive.key; const prevK=activeDates.length>1?activeDates[activeDates.length-2].key:null;
+          if(!prevK) return '#1A202C';
+          const v=(ndksyByDate[k]||{})[DESK_KEYS[ctx.dataIndex]]||0;
+          const pv=(ndksyByDate[prevK]||{})[DESK_KEYS[ctx.dataIndex]]||0;
+          return v>=pv?'#1B5E20':'#B71C1C';
+        },
+        formatter:v=>(v!=null&&v>0?v.toLocaleString():""),
         padding:{left:2}
       },
       tooltip:{callbacks:{
-        title:ctx=>DESK_FULL[ctx[0].dataIndex],
-        label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.x.toLocaleString()
+        title:ctx=>(ctx&&ctx[0]?DESK_FULL[ctx[0].dataIndex]||"":""),
+        label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.x!=null?ctx.parsed.x:0).toLocaleString()
       }}
     },
     scales:{
-      y:{grid:{display:false}, ticks:{font:{family:tnr,size:9}, autoSkip:false, crossAlign:'far'}},
-      x:{grid:{color:'#F0F4F8'}, ticks:{font:{family:tnr,size:10}, callback:v=>v.toLocaleString()},
-         suggestedMax:Math.max(...p13,...p22,...p29)*1.22}
+      y:{grid:{display:false},ticks:{font:{family:tnr,size:9},autoSkip:false,crossAlign:'far'}},
+      x:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:9},callback:v=>v.toLocaleString()},
+         suggestedMax:(Math.max(...DESK_KEYS.map(k=>Math.max(...activeDates.map(d=>(ndksyByDate[d.key]||{})[k]||0))))||50)*1.25}
     },
-    layout:{padding:{right:55, left:4, top:8, bottom:4}}
+    layout:{padding:{right:55,left:4,top:6,bottom:4}}
   }});
+
+  // ── Activity comparison (district-level) ──────────────────────────────
+  const actCanvas = document.getElementById('ch-cmp-activity');
+  if(actCanvas){
+    const actDateCfg = [
+      {label:'13 Apr',data:ACT_COMPARE.f13,col:'#4E79A7BB',bc:'#2C5F8A',sel:sel13},
+      {label:'22 Apr',data:ACT_COMPARE.f22,col:'#F28E2BBB',bc:'#C47210',sel:sel22},
+      {label:'29 Apr',data:ACT_COMPARE.f29,col:'#59A14FBB',bc:'#3E7036',sel:sel29},
+      {label:'6 May', data:ACT_COMPARE.f6m,col:'#B07AA1BB',bc:'#7A5070',sel:sel6m},
+    ];
+    const actActive=actDateCfg.filter(d=>d.sel);
+    mk('ch-cmp-activity',{type:'bar',data:{labels:ACT_COMPARE.labels,
+      datasets:actActive.map(d=>({label:'Farmers '+d.label,data:d.data,
+        backgroundColor:d.col,borderColor:d.bc,borderWidth:1,borderRadius:3}))
+    },options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{boxWidth:10,padding:7,font:{family:tnr,size:9}}},
+        datalabels:{display:false},tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}},
+      scales:{x:{grid:{display:false},ticks:{font:{family:tnr,size:9},maxRotation:30}},
+              y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:9},callback:v=>v.toLocaleString()}}},
+      layout:{padding:{top:4}}}});
+  }
+
+  // ── Inclusion (SC+ST) comparison ───────────────────────────────────────
+  const inclCanvas = document.getElementById('ch-cmp-inclusion');
+  if(inclCanvas){
+    const inclCfg=[
+      {label:'13 Apr 2026',tot:CAT_TOT_13APR,col:'#4E79A7BB',bc:'#2C5F8A',sel:sel13},
+      {label:'22 Apr 2026',tot:CAT_TOT_22APR,col:'#F28E2BBB',bc:'#C47210',sel:sel22},
+      {label:'29 Apr 2026',tot:CAT_TOT_29APR,col:'#59A14FBB',bc:'#3E7036',sel:sel29},
+      {label:'6 May 2026', tot:CAT_TOT_6MAY, col:'#B07AA1BB',bc:'#7A5070',sel:sel6m},
+    ];
+    const inclActive=inclCfg.filter(d=>d.sel);
+    const inclLabels=inclActive.map(d=>d.label);
+    mk('ch-cmp-inclusion',{type:'bar',data:{labels:inclLabels,
+      datasets:[
+        {label:'SC Farmers',  data:inclActive.map(d=>(d.tot&&d.tot.sc)||0),  backgroundColor:'#E15759BB',borderColor:'#C0393B',borderWidth:1,borderRadius:3},
+        {label:'ST Farmers',  data:inclActive.map(d=>(d.tot&&d.tot.st)||0),  backgroundColor:'#F28E2BBB',borderColor:'#C47210',borderWidth:1,borderRadius:3},
+        {label:'SC+ST Total', data:inclActive.map(d=>d.tot.scst),backgroundColor:'#21A87B55',borderColor:'#157A5C',borderWidth:1.5,borderRadius:3},
+        {label:'Rate %',data:inclActive.map(d=>+(d.tot.scst/d.tot.f*100).toFixed(2)),
+          type:'line',backgroundColor:'transparent',borderColor:'#7B5EA7',borderWidth:2,
+          yAxisID:'y2',pointRadius:5,pointBackgroundColor:'#7B5EA7',tension:0.3,fill:false,
+          datalabels:{display:true,anchor:'end',align:'top',color:'#7B5EA7',
+            font:{family:tnr,size:10,weight:'bold'},formatter:v=>(v!=null?v:'')+('%')}},
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'top',labels:{boxWidth:10,padding:7,font:{family:tnr,size:9}}},
+        datalabels:{display:false},tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}},
+      scales:{
+        x:{grid:{display:false},ticks:{font:{family:tnr,size:10}}},
+        y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:9},callback:v=>v.toLocaleString()}},
+        y2:{position:'right',ticks:{font:{family:tnr,size:9},callback:v=>v+'%'},grid:{display:false},suggestedMax:12}
+      },
+      layout:{padding:{top:4}}}}); 
+  }
+
+  // ── Activity & Inclusion Comparison Charts ──────────────────────────
+  const actHistorical = {
+    '13Apr': {f:12868,a:13647,sc:856,st:226,oth:12879,
+      top10f:[4545,2903,840,644,585,353,326,312,285,282]},
+    '22Apr': {f:13235,a:14374,sc:876,st:229,oth:13269,
+      top10f:[4609,2993,876,661,610,387,341,327,289,286]},
+    '29Apr': {f:13429,a:14602,sc:895,st:227,oth:13480,
+      top10f:[4657,3049,898,670,624,399,350,330,292,297]},
+    '6May':  {f:13592,a:14784,sc:917,st:230,oth:13637,
+      top10f:[4692,3090,926,676,627,415,351,335,292,300]},
+  };
+  const top10Names=['Sprinkler Irr','Drip Irr','Horticulture','Recharge Well','Vermicompost','Farm Pond (No IO)','Tree Plant','Mulberry','Goat Rearing','Farm Pond Lining'];
+  const actColorSet=['#4E79A7BB','#F28E2BBB','#59A14FBB','#B07AA1BB'];
+  const actBorderSet=['#2C5F8A','#C47210','#3E7036','#7A5070'];
+
+  // Activity comparison (top 10 farmers, horizontal bar, selected dates)
+  if(document.getElementById('ch-act-compare')){
+    const actDatasets = activeDates.map((d,i)=>({
+      label: d.label,
+      data: (actHistorical[d.key]&&actHistorical[d.key].top10f)||[],
+      backgroundColor: actColorSet[dateConfig.indexOf(d)],
+      borderColor: actBorderSet[dateConfig.indexOf(d)],
+      borderWidth:1.5, borderRadius:3
+    }));
+    mk('ch-act-compare',{type:'bar',data:{labels:top10Names,datasets:actDatasets},options:{
+      indexAxis:'y',
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'top',labels:{boxWidth:12,padding:10,font:{family:tnr,size:10}}},
+        datalabels:{display:false},
+        tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.x!=null?ctx.parsed.x:0).toLocaleString()+' farmers'}}
+      },
+      scales:{
+        y:{grid:{display:false},ticks:{font:{family:tnr,size:9},autoSkip:false}},
+        x:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:9},callback:v=>v.toLocaleString()},suggestedMax:5500}
+      },
+      layout:{padding:{right:20}}
+    }});
+  }
+
+  // SC+ST rate line chart
+  if(document.getElementById('ch-inc-compare')){
+    const incRateData = activeDates.map(d=>+(((actHistorical[d.key]?.sc||0)+(actHistorical[d.key]?.st||0))/(actHistorical[d.key]?.f||1)*100).toFixed(2));
+    mk('ch-inc-compare',{type:'bar',data:{
+      labels:activeDates.map(d=>d.label),
+      datasets:[{
+        label:'SC+ST Inclusion Rate (%)',
+        data:incRateData,
+        backgroundColor:activeDates.map((d,i)=>actColorSet[dateConfig.indexOf(d)]),
+        borderColor:activeDates.map((d,i)=>actBorderSet[dateConfig.indexOf(d)]),
+        borderWidth:1.5,borderRadius:5
+      }]
+    },options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{display:false},
+        datalabels:{display:true,anchor:'end',align:'top',font:{family:tnr,size:11,weight:'bold'},color:'#2B2B2B',formatter:v=>(v!=null?v:'')+('%')},
+        tooltip:{callbacks:{label:ctx=>' Inclusion Rate: '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0)+'%'}}
+      },
+      scales:{
+        x:{grid:{display:false},ticks:{font:{family:tnr,size:10}}},
+        y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:10},callback:v=>v+'%'},suggestedMin:7.5,suggestedMax:9.5}
+      },
+      layout:{padding:{top:24}}
+    }});
+  }
+
+  // SC/ST/Others bar comparison
+  if(document.getElementById('ch-inc-bar-compare')){
+    const scData  = activeDates.map(d=>actHistorical[d.key]?.sc||0);
+    const stData  = activeDates.map(d=>actHistorical[d.key]?.st||0);
+    const othData = activeDates.map(d=>actHistorical[d.key]?.oth||0);
+    mk('ch-inc-bar-compare',{type:'bar',data:{
+      labels:activeDates.map(d=>d.label),
+      datasets:[
+        {label:'SC',     data:scData,  backgroundColor:'#E15759BB',borderRadius:3},
+        {label:'ST',     data:stData,  backgroundColor:'#F28E2BBB',borderRadius:3},
+        {label:'Others', data:othData, backgroundColor:'#59A14FBB',borderRadius:3},
+      ]
+    },options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{
+        legend:{position:'top',labels:{boxWidth:12,padding:8,font:{family:tnr,size:10}}},
+        datalabels:{display:false},
+        tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}
+      },
+      scales:{
+        x:{grid:{display:false},ticks:{font:{family:tnr,size:10}},stacked:true},
+        y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:10},callback:v=>v.toLocaleString()},stacked:true}
+      }
+    }});
+  }
 }
 
 function renderInsights(){
@@ -1127,40 +1780,41 @@ function renderInsights(){
 
   // ── DISTRICT-LEVEL insights (ALL talukas) ────────────────────────────────
   function buildDistrictInsights(){
+  if(!NDKSP||!NDKSP.length){return '<p style="color:var(--r2)">District data not available.</p>';}
     // Farmer data
-    const f13=NDKSP_13APR_TOT.far, f22=9414, f29=NDKSP_TOT.far;
-    const a13=NDKSP_13APR_TOT.app, a22=9414, a29=NDKSP_TOT.app;
-    const farDiff=f29-f22, appDiff=a29-f22;
+    const f13=NDKSP_13APR_TOT.far, f22=NDKSP_22APR_TOT.far, f29=NDKSP_29APR_TOT.far, f6m=NDKSP_TOT.far;
+    const a13=NDKSP_13APR_TOT.app, a22=NDKSP_22APR_TOT.app, a29=NDKSP_29APR_TOT.app, a6m=NDKSP_TOT.app;
+    const farDiff=f6m-f29, appDiff=a6m-a29;
 
     // Top growing taluka (22→29)
-    const growthRanked=[...NDKSP].map((r,i)=>({t:r.t, fg:r.far-NDKSP_PREV[i].far, ag:r.app-NDKSP_PREV[i].app}))
-                       .sort((a,b)=>b.fg-a.fg);
+    const growthRanked=[...NDKSP].map((r,i)=>({t:r.t, fg:r.far-NDKSP_29APR[i].far, ag:r.app-NDKSP_29APR[i].app}))
+                       .sort((a,b)=>(b.fg||0)-(a.fg||0));
     const topT=growthRanked[0]; const botT=growthRanked[growthRanked.length-1];
 
     // NDKSY district
-    const d1_29=NDKSY_TOT.d1, d1_22=NDKSY_TOT_PREV.d1, d1_13=NDKSY_13APR.d1;
-    const d9_29=NDKSY_TOT.d9, d9_22=NDKSY_TOT_PREV.d9;
-    const d8_29=NDKSY_TOT.d8, d8_22=NDKSY_TOT_PREV.d8;
-    const d3_29=NDKSY_TOT.d3, d3_22=NDKSY_TOT_PREV.d3;
-    const d5_29=NDKSY_TOT.d5, d5_22=NDKSY_TOT_PREV.d5;
+    const d1_6m=NDKSY_TOT.d1, d1_29=NDKSY_29APR_TOT.d1, d1_22=NDKSY_22APR.d1, d1_13=NDKSY_13APR.d1;
+    const d9_6m=NDKSY_TOT.d9, d9_29=NDKSY_29APR_TOT.d9, d9_22=NDKSY_22APR.d9;
+    const d8_6m=NDKSY_TOT.d8, d8_29=NDKSY_29APR_TOT.d8, d8_22=NDKSY_22APR.d8;
+    const d3_6m=NDKSY_TOT.d3, d3_29=NDKSY_29APR_TOT.d3, d3_22=NDKSY_22APR.d3;
+    const d5_6m=NDKSY_TOT.d5, d5_29=NDKSY_29APR_TOT.d5, d5_22=NDKSY_22APR.d5;
 
     const psRate=NDKSP_TOT.ps_rate; const payRate=NDKSP_TOT.pay_rate;
 
     let obs = [];
     // Farmer growth
-    const fgDiff = NDKSP_TOT.far - 9414;
-    obs.push(alertCard('g','📈',`Farmer Enrollment: ${fgDiff>=0?'+':''}${fgDiff} (22→29 Apr)`,
-      `District farmers: 9,069 (13 Apr) → 9,414 (22 Apr) → ${NDKSP_TOT.far.toLocaleString()} (29 Apr). `+
+    const fgDiff = NDKSP_TOT.far - NDKSP_29APR_TOT.far;
+    obs.push(alertCard(fgDiff>=0?'g':'r','📈',`Farmer Enrollment: ${fgDiff>=0?'+':''}${fgDiff} (29Apr→6May)`,
+      `District farmers: 9,069 (13 Apr) → 9,414 (22 Apr) → 9,546 (29 Apr) → ${NDKSP_TOT.far.toLocaleString()} (6 May). `+
       `${topT.t} leads with +${topT.fg} new farmers in 7 days.`));
     // Applications growth
-    const agDiff = NDKSP_TOT.app - 14374;
-    obs.push(alertCard('g','📋',`Applications: ${agDiff>=0?'+':''}${agDiff} (22→29 Apr)`,
-      `Total applications: 13,647 (13 Apr) → 14,374 (22 Apr) → ${NDKSP_TOT.app.toLocaleString()} (29 Apr). `+
+    const agDiff = NDKSP_TOT.app - NDKSP_29APR_TOT.app;
+    obs.push(alertCard(agDiff>=0?'g':'r','📋',`Applications: ${agDiff>=0?'+':''}${agDiff} (29Apr→6May)`,
+      `Total applications: 13,647 (13 Apr) → 14,374 (22 Apr) → 14,602 (29 Apr) → ${NDKSP_TOT.app.toLocaleString()} (6 May). `+
       `Pre-sanction rate: ${psRate}%. Payment rate: ${payRate}%.`));
     // D1 trend
-    const d1diff=d1_29-d1_22;
-    obs.push(alertCard(d1diff>=0?'g':'a',d1diff>=0?'🚀':'⚠️',`D1 Farmer Verification: ${sign(d1diff)} (22→29 Apr)`,
-      `Verification pipeline: ${d1_13} (13 Apr) → ${d1_22} (22 Apr) → ${d1_29} (29 Apr). `+
+    const d1diff=d1_6m-d1_29;
+    obs.push(alertCard(d1diff>=0?'g':'a',d1diff>=0?'🚀':'⚠️',`D1 Farmer Verification: ${sign(d1diff)} (29Apr→6May)`,
+      `Verification pipeline: ${d1_13} (13 Apr) → ${d1_22} (22 Apr) → ${d1_29} (29 Apr) → ${d1_6m} (6 May). `+
       (d1diff<0?`Significant decline of ${d1diff} in latest 7-day period.`:`Positive momentum — ${d1diff} additional verifications completed.`)));
     // D8+D9 payment pipeline
     obs.push(alertCard(d9_29>d9_22?'g':'r','💸',`Final Clearance D9: ${sign(d9_29-d9_22)} | Accounts D8: ${sign(d8_29-d8_22)}`,
@@ -1177,9 +1831,11 @@ function renderInsights(){
       `${d5_29>=d5_22?'Recovering.':'Mid-pipeline quality verification weakening. Monitor closely.'}`));
 
     // Trend chart data
-    const farG1322 = NDKSP_PREV.map((r,i)=>+((r.far-NDKSP_13APR[i].far)/NDKSP_13APR[i].far*100).toFixed(1));
-    const farG2229 = NDKSP.map((r,i)=>+((r.far-NDKSP_PREV[i].far)/NDKSP_PREV[i].far*100).toFixed(1));
-    const appG2229 = NDKSP.map((r,i)=>+((r.app-NDKSP_PREV[i].app)/NDKSP_PREV[i].app*100).toFixed(1));
+    const farG1322 = NDKSP_22APR.map((r,i)=>+((r.far-NDKSP_13APR[i].far)/NDKSP_13APR[i].far*100).toFixed(1));
+    const farG2229 = NDKSP_29APR.map((r,i)=>+((r.far-NDKSP_22APR[i].far)/NDKSP_22APR[i].far*100).toFixed(1));
+    const farG296m = NDKSP.map((r,i)=>+((r.far-NDKSP_29APR[i].far)/NDKSP_29APR[i].far*100).toFixed(1));
+    const appG2229 = NDKSP_29APR.map((r,i)=>+((r.app-NDKSP_22APR[i].app)/NDKSP_22APR[i].app*100).toFixed(1));
+    const appG296m = NDKSP.map((r,i)=>+((r.app-NDKSP_29APR[i].app)/NDKSP_29APR[i].app*100).toFixed(1));
     const tals = NDKSP.map(r=>r.t);
 
     // Risks
@@ -1204,15 +1860,15 @@ function renderInsights(){
     ];
 
     // Predictive
-    const farRate=(NDKSP_TOT.far-9414)/7; // per day
-    const appRate=(NDKSP_TOT.app-14374)/7;
+    const farRate=(NDKSP_TOT.far-NDKSP_29APR_TOT.far)/7; // per day (29Apr→6May=7 days)
+    const appRate=(NDKSP_TOT.app-NDKSP_29APR_TOT.app)/7;
     const predictRows=[
       ['Registered Farmers', NDKSP_TOT.far.toLocaleString(), (farRate>=0?'+':'')+farRate.toFixed(1)+'/day',
        '~'+(Math.round(NDKSP_TOT.far+farRate*30)).toLocaleString(), '~'+(Math.round(NDKSP_TOT.far+farRate*60)).toLocaleString(),
-       (NDKSP_TOT.far-9414)+' in 7 days (22→29 Apr)'],
+       (NDKSP_TOT.far-NDKSP_29APR_TOT.far)+' in 7 days (29Apr→6May)'],
       ['Applications', NDKSP_TOT.app.toLocaleString(), (appRate>=0?'+':'')+appRate.toFixed(1)+'/day',
        '~'+(Math.round(NDKSP_TOT.app+appRate*30)).toLocaleString(), '~'+(Math.round(NDKSP_TOT.app+appRate*60)).toLocaleString(),
-       (NDKSP_TOT.app-14374)+' in 7 days (22→29 Apr)'],
+       (NDKSP_TOT.app-NDKSP_29APR_TOT.app)+' in 7 days (29Apr→6May)'],
       ['Final Clearance (D9)', d9_29.toString(), sign(Math.round((d9_29-d9_22)/7))+'/day',
        '~'+Math.round(d9_29+(d9_29-d9_22)/7*30), '~'+Math.round(d9_29+(d9_29-d9_22)/7*60),
        sign(d9_29-d9_22)+' in 7 days'],
@@ -1223,63 +1879,66 @@ function renderInsights(){
 
   // ── SINGLE TALUKA insights ────────────────────────────────────────────────
   function buildTalukaInsights(ti){
-    const r29=NDKSP[ti], r22=NDKSP_PREV[ti], r13=NDKSP_13APR[ti];
-    const nd=NDKSY.find(x=>x.t===r29.t)||null;
+  ti=Math.max(0,Math.min(ti,NDKSP.length-1));
+  if(ti<0||ti>=NDKSP.length){return '<p style="color:var(--r2)">No data for selected taluka.</p>';}
+    const r6m=NDKSP[ti], r29=NDKSP_29APR[ti], r22=NDKSP_22APR[ti], r13=NDKSP_13APR[ti];
+    const r=r6m;
+    const nd=NDKSY.find(x=>x.t===r6m.t)||{d1:0,d2:0,d3:0,d4:0,d5:0,d6:0,d7:0,d8:0,d9:0,d10:0};
     const t=r29.t;
 
-    const fDiff=r29.far-r22.far; const aDiff=r29.app-r22.app;
-    const fDiff13=r22.far-r13.far; const aDiff13=r22.app-r13.app;
-    const psR=r29.ps_rate; const pyR=r29.pay_rate; const sc=r29.score;
-    const pendPS=r29.pend_ps; const pendPay=r29.pend_pay;
+    const fDiff=r6m.far-r29.far; const aDiff=r6m.app-r29.app;
+    const fDiff13=r22.far-r13.far; const aDiff13=r22.app-r13.app; // 13Apr→22Apr
+    const psR=r6m.ps_rate; const pyR=r6m.pay_rate; const sc=r6m.score;
+    const pendPS=r6m.pend_ps; const pendPay=r6m.pend_pay;
 
     let obs=[];
     // Enrollment
     obs.push(alertCard(fDiff>=0?'g':'r', fDiff>=0?'📈':'📉',
-      `${t} — Farmer Enrollment: ${sign(fDiff)} (22→29 Apr)`,
-      `Farmers: ${r13.far.toLocaleString()} (13 Apr) → ${r22.far.toLocaleString()} (22 Apr) → ${r29.far.toLocaleString()} (29 Apr). `+
-      `Applications: ${r13.app.toLocaleString()} → ${r22.app.toLocaleString()} → ${r29.app.toLocaleString()}.`));
+      `${t} — Farmer Enrollment: ${sign(fDiff)} (29 Apr→6 May)`,
+      `Farmers: ${r13.far.toLocaleString()} (13 Apr) → ${r22.far.toLocaleString()} (22 Apr) → ${r29.far.toLocaleString()} (29 Apr) → ${r6m.far.toLocaleString()} (6 May). `+
+      `Applications: ${r13.app.toLocaleString()} → ${r22.app.toLocaleString()} → ${r29.app.toLocaleString()} → ${r6m.app.toLocaleString()}.`));
     // PS & Payment
     obs.push(alertCard(pyR>0?'g':'r', pyR>0?'✅':'🔴',
       `${t} — Pre-Sanction: ${psR}% | Payment: ${pyR}%`,
-      `Pre-sanctioned: ${r29.ps.toLocaleString()} of ${r29.app.toLocaleString()} apps (${psR}%). `+
-      `Payments issued: ${r29.pay.toLocaleString()} (${pyR}%). `+
-      `Pending pre-sanction: ${pendPS.toLocaleString()}. Pending payment: ${pendPay.toLocaleString()}.`));
+      `Pre-sanctioned: ${r6m.ps.toLocaleString()} of ${r6m.app.toLocaleString()} apps (${psR}%). `+
+      `Payments issued: ${r6m.pay.toLocaleString()} (${pyR}%). `+
+      `Pending pre-sanction: ${pendPS.toLocaleString()}. Pending payment: ${pendPay.toLocaleString()}. Data: 6 May 2026.`));
     // Composite score
     const band=sc>=60?'High Performer':sc>=55?'Moderate':'Needs Attention';
     obs.push(alertCard(sc>=60?'g':sc>=55?'a':'r','📊',
       `${t} — Composite Score: ${sc} (${band})`,
-      `Score = PS Rate×0.6 + Pay Rate×0.4 = ${psR}×0.6 + ${pyR}×0.4 = ${sc}. `+
-      `Apps per farmer: ${r29.apf}. Farmers per village: ${r29.fpv} across ${r29.vil} villages.`));
+      `Score (6 May) = ${psR}×0.6 + ${pyR}×0.4 = ${sc}. `+
+      `Apps per farmer: ${r6m.apf}. Farmers per village: ${r6m.fpv} across ${r6m.vil} villages.`));
     // Pipeline (if data available)
     if(nd){
       obs.push(alertCard('b','🔄',
         `${t} — Pipeline: D3 ${nd.d3} · D6 ${nd.d6} · D8 ${nd.d8} · D9 ${nd.d9}`,
-        `Desk snapshot (29 Apr): D1=${nd.d1} D2=${nd.d2} D3=${nd.d3} D4=${nd.d4} D5=${nd.d5} D6=${nd.d6} D7=${nd.d7} D8=${nd.d8} D9=${nd.d9}. `+
+        `Desk snapshot (6 May): D1=${nd.d1} D2=${nd.d2} D3=${nd.d3} D4=${nd.d4} D5=${nd.d5} D6=${nd.d6} D7=${nd.d7} D8=${nd.d8} D9=${nd.d9} D10=${nd.d10||0}. `+
         `Final clearance (D9): ${nd.d9} applications.`));
     }
 
     let risks=[];
-    if(r29.pay===0) risks.push(alertCard('r','🔴',`${t} — Zero Payments`,
-      `No DBT payments issued yet in ${t}. ${r29.app.toLocaleString()} applications submitted, `+
-      `${r29.ps.toLocaleString()} pre-sanctioned, but 0 payments. Immediate pipeline escalation required.`));
-    else if(pyR<3) risks.push(alertCard('a','⚠️',`${t} — Payment Rate Below 3% (${pyR}%)`,
-      `Only ${r29.pay.toLocaleString()} of ${r29.app.toLocaleString()} applications paid (${pyR}%). `+
+    if(r6m.pay===0) risks.push(alertCard('r','🔴',`${t} — Zero Payments`,
+      `No DBT payments issued yet in ${t}. ${r6m.app.toLocaleString()} applications submitted, `+
+      `${r6m.ps.toLocaleString()} pre-sanctioned, but 0 payments. Immediate pipeline escalation required.`));
+    else if(pyR<3 && r6m.pay>0) risks.push(alertCard('a','⚠️',`${t} — Payment Rate Below 3% (${pyR}%)`,
+      `Only ${r6m.pay.toLocaleString()} of ${r6m.app.toLocaleString()} applications paid (${pyR}%). `+
       `${pendPay.toLocaleString()} applications pre-sanctioned but payment pending.`));
     if(pendPS>200) risks.push(alertCard('a','⚠️',`${t} — ${pendPS.toLocaleString()} Applications Pending Pre-Sanction`,
-      `${r29.app.toLocaleString()} total applications but only ${r29.ps.toLocaleString()} pre-sanctioned. `+
+      `${r6m.app.toLocaleString()} total applications but only ${r6m.ps.toLocaleString()} pre-sanctioned. `+
       `${pendPS.toLocaleString()} still pending (${(100-psR).toFixed(1)}%).`));
     if(nd && nd.d3<150) risks.push(alertCard('a','⚠️',`${t} — Low D3 Site Inspections (${nd.d3})`,
       `Asst. AO site inspections at D3: ${nd.d3}. With ${r29.app.toLocaleString()} applications pending, `+
       `field inspection throughput may need to be increased.`));
 
     const priorities=[
-      [r29.pay===0?'br':'ba', r29.pay===0?'P1 URGENT':'P2 HIGH',
+      [r29.pay===0?'br':'ba', r6m.pay===0?'P1 URGENT':'P2 HIGH',
        `${t}: Accelerate DBT Payments`,
-       r29.pay===0?'0 payments (critical)':r29.pay.toLocaleString()+' paid',
-       'Target: ≥'+Math.round(r29.ps*0.2).toLocaleString()+' payments',
+       r6m.pay===0?'0 payments (critical)':r6m.pay.toLocaleString()+' paid',
+       'Target: ≥'+Math.round(r6m.ps*0.2).toLocaleString()+' payments',
        'Sub-Div AO + Accounts Officer',
-       r29.pay===0?'Immediate':'14 days'],
-      [pendPS>200?'ba':'bb', pendPS>200?'P2 HIGH':'P3 MONITOR',
+       r6m.pay===0?'Immediate':'14 days'],
+      [pendPS>100?'ba':'bb', pendPS>100?'P2 HIGH':'P3 MONITOR',
        `${t}: Clear Pre-Sanction Backlog`,
        pendPS.toLocaleString()+' pending',
        'Target: 0 pending',
@@ -1288,20 +1947,22 @@ function renderInsights(){
     ];
 
     // Single-taluka trend: bar chart with 3 dates for this taluka
-    const trendLabels=['13 Apr','22 Apr','29 Apr'];
-    const trendFar=[r13.far,r22.far,r29.far];
-    const trendApp=[r13.app,r22.app,r29.app];
+    const trendLabels=['13 Apr','22 Apr','29 Apr','6 May'];
+    const trendFar=[r13.far,r22.far,r29.far,r6m.far];
+    const trendApp=[r13.app,r22.app,r29.app,r6m.app];
 
     return {obs, trendLabels, trendFar, trendApp, risks, priorities, t};
   }
 
   // ── RENDER ────────────────────────────────────────────────────────────────
   const box = document.getElementById('insights-content');
+  if(!box) return;
   let html='';
 
   if(isAll){
-    const d=buildDistrictInsights();
-    html+=`<div class="sec">Advanced Insights — District Level · 13 Apr · 22 Apr · 29 Apr 2026</div>`;
+    const _distData=buildDistrictInsights();
+    const d=_distData;
+    html+=`<div class="sec">Advanced Insights — District Level · 13 Apr · 22 Apr · 29 Apr · 6 May 2026</div>`;
 
     html+=`<div style="margin-bottom:16px">
       ${secDiv('🔍 Key Observations & Inferences')}
@@ -1325,7 +1986,7 @@ function renderInsights(){
     </div>`;
 
     html+=`<div style="margin-bottom:16px">
-      ${secDiv('🔮 Predictive Analysis (Based on 22→29 Apr Rate)')}
+      ${secDiv('🔮 Predictive Analysis (Based on 29 Apr→6 May Rate)')}
       <div class="card">
         <div class="ch"><div class="ct">🔮 Projected Milestones — If Current 7-Day Rate Continues</div>
         <div class="cs">Based on 22→29 Apr growth rate</div></div>
@@ -1375,7 +2036,7 @@ function renderInsights(){
     const ti=idx[0];
     const d=buildTalukaInsights(ti);
 
-    html+=`<div class="sec">Insights — ${d.t} Taluka · 13 Apr · 22 Apr · 29 Apr 2026</div>
+    html+=`<div class="sec">Insights — ${d.t} Taluka · 13 Apr · 22 Apr · 29 Apr · 6 May 2026</div>
     <div style="background:var(--g5);border-left:4px solid var(--g2);border-radius:var(--r);padding:9px 14px;margin-bottom:14px;font-size:11px;color:var(--g1);display:flex;align-items:center;gap:8px">
       <span style="font-size:16px">📍</span>
       <span>Showing insights for <strong>${d.t}</strong> taluka only. Select "All Talukas" for district-level analysis.</span>
@@ -1387,10 +2048,10 @@ function renderInsights(){
     </div>`;
 
     html+=`<div style="margin-bottom:16px">
-      ${secDiv('📊 '+d.t+' — Trend: Farmers & Applications (3 Dates)')}
+      ${secDiv('📊 '+d.t+' — Trend: Farmers & Applications (4 Dates)')}
       <div class="card">
-        <div class="ch"><div class="ct">📈 ${d.t} — Farmers & Applications: 13 Apr · 22 Apr · 29 Apr</div>
-        <div class="cs">Exact figures for ${d.t} taluka only</div></div>
+        <div class="ch"><div class="ct">📈 ${d.t} — Farmers & Applications: 13 Apr · 22 Apr · 29 Apr · 6 May</div>
+        <div class="cs">Exact figures for ${d.t} taluka · 13 Apr / 22 Apr / 29 Apr / 6 May</div></div>
         <div class="cb"><div class="cw" style="height:220px"><canvas id="ch-trend-farmers"></canvas></div></div>
       </div>
     </div>`;
@@ -1424,15 +2085,15 @@ function renderInsights(){
   if(isAll){
     const d=buildDistrictInsights();
     mk('ch-trend-farmers',{type:'bar',data:{labels:d.tals,datasets:[
-      {label:'Farmer Growth % (13\u219222 Apr)',data:d.farG1322,
+      {label:'Farmer Growth % (13→22 Apr)',data:d.farG1322,
         backgroundColor:d.farG1322.map(v=>v>5?'#1565C0CC':v>0?'#1976D2CC':'#C62828CC'),borderRadius:4},
-      {label:'Farmer Growth % (22\u219229 Apr)',data:d.farG2229,
+      {label:'Farmer Growth % (22→29 Apr)',data:d.farG2229,
         backgroundColor:d.farG2229.map(v=>v>5?'#2E7D32CC':v>0?'#43A047CC':'#C62828CC'),borderRadius:4},
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{
       legend:{position:'top',labels:{boxWidth:12,padding:8,font:{family:tnr,size:10}}},
       datalabels:{display:true,anchor:'end',align:'end',font:{family:tnr,size:9,weight:'bold'},
-        color:'#1A202C',formatter:v=>v.toFixed(1)+'%'},
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toFixed(1)+'%'}}
+        color:'#1A202C',formatter:v=>(v!=null&&!isNaN(+v)?(+v).toFixed(1):'')+'%'},
+      tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0)).toFixed(1)+'%'}}
     },scales:{
       x:{grid:{display:false},ticks:{font:{family:tnr,size:10}}},
       y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:10},callback:v=>v+'%'}}
@@ -1441,19 +2102,20 @@ function renderInsights(){
     mk('ch-trend-pipeline',{type:'bar',data:{
       labels:['लेखाअधिकारी (D8)','उपविभागीय कृषी अधिकारी (D9)'],
       datasets:[
-        {label:'13 Apr',data:[NDKSY_13APR.d8,NDKSY_13APR.d9],backgroundColor:'#F57F1777',borderRadius:4},
-        {label:'22 Apr',data:[NDKSY_TOT_PREV.d8,NDKSY_TOT_PREV.d9],backgroundColor:'#1565C088',borderRadius:4},
-        {label:'29 Apr',data:[NDKSY_TOT.d8,NDKSY_TOT.d9],backgroundColor:'#2E7D32BB',borderRadius:4},
+        {label:'13 Apr',data:[NDKSY_13APR.d8,NDKSY_13APR.d9],backgroundColor:'#4E79A766',borderRadius:4},
+        {label:'22 Apr',data:[NDKSY_22APR.d8,NDKSY_22APR.d9],backgroundColor:'#F28E2B88',borderRadius:4},
+        {label:'29 Apr',data:[NDKSY_TOT_PREV.d8,NDKSY_TOT_PREV.d9],backgroundColor:'#59A14FBB',borderRadius:4},
+        {label:'6 May', data:[NDKSY_TOT.d8,NDKSY_TOT.d9],backgroundColor:'#B07AA1BB',borderRadius:4},
       ]
     },options:{responsive:true,maintainAspectRatio:false,plugins:{
       legend:{position:'top',labels:{boxWidth:12,padding:8,font:{family:tnr,size:10}}},
       datalabels:{display:ctx=>ctx.datasetIndex===2,anchor:'end',align:'end',
-        font:{family:tnr,size:10,weight:'bold'},color:'#1A202C',formatter:v=>v.toLocaleString()},
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+        font:{family:tnr,size:10,weight:'bold'},color:'#1A202C',formatter:v=>(v!=null&&!isNaN(+v)?(+v).toLocaleString():"")},
+      tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}
     },layout:{padding:{top:20}}}});
 
-    const farG2229=NDKSP.map((r,i)=>+((r.far-NDKSP_PREV[i].far)/NDKSP_PREV[i].far*100).toFixed(1));
-    const appG2229=NDKSP.map((r,i)=>+((r.app-NDKSP_PREV[i].app)/NDKSP_PREV[i].app*100).toFixed(1));
+    const farG2229=NDKSP.map((r,i)=>{const p=NDKSP_29APR[i];return p&&p.far?+((r.far-p.far)/p.far*100).toFixed(1):0;});
+    const appG2229=NDKSP.map((r,i)=>{const p=NDKSP_29APR[i];return p&&p.app?+((r.app-p.app)/p.app*100).toFixed(1):0;});
     mk('ch-insight-radar',{type:'radar',data:{
       labels:NDKSP.map(r=>r.t),
       datasets:[
@@ -1474,14 +2136,14 @@ function renderInsights(){
     const d=buildTalukaInsights(ti);
     mk('ch-trend-farmers',{type:'bar',data:{labels:d.trendLabels,datasets:[
       {label:'Farmers',data:d.trendFar,
-        backgroundColor:['#90CAF9CC','#42A5F5CC','#1565C0DD'],borderColor:'#0D47A1',borderWidth:1.5,borderRadius:4},
+        backgroundColor:['#4E79A755','#4E79A788','#4E79A7BB','#4E79A7EE'],borderColor:'#2C5F8A',borderWidth:1.5,borderRadius:4},
       {label:'Apps',data:d.trendApp,
-        backgroundColor:['#A5D6A7CC','#66BB6ACC','#2E7D32DD'],borderColor:'#1B5E20',borderWidth:1.5,borderRadius:4},
+        backgroundColor:['#59A14F55','#59A14F88','#59A14FBB','#59A14FEE'],borderColor:'#3E7036',borderWidth:1.5,borderRadius:4},
     ]},options:{responsive:true,maintainAspectRatio:false,plugins:{
       legend:{position:'top',labels:{boxWidth:12,padding:12,font:{family:tnr,size:11}}},
       datalabels:{display:true,anchor:'end',align:'top',font:{family:tnr,size:11,weight:'bold'},
-        color:'#1A202C',formatter:v=>v.toLocaleString()},
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+        color:'#1A202C',formatter:v=>(v!=null&&!isNaN(+v)?(+v).toLocaleString():"")},
+      tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}
     },scales:{
       x:{grid:{display:false},ticks:{font:{family:tnr,size:11}}},
       y:{grid:{color:'#F0F4F8'},ticks:{font:{family:tnr,size:10},callback:v=>v.toLocaleString()},
@@ -1494,9 +2156,9 @@ function renderOverview(){
   const idx=getFIdx();
   const tals=idx.map(i=>NDKSP[i].t);
   mk('ch-appbar',{type:'bar',data:{labels:tals,datasets:[
-    {label:'Applications',   data:idx.map(i=>NDKSP[i].app),backgroundColor:'#1565C0CC',borderColor:'#0D47A1',borderWidth:1,borderRadius:4},
-    {label:'Pre-Sanctioned', data:idx.map(i=>NDKSP[i].ps), backgroundColor:'#2E7D32CC',borderColor:'#1B5E20',borderWidth:1,borderRadius:4},
-    {label:'Payments Issued',data:idx.map(i=>NDKSP[i].pay),backgroundColor:'#F57F17CC',borderColor:'#E65100',borderWidth:1,borderRadius:4},
+    {label:'Applications',   data:idx.map(i=>NDKSP[i].app),backgroundColor:'#1A4FAECC',borderColor:'#1A4FAE',borderWidth:1.5,borderRadius:4},
+    {label:'Pre-Sanctioned', data:idx.map(i=>NDKSP[i].ps), backgroundColor:'#1A8A52CC',borderColor:'#0D6B3F',borderWidth:1.5,borderRadius:4},
+    {label:'Payments Issued',data:idx.map(i=>NDKSP[i].pay),backgroundColor:'#D35400CC',borderColor:'#B7410E',borderWidth:1.5,borderRadius:4},
   ]},options:{
     responsive:true,maintainAspectRatio:false,
     plugins:{
@@ -1507,22 +2169,22 @@ function renderOverview(){
         color:'#1A202C',
         rotation:0,
         offset:4,
-        formatter:(v)=>v>0?v.toLocaleString():''
+        formatter:(v)=>(v!=null&&v>0?v.toLocaleString():"")
       },
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}
+      tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}
     },
     scales:{
       x:{grid:{display:false},ticks:{font:{family:"'Times New Roman',Times,serif",size:10}}},
-      y:{grid:{color:'#F0F4F8'},ticks:{font:{family:"'Times New Roman',Times,serif",size:10},callback:v=>v.toLocaleString()},suggestedMax:4500}
+      y:{grid:{color:'#F0F4F8'},ticks:{font:{family:"'Times New Roman',Times,serif",size:10},callback:v=>v.toLocaleString()},suggestedMax:Math.max(...idx.map(i=>NDKSP[i].app||0))*1.22}
     },
     layout:{padding:{top:22}}
   }});
   mk('ch-social',{type:'doughnut',data:{
-    labels:['SC (895)','ST (227)','Others (13,480)'],
+    labels:['SC (917)','ST (230)','Others (13,637)'],
     datasets:[{
-      data:[895,227,13480],
-      backgroundColor:['#F44336','#FF9800','#4CAF50'],
-      borderColor:['#B71C1C','#E65100','#1B5E20'],
+      data:[917,230,13637],
+      backgroundColor:['#E15759','#F28E2B','#59A14F'],
+      borderColor:['#C0393B','#C47210','#3E7036'],
       borderWidth:2,
       hoverOffset:10,
       hoverBorderWidth:3
@@ -1535,15 +2197,15 @@ function renderOverview(){
         color:'#1A202C'
       }},
       tooltip:{callbacks:{
-        label:ctx=>' '+ctx.label+': '+ctx.parsed.toLocaleString()+
-          ' ('+((ctx.parsed/12868)*100).toFixed(1)+'%)'
+        label:ctx=>' '+(ctx.label||'')+': '+(ctx.parsed!=null?ctx.parsed:0).toLocaleString()+
+          ' ('+(((ctx.parsed||0)/(CAT_TOT.f||1))*100).toFixed(1)+'%)'
       }}
     }}});
   mk('ch-rates',{type:'bar',data:{labels:tals,datasets:[
     {label:'Pre-Sanction Rate %',data:idx.map(i=>NDKSP[i].ps_rate),
-      backgroundColor:'#00838FCC',borderColor:'#006064',borderWidth:1,borderRadius:4},
+      backgroundColor:'#4E79A7CC',borderColor:'#2C5F8A',borderWidth:1.5,borderRadius:4},
     {label:'Payment Rate %',data:idx.map(i=>NDKSP[i].pay_rate),
-      backgroundColor:'#FF6F00CC',borderColor:'#E65100',borderWidth:1,borderRadius:4},
+      backgroundColor:'#D35400CC',borderColor:'#B7410E',borderWidth:1.5,borderRadius:4},
   ]},options:{
     responsive:true,maintainAspectRatio:false,
     plugins:{
@@ -1552,9 +2214,9 @@ function renderOverview(){
         display:true,anchor:'end',align:'end',
         font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},
         color:'#1A202C',
-        formatter:(v)=>v>0?v.toFixed(1)+'%':''
+        formatter:(v)=>(v!=null&&v>0&&!isNaN(+v)?(+v).toFixed(1)+'%':'')
       },
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toFixed(2)+'%'}}
+      tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0)).toFixed(2)+'%'}}
     },
     scales:{
       x:{grid:{display:false},ticks:{font:{family:"'Times New Roman',Times,serif",size:10}}},
@@ -1568,7 +2230,7 @@ function renderOverview(){
 function renderPipeline(){
   const vals=DESK_KEYS.map(k=>NDKSY_TOT[k]);
   const maxV=Math.max(...vals);
-  const isBN=vals.map((v,i)=>i>0&&vals[i-1]>v&&(vals[i-1]-v)/vals[i-1]>0.5);
+  const isBN=vals.map((v,i)=>i>0&&vals[i-1]>0&&vals[i-1]>v&&(vals[i-1]-v)/vals[i-1]>0.5);
   let fhtml='';
   vals.forEach((v,i)=>{
     const pct=Math.max(2,(v/maxV)*100);
@@ -1582,15 +2244,15 @@ function renderPipeline(){
         <span class="fval" style="color:${col}">${v.toLocaleString()}</span>
       </div>${dTxt}</div></div>`;
   });
-  document.getElementById('funnel-div').innerHTML=`<div class="funnel">${fhtml}</div>`;
+  (document.getElementById('funnel-div')||{innerHTML:''}).innerHTML=`<div class="funnel">${fhtml}</div>`;
 
   // Horizontal bar: all 9 desks fully readable, D7 small value clearly visible
   const tnrPipe = "'Times New Roman',Times,serif";
   mk('ch-pipe-bar',{type:'bar',data:{labels:DESK_FULL,datasets:[{
     label:'Applications at Desk Stage',
     data:vals,
-    backgroundColor:vals.map((v,i)=>isBN[i]?'#C62828CC':'#1565C0CC'),
-    borderColor:vals.map((v,i)=>isBN[i]?'#B71C1C':'#0D47A1'),
+    backgroundColor:vals.map((v,i)=>isBN[i]?'#C62828DD':'#2E6FD9DD'),
+    borderColor:vals.map((v,i)=>isBN[i]?'#9E1C1C':'#1A4D9E'),
     borderWidth:1.5,
     borderRadius:4,
     barThickness:32
@@ -1604,12 +2266,12 @@ function renderPipeline(){
         anchor:'end',align:'right',
         color:ctx=>isBN[ctx.dataIndex]?'#B71C1C':'#0D47A1',
         font:{family:tnrPipe,size:11,weight:'bold'},
-        formatter:(v)=>v.toLocaleString(),
+        formatter:(v)=>(v!=null&&!isNaN(+v)?(+v).toLocaleString():""),
         padding:{left:4}
       },
       tooltip:{callbacks:{
-        title:ctx=>DESK_FULL[ctx[0].dataIndex],
-        label:ctx=>' Count: '+ctx.parsed.x.toLocaleString()
+        title:ctx=>(ctx&&ctx[0]?DESK_FULL[ctx[0].dataIndex]||"":""),
+        label:ctx=>' Count: '+(ctx.parsed&&ctx.parsed.x!=null?ctx.parsed.x:0).toLocaleString()
       }}
     },
     scales:{
@@ -1632,11 +2294,12 @@ function renderPipeline(){
   }});
 
   let dtH=`<table class="dt"><thead><tr><th>Transition</th><th>From Desk</th><th>Count From</th><th>Count To</th><th>Net Change</th><th>Drop %</th><th>Severity</th></tr></thead><tbody>`;
-  for(let i=1;i<9;i++){
+  for(let i=1;i<DESK_KEYS.length;i++){
     const fr=vals[i-1],to=vals[i],diff=fr-to;
     const dpct=fr>0?(diff/fr*100).toFixed(1):0;
     const inc=diff<0;
-    const sev=!inc&&parseFloat(dpct)>70?['br','CRITICAL']:!inc&&parseFloat(dpct)>30?['ba','HIGH']:inc?['bg','INCREASE']:['bb','NORMAL'];
+    const dpctF=parseFloat(dpct)||0;
+    const sev=inc?['bg','INCREASE']:dpctF>70?['br','CRITICAL']:dpctF>30?['ba','HIGH']:['bb','NORMAL'];
     dtH+=`<tr><td style="font-size:10px">${DESK_SHORT[i-1]}→${DESK_SHORT[i]}</td>
       <td style="font-size:9.5px">${DESK_FULL[i-1]}</td>
       <td class="num">${fr.toLocaleString()}</td><td class="num">${to.toLocaleString()}</td>
@@ -1644,7 +2307,7 @@ function renderPipeline(){
       <td class="num" style="font-weight:700;color:${inc?G2:parseFloat(dpct)>50?R2:A1}">${inc?'—':dpct+'%'}</td>
       <td><span class="badge ${sev[0]}">${sev[1]}</span></td></tr>`;
   }
-  document.getElementById('dropoff-tbl').innerHTML=dtH+'</tbody></table>';
+  (document.getElementById('dropoff-tbl')||{innerHTML:''}).innerHTML=dtH+'</tbody></table>';
 
   let mH=`<thead><tr><th>Taluka</th>${DESK_SHORT.map((d,i)=>`<th title="${DESK_FULL[i]}">${d}</th>`).join('')}</tr></thead><tbody>`;
   NDKSY.forEach(row=>{
@@ -1654,13 +2317,14 @@ function renderPipeline(){
   });
   const totCells=DESK_KEYS.map(k=>`<td class="num" style="font-weight:700;color:var(--g1)">${NDKSY_TOT[k].toLocaleString()}</td>`).join('');
   mH+=`<tr style="background:var(--g5)"><td style="font-weight:700">DISTRICT TOTAL</td>${totCells}</tr>`;
-  document.getElementById('pipe-matrix').innerHTML=mH+'</tbody>';
+  (document.getElementById('pipe-matrix')||{innerHTML:''}).innerHTML=mH+'</tbody>';
 }
 
 function renderTaluka(){
+  // Scorecard always shows ALL talukas
   const sorted=[...NDKSP].sort((a,b)=>b.score-a.score);
-  const rankColors=['#FFD700CC','#C0C0C0CC','#CD7F32CC','#42A5F5CC','#66BB6ACC','#FF7043CC','#AB47BCCC','#26C6DACC'];
-  const rankBorders=['#B8860B','#A0A0A0','#8B5A00','#1565C0','#2E7D32','#BF360C','#6A1B9A','#00838F'];
+  const rankColors=['#F0A500EE','#9EA6B0EE','#B06030EE','#2E6FD9EE','#21A87BEE','#E8642AEE','#7B5EA7EE','#1B8DC4EE'];
+  const rankBorders=['#B7950B','#878F96','#A04000','#1A4FAE','#0D6B3F','#A93226','#4A235A','#0E6655'];
   mk('ch-rank',{type:'bar',data:{labels:sorted.map(r=>r.t),datasets:[{
     label:'Composite Score (PS%×0.6 + Pay%×0.4)',
     data:sorted.map(r=>r.score),
@@ -1671,7 +2335,7 @@ function renderTaluka(){
     datalabels:{anchor:'end',align:'end',
       font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
       color:'#1A202C',
-      formatter:v=>v.toFixed(2)}
+      formatter:v=>(v!=null&&!isNaN(+v)?(+v).toFixed(2):'')}
   }]},options:{
     responsive:true,maintainAspectRatio:false,
     plugins:{
@@ -1680,11 +2344,11 @@ function renderTaluka(){
         display:true,anchor:'end',align:'end',
         font:{family:"'Times New Roman',Times,serif",size:11,weight:'bold'},
         color:'#1A202C',
-        formatter:v=>v.toFixed(2)
+        formatter:v=>(v!=null&&!isNaN(+v)?(+v).toFixed(2):'')
       },
       tooltip:{callbacks:{
-        label:ctx=>{const r=sorted[ctx.dataIndex];
-          return[' Score: '+ctx.parsed.y.toFixed(2),' PS Rate: '+r.ps_rate+'%',' Pay Rate: '+r.pay_rate+'%'];}
+        label:ctx=>{const r=sorted[ctx.dataIndex]||{};
+          return[' Score: '+(+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0)).toFixed(2),' PS Rate: '+(r.ps_rate||0)+'%',' Pay Rate: '+(r.pay_rate||0)+'%'];}
       }}
     },
     scales:{
@@ -1699,7 +2363,7 @@ function renderTaluka(){
     labels:['Pre-San%','Payment%','Farmers÷100','Score'],
     datasets:top3.map((r,ri)=>{
       return{label:r.t+' (29 Apr)',data:[r.ps_rate,r.pay_rate,r.far/100,r.score],
-        fill:true,borderColor:[G2,B1,A1][ri],backgroundColor:[G2+'22',B1+'22',A1+'22'][ri],
+        fill:true,borderColor:['#2E6FD9','#21A87B','#E8642A'][ri],backgroundColor:['#2E6FD922','#21A87B22','#E8642A22'][ri],
         borderWidth:2,pointRadius:3};
     })
   },options:{responsive:true,maintainAspectRatio:false,
@@ -1747,7 +2411,7 @@ function renderTaluka(){
     <td style="font-weight:700;color:${G2}">${NDKSP_TOT.score}</td>
     <td><span class="badge bg">District</span></td>
   </tr>`;
-  document.getElementById('taluka-tbl').innerHTML=tH+'</tbody>';
+  (document.getElementById('taluka-tbl')||{innerHTML:''}).innerHTML=tH+'</tbody>';
 }
 
 function renderActivity(){
@@ -1768,7 +2432,7 @@ function renderActivity(){
   }
   const actLabelsWrapped = actLabels.map(n => wrapLabel(n, 32));
   mk('ch-act',{type:'bar',data:{labels:actLabelsWrapped,
-    datasets:[{label:'Farmers',data:CAT.map(r=>r.f),backgroundColor:T1+'BB',borderRadius:3}]},
+    datasets:[{label:'Farmers',data:CAT.map(r=>r.f),backgroundColor:'#3D7FBFCC',borderRadius:3}]},
   options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
     plugins:{
       legend:{display:false},
@@ -1776,11 +2440,11 @@ function renderActivity(){
         display:true,anchor:'end',align:'end',
         font:{family:"'Times New Roman',Times,serif",size:9,weight:'bold'},
         color:'#1A202C',
-        formatter:(v)=>v.toLocaleString()
+        formatter:(v)=>(v!=null&&!isNaN(+v)?(+v).toLocaleString():"")
       },
       tooltip:{callbacks:{
-        title:ctx=>CAT[ctx[0].dataIndex].n,
-        label:ctx=>' Farmers: '+ctx.parsed.x.toLocaleString()+' | Apps: '+CAT[ctx.dataIndex].a.toLocaleString()
+        title:ctx=>(ctx&&ctx[0]&&CAT[ctx[0].dataIndex]?CAT[ctx[0].dataIndex].n:""),
+        label:ctx=>' Farmers: '+(ctx.parsed&&ctx.parsed.x!=null?ctx.parsed.x:0).toLocaleString()+' | Apps: '+(CAT[ctx.dataIndex]&&CAT[ctx.dataIndex].a!=null?CAT[ctx.dataIndex].a:0).toLocaleString()
       }}
     },
     scales:{
@@ -1798,11 +2462,11 @@ function renderActivity(){
   mk('ch-inc',{type:'bar',data:{
     labels:top10.map(r=>r.n.length>24?r.n.slice(0,24)+'…':r.n),
     datasets:[
-      {label:'SC', data:top10.map(r=>r.sc), backgroundColor:B1+'BB',borderRadius:0},
-      {label:'ST', data:top10.map(r=>r.st), backgroundColor:PU+'BB',borderRadius:0},
-      {label:'Others',data:top10.map(r=>r.oth),backgroundColor:G3+'88',borderRadius:[0,0,3,3]},
+      {label:'SC', data:top10.map(r=>r.sc), backgroundColor:'#E15759CC',borderRadius:0},
+      {label:'ST', data:top10.map(r=>r.st), backgroundColor:'#F28E2BCC',borderRadius:0},
+      {label:'Others',data:top10.map(r=>r.oth),backgroundColor:'#59A14F88',borderRadius:[0,0,3,3]},
     ]},options:{...bOpts(true),plugins:{...bOpts(true).plugins,datalabels:{display:false},
-      tooltip:{callbacks:{label:ctx=>' '+ctx.dataset.label+': '+ctx.parsed.y.toLocaleString()}}}}});
+      tooltip:{callbacks:{label:ctx=>' '+(ctx.dataset&&ctx.dataset.label||'')+': '+(ctx.parsed&&ctx.parsed.y!=null?ctx.parsed.y:0).toLocaleString()}}}}});
 
   let aH=`<thead><tr><th>#</th><th>Activity Name</th><th>Farmers</th><th>Applications</th>
     <th>SC</th><th>ST</th><th>Others</th><th>SC+ST Total</th><th>SC+ST %</th><th>Apps/Farmer</th>
@@ -1831,10 +2495,15 @@ function renderActivity(){
     <td><span class="badge bb">${+(CAT_TOT.scst/CAT_TOT.f*100).toFixed(2)}%</span></td>
     <td class="num" style="font-weight:700">${+(CAT_TOT.a/CAT_TOT.f).toFixed(2)}</td>
   </tr>`;
-  document.getElementById('act-tbl').innerHTML=aH+'</tbody>';
+  (document.getElementById('act-tbl')||{innerHTML:''}).innerHTML=aH+'</tbody>';
 }
 
-document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();});
+
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof Chart==='undefined') return;
+  try{updateKPIs();}catch(e){}
+  showPage('overview');
+});
 
 // ═══════════════════════════════════════════════════════════
 // MOBILE INTERACTIVITY — iOS & Android
@@ -1843,7 +2512,7 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
 (function() {
 
   // ── 1. Swipe-left / swipe-right to navigate tabs ──────────────────────────
-  var PAGES = ['overview','pipeline','taluka','activity','story','compare','insights'];
+  var PAGES = ['overview','pipeline','taluka','activity','compare','insights'];
   var touchStartX = 0, touchStartY = 0, touchStartT = 0;
 
   document.addEventListener('touchstart', function(e) {
@@ -1882,7 +2551,7 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
     // Scroll the nav tab into horizontal view smoothly
     setTimeout(function() {
       var tab = document.getElementById('tab-' + name);
-      if (tab) {
+      if (tab && typeof tab.scrollIntoView === 'function') {
         tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }
     }, 60);
@@ -1892,7 +2561,7 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
   document.querySelectorAll('.fb').forEach(function(btn) {
     btn.addEventListener('click', function() {
       setTimeout(function() {
-        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        if (typeof btn.scrollIntoView === 'function') btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       }, 50);
     });
   });
@@ -1903,16 +2572,16 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
     var ro = new ResizeObserver(function() {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function() {
-        // Destroy and re-render charts for the current active page
         var ap = document.querySelector('.nt.active');
         if (ap) {
           var name = ap.id.replace('tab-', '');
-          renderPage(name);
+          try{ renderPage(name); }catch(e){}
         }
-      }, 200);
+      }, 250);
     });
-    var pageEl = document.getElementById('page-overview');
-    if (pageEl) ro.observe(pageEl);
+    // Observe the main content area, not just overview page
+    var mainEl = document.querySelector('.page.active') || document.getElementById('page-overview');
+    if (mainEl) ro.observe(mainEl.parentElement || mainEl);
   }
 
   // ── 5. Orientation change — redraw charts after resize settles ─────────────
@@ -1921,9 +2590,9 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
       var ap = document.querySelector('.nt.active');
       if (ap) {
         var name = ap.id.replace('tab-', '');
-        renderPage(name);
+        try{ renderPage(name); }catch(e){}
       }
-    }, 350);
+    }, 500);
   });
 
   // ── 6. Table row tap highlight (touch devices only) ───────────────────────
@@ -1988,273 +2657,5 @@ document.addEventListener('DOMContentLoaded',()=>{updateKPIs();renderOverview();
 
 
 </script>
-
-<!-- PAGE 7: COMPARISON — 13 Apr · 22 Apr · 29 Apr 2026 -->
-<div class="page" id="page-compare">
-  <div class="sec" id="cmp-sec-title">Three-Point Comparison — 13 April · 22 April · 29 April 2026 · NDKSP 2 DBT</div>
-
-  <!-- KPI Overview Strip -->
-  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(165px,1fr));margin-bottom:14px">
-    <div class="kcard g"><span class="kc-icon">🧑‍🌾</span><div class="kc-lbl">Farmers</div><div class="kc-val" id="cmp-kpi-far" style="font-size:18px">9,546</div><div class="kc-sub" id="cmp-kpi-far-sub">9,069 → 9,414 → 9,546</div><span class="flag fg" id="cmp-kpi-far-flag">▲ 22→29: +132</span></div>
-    <div class="kcard b"><span class="kc-icon">📋</span><div class="kc-lbl">Apps</div><div class="kc-val" id="cmp-kpi-app" style="font-size:18px">14,602</div><div class="kc-sub" id="cmp-kpi-app-sub">13,647 → 14,374 → 14,602</div><span class="flag fg" id="cmp-kpi-app-flag">▲ 22→29: +228</span></div>
-    <div class="kcard g"><span class="kc-icon">✅</span><div class="kc-lbl">D1 Farmer Verif.</div><div class="kc-val" style="font-size:18px">193</div><div class="kc-sub">99 → 600 → 193</div><span class="flag fr">▼ 22→29: −407</span></div>
-    <div class="kcard g"><span class="kc-icon">💸</span><div class="kc-lbl">Final Clearance (D9)</div><div class="kc-val" style="font-size:18px">283</div><div class="kc-sub">121 → 191 → 283</div><span class="flag fg">▲ 22→29: +92</span></div>
-    <div class="kcard b"><span class="kc-icon">🏦</span><div class="kc-lbl">Accounts Officer (D8)</div><div class="kc-val" style="font-size:18px">307</div><div class="kc-sub">273 → 408 → 307</div><span class="flag fr">▼ 22→29: −101</span></div>
-    <div class="kcard a"><span class="kc-icon">📉</span><div class="kc-lbl">Spot Check D5</div><div class="kc-val" style="font-size:18px">140</div><div class="kc-sub">157 → 113 → 140</div><span class="flag fg">▲ 22→29: +27</span></div>
-    <div class="kcard b"><span class="kc-icon">🌊</span><div class="kc-lbl">TAO Pre-San (D4)</div><div class="kc-val" style="font-size:18px">273</div><div class="kc-sub">351 → 356 → 273</div><span class="flag fr">▼ 22→29: −83</span></div>
-  </div>
-
-  <!-- Taluka Farmers & Apps Chart -->
-  <div class="sec" id="cmp-chart-sec">Taluka-wise Farmer &amp; Applications — All Three Dates</div>
-  <div class="card" style="margin-bottom:14px">
-    <div class="ch">
-      <div class="ct" id="cmp-chart-title">📊 Farmers &amp; Apps — 13 Apr · 22 Apr · 29 Apr (All 8 Talukas)</div>
-      <div class="cs">Grouped by date · Blue = Farmers · Green = Apps (= Applications Submitted)</div>
-    </div>
-    <div class="cb">
-      <div style="font-size:10px;color:var(--tx3);font-style:italic;margin-bottom:6px;padding:0 2px">
-        ℹ️ <strong>Apps = Applications Submitted</strong> &nbsp;·&nbsp; Bars grouped by date: 13 Apr · 22 Apr · 29 Apr
-      </div>
-      <div class="cw" style="height:300px"><canvas id="ch-compare-bar"></canvas></div>
-    </div>
-  </div>
-
-  <!-- Taluka Comparison Table -->
-  <div class="card" style="margin-bottom:14px">
-    <div class="ch">
-      <div class="ct" id="cmp-table-title">📋 Taluka-wise Comparison — 13 Apr · 22 Apr · 29 Apr</div>
-      <div class="cs">Apps = Applications Submitted · Δ and % = 22 Apr → 29 Apr · ▲ Improvement · ▼ Decline</div>
-    </div>
-    <div class="cb" style="padding:0">
-      <div class="tw">
-        <table class="dt">
-          <thead><tr>
-            <th>Taluka</th>
-            <th>Farmers 13 Apr</th><th>Farmers 22 Apr</th><th>Farmers 29 Apr</th>
-            <th>Farmer Δ</th><th>Farmer %</th>
-            <th>Apps 13 Apr</th><th>Apps 22 Apr</th><th>Apps 29 Apr</th>
-            <th>App Δ</th><th>App %</th>
-            <th>Status</th>
-          </tr></thead>
-          <tbody>
-            <tr class="cmp-row" data-taluka="Dharashiv">
-              <td style="font-weight:600">Dharashiv</td>
-              <td class="num">2,687</td><td class="num">2,793</td><td class="num">2,833</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+40</td>
-              <td><span class="badge bg">▲ +1.4%</span></td>
-              <td class="num">3,723</td><td class="num">3,905</td><td class="num">3,965</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+60</td>
-              <td><span class="badge bg">▲ +1.5%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-row" data-taluka="Kalamb">
-              <td style="font-weight:600">Kalamb</td>
-              <td class="num">2,130</td><td class="num">2,199</td><td class="num">2,221</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+22</td>
-              <td><span class="badge bg">▲ +1.0%</span></td>
-              <td class="num">2,921</td><td class="num">3,041</td><td class="num">3,079</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+38</td>
-              <td><span class="badge bg">▲ +1.2%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-row" data-taluka="Tuljapur">
-              <td style="font-weight:600">Tuljapur</td>
-              <td class="num">1,049</td><td class="num">1,107</td><td class="num">1,125</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+18</td>
-              <td><span class="badge bg">▲ +1.6%</span></td>
-              <td class="num">1,937</td><td class="num">2,134</td><td class="num">2,175</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+41</td>
-              <td><span class="badge bg">▲ +1.9%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-row" data-taluka="Bhum">
-              <td style="font-weight:600">Bhum</td>
-              <td class="num">1,004</td><td class="num">1,037</td><td class="num">1,052</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+15</td>
-              <td><span class="badge bg">▲ +1.4%</span></td>
-              <td class="num">1,641</td><td class="num">1,698</td><td class="num">1,726</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+28</td>
-              <td><span class="badge bg">▲ +1.6%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-row" data-taluka="Omerga">
-              <td style="font-weight:600">Omerga</td>
-              <td class="num">951</td><td class="num">985</td><td class="num">994</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+9</td>
-              <td><span class="badge bg">▲ +0.9%</span></td>
-              <td class="num">1,472</td><td class="num">1,556</td><td class="num">1,576</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+20</td>
-              <td><span class="badge bg">▲ +1.3%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-row" data-taluka="Paranda">
-              <td style="font-weight:600">Paranda</td>
-              <td class="num">581</td><td class="num">602</td><td class="num">625</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+23</td>
-              <td><span class="badge bg">▲ +3.8%</span></td>
-              <td class="num">934</td><td class="num">977</td><td class="num">1,007</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+30</td>
-              <td><span class="badge bg">▲ +3.1%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-row" data-taluka="Washi">
-              <td style="font-weight:600">Washi</td>
-              <td class="num">445</td><td class="num">460</td><td class="num">463</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+3</td>
-              <td><span class="badge bg">▲ +0.7%</span></td>
-              <td class="num">661</td><td class="num">690</td><td class="num">696</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+6</td>
-              <td><span class="badge bg">▲ +0.9%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-row" data-taluka="Lohara">
-              <td style="font-weight:600">Lohara</td>
-              <td class="num">222</td><td class="num">231</td><td class="num">233</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+2</td>
-              <td><span class="badge bg">▲ +0.9%</span></td>
-              <td class="num">358</td><td class="num">373</td><td class="num">378</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+5</td>
-              <td><span class="badge bg">▲ +1.3%</span></td>
-              <td><span class="badge bg">✅ Improved</span></td>
-            </tr>
-            <tr class="cmp-total-row" style="background:var(--g5)">
-              <td style="font-weight:700">DISTRICT TOTAL</td>
-              <td class="num" style="font-weight:700">9,069</td>
-              <td class="num" style="font-weight:700">9,414</td>
-              <td class="num" style="font-weight:700">9,546</td>
-              <td class="num" style="color:#2E7D32;font-weight:800">+132</td>
-              <td><span class="badge bg">▲ +1.4%</span></td>
-              <td class="num" style="font-weight:700">13,647</td>
-              <td class="num" style="font-weight:700">14,374</td>
-              <td class="num" style="font-weight:700">14,602</td>
-              <td class="num" style="color:#2E7D32;font-weight:800">+228</td>
-              <td><span class="badge bg">▲ +1.6%</span></td>
-              <td><span class="badge bg">✅ All Improved</span></td>
-            </tr>          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- NDKSY Pipeline Chart -->
-  <div class="sec">NDKSY Pipeline Stage-wise — All Three Dates (District Level)</div>
-  <div class="card" style="margin-bottom:14px">
-    <div class="ch">
-      <div class="ct">🔄 NDKSY Pipeline — 13 Apr · 22 Apr · 29 Apr (All 9 Desks)</div>
-      <div class="cs">District totals · D1–D9 · Hover bar for full desk name · Green = 29 Apr ↑ vs 22 Apr · Red = ↓</div>
-    </div>
-    <div class="cb"><div class="cw" style="height:400px"><canvas id="ch-compare-pipeline"></canvas></div></div>
-  </div>
-
-  <!-- NDKSY Pipeline Table -->
-  <div class="card">
-    <div class="ch">
-      <div class="ct">📋 NDKSY Pipeline Comparison — 13 Apr · 22 Apr · 29 Apr (District Level)</div>
-      <div class="cs">Δ and % = 22 Apr → 29 Apr · 22 Apr column coloured vs 13 Apr baseline · District totals only</div>
-    </div>
-    <div class="cb" style="padding:0">
-      <div class="tw">
-        <table class="dt">
-          <thead><tr>
-            <th>Desk Stage</th>
-            <th>13 Apr 2026</th><th>22 Apr 2026</th><th>29 Apr 2026 (Current)</th>
-            <th>Δ (22→29)</th><th>% (22→29)</th><th>Status</th>
-          </tr></thead>
-          <tbody>
-            <tr>
-              <td style="font-size:10px">शेतकरी पडताळणी</td>
-              <td class="num">99</td>
-              <td class="num" style="color:#2E7D32;font-weight:600">600</td>
-              <td class="num" style="font-weight:700">193</td>
-              <td class="num" style="color:#C62828;font-weight:700">-407</td>
-              <td class="num" style="color:#C62828;font-weight:700">-67.8%</td>
-              <td><span class="badge br">▼ Major Decline</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">ग्रा.कृ.वि.स मान्यता</td>
-              <td class="num">1,559</td>
-              <td class="num" style="color:#C62828;font-weight:600">879</td>
-              <td class="num" style="font-weight:700">962</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+83</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+9.4%</td>
-              <td><span class="badge bg">✅ Good Gain</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">सहायक कृषी अधिकारी स्थळ पाहणी डेस्क -२</td>
-              <td class="num">3,067</td>
-              <td class="num" style="color:#C62828;font-weight:600">2,902</td>
-              <td class="num" style="font-weight:700">2,697</td>
-              <td class="num" style="color:#C62828;font-weight:700">-205</td>
-              <td class="num" style="color:#C62828;font-weight:700">-7.1%</td>
-              <td><span class="badge br">▼ Major Decline</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">तालुका कृषी अधिकारी पूर्वसंमती डेस्क ३</td>
-              <td class="num">351</td>
-              <td class="num" style="color:#2E7D32;font-weight:600">356</td>
-              <td class="num" style="font-weight:700">273</td>
-              <td class="num" style="color:#C62828;font-weight:700">-83</td>
-              <td class="num" style="color:#C62828;font-weight:700">-23.3%</td>
-              <td><span class="badge ba">▼ Moderate Decline</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">सहायक कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
-              <td class="num">157</td>
-              <td class="num" style="color:#C62828;font-weight:600">113</td>
-              <td class="num" style="font-weight:700">140</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+27</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+23.9%</td>
-              <td><span class="badge bg">✅ Good Gain</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">उपकृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
-              <td class="num">1,002</td>
-              <td class="num" style="color:#C62828;font-weight:600">964</td>
-              <td class="num" style="font-weight:700">1,034</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+70</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+7.3%</td>
-              <td><span class="badge bg">✅ Good Gain</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">मंडळ कृषी अधिकारी डेस्क ४ (मोका तपासणी)</td>
-              <td class="num">4</td>
-              <td class="num" style="color:#2E7D32;font-weight:600">5</td>
-              <td class="num" style="font-weight:700">5</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+0</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+0.0%</td>
-              <td><span class="badge bb">— No Change</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">लेखाअधिकारी उ. कृ.अ.कार्यालय डेस्क ५</td>
-              <td class="num">273</td>
-              <td class="num" style="color:#2E7D32;font-weight:600">408</td>
-              <td class="num" style="font-weight:700">307</td>
-              <td class="num" style="color:#C62828;font-weight:700">-101</td>
-              <td class="num" style="color:#C62828;font-weight:700">-24.8%</td>
-              <td><span class="badge br">▼ Major Decline</span></td>
-            </tr>
-            <tr>
-              <td style="font-size:10px">उपविभागीय कृषी अधिकारी डेस्क ६</td>
-              <td class="num">121</td>
-              <td class="num" style="color:#2E7D32;font-weight:600">191</td>
-              <td class="num" style="font-weight:700">283</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+92</td>
-              <td class="num" style="color:#2E7D32;font-weight:700">+48.2%</td>
-              <td><span class="badge bg">✅ Good Gain</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PAGE 8: INSIGHTS -->
-<div class="page" id="page-insights">
-  <div id="insights-content">
-    <!-- dynamically rendered by renderInsights() -->
-  </div>
-</div>
-
 </body>
 </html>
